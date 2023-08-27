@@ -1,0 +1,44 @@
+\chapter{Modules} \label{ch:modules}
+
+\begin{exercise}{}{}
+	Show that
+	\[
+		\bigslant{\ZZ}{m \ZZ} \otimes_{\ZZ} \bigslant{\ZZ}{n \ZZ} = 0
+	\]
+	when \(m\) and \(n\) are coprime.
+\end{exercise}
+
+Let
+\[
+	T \coloneqq \bigslant{\ZZ}{m \ZZ} \otimes_{\ZZ} \bigslant{\ZZ}{n \ZZ}
+\]
+Consider some element \(x \otimes y \in T\).
+
+Since \(m \AND n\) are coprime,
+\[
+	\exists\ a, b \in \ZZ \qstq a m + b n = 1
+\]
+
+Now,
+\begin{align*}
+	x \otimes y &= (am + bn) \brak{x \otimes y} \\
+	&= \brak{amx \otimes y} + \brak{x \otimes bny} \\
+	&= \brak{0 \otimes y} + \brak{x \otimes 0} \\
+	&= 0
+\end{align*}
+
+Hence, \(T = 0\).
+
+\begin{exercise}{}{}
+	Let \(A\) be a ring and \(\mfa\) be an ideal.
+
+	Show that
+	\[
+		\bigslant{A}{\mfa} \otimes_A M \cong \bigslant{M}{\mfa M}
+	\]
+\end{exercise}
+
+Any element of \(\bigslant{A}{\mfa} \otimes_A M\) can be written as
+\begin{align*}
+	\brak{r + \mfa} \otimes m \in \bigslant{A}{\mfa} \otimes_A M
+\end{align*}

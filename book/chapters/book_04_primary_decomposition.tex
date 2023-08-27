@@ -1,0 +1,627 @@
+\chapter{Primary Decomposition}
+\label{ch:book_04_primary_decomposition}
+
+The decomposition of an ideal into primary ideals is a traditional
+pillar of ideal theory.
+
+From another point of view primary decomposition provides a generalization
+of the factorization of an integer as a product of prime-powers.
+
+\section{Definition}
+
+A prime ideal in a ring A is in some sense a generalization of
+a prime number.
+The corresponding generalization of a power of a prime number is a
+primary ideal.
+
+\begin{definition}{}{}
+\label{def:primary_ideal}
+	An ideal \(\mfq\) of a ring \(A\) is called \textbf{primary} if
+	for any \(x, y \in A\)
+	\(\mfq \neq A\) and
+	\[
+		xy \in \mfq \implies x \in \mfq \text{ or } y^n \in \mfq
+		\text{ for some } n \geq 1
+	\]
+\end{definition}
+
+\begin{proposition}{Equivalent Condition for primary}{}
+\label{prop:4_0}
+	\(\mfq\) is primary \(\iff \bigslant{A}{\mfq} \neq 0\) and
+	every zero-divisor in \(\bigslant{A}{\mfq}\) is nilpotent.
+\end{proposition}
+
+\begin{proof}
+	\(\brak{\Longrightarrow}\)
+	Consider some zero-divisor \(a + \mfq\) of \(\bigslant{A}{\mfq}\).
+	Then there exists some \(b + \mfq \neq 0\) such that
+	\[
+		\brak{a + \mfq}\brak{b + \mfq} = ab + \mfq = 0 + \mfq
+	\]
+	which implies that \(ab \in \mfq \implies ba \in \mfq\).
+	By definition of primary ideal, \(a^n \in \mfq\) or \(b \in \mfq\).
+
+	Since \(b \notin \mfq\), \(a^n \in \mfq\) for some \(n \geq 1\).
+	Then \(\brak{a + \mfq}^n = a^n + \mfq = 0 + \mfq\).
+
+	\(\brak{\Longleftarrow}\)
+	Let \(ab \in \mfq\).
+	If \(a \in \mfq\), we are done.
+	Suppose \(a \notin \mfq\).
+
+	Then,
+	\[
+		ab + \mfp = 0 + \mfp \text{ but } a + \mfp \neq 0 + \mfp
+		\implies b + \mfq \text{ is a zero-divisor in } \bigslant{A}{\mfq}
+	\]
+
+	This implies that \(b + \mfq\) is nilpotent in \(\bigslant{A}{\mfq}\).
+
+	Hence, \(\brak{b + \mfq}^n = b^n + \mfq = 0 + \mfq\) which
+	implies \(b^n \in \mfq\).
+\end{proof}
+
+
+\begin{proposition}{Smallest prime ideal containing \(\mfq\)}{}
+\label{prop:4_1}
+	Let \(\mfq\) be a primary ideal of a ring \(A\).
+	Then, \(\rad(\mfq)\) is the smallest prime ideal containing \(\mfq\).
+\end{proposition}
+\begin{proof}
+	Consider some \(x, y \in A\) such that \(xy \in \rad(\mfq)\).
+	Then, \(\brak{xy}^n \in \mfq\) for some \(n \geq 1\).
+
+	By definition of primary ideal, \(x^n \in \mfq\) or \({y^n}^m \in \mfq\)
+	for some \(m \geq 1\).
+
+	If \(x^n \in \mfq\), then \(x \in \rad(\mfq)\) and if \({y^n}^m \in \mfq\),
+	then \(y \in \rad(\mfq)\) thus implying that \(\rad(\mfq)\) is prime. \\
+
+	For the smallest part, let \(\mfp\) be a prime ideal containing \(\mfq\).
+	Consider some element \(a \in \rad(\mfq)\).
+
+	\(a^n \in \mfq \subseteq \mfp\) for some \(n \geq 1\) implies that
+	\(a \in \mfp\).
+
+	Hence, \(\rad(\mfq) \subseteq \mfp\).
+\end{proof}
+
+\begin{defn}{\(\mfp\)-primary}{}
+	An ideal \(\mfq\) of a ring \(A\) is called \textbf{\(\mfp\)-primary}
+	if \(\mfq \neq A\) and \(\rad(\mfq) = \mfp\).
+\end{defn}
+
+
+\section{Examples}
+
+The primary ideals in \(\ZZ\) are precisely the ideals of the form
+\(\brak{p^n}\) where \(p\) is a prime number and \(n \geq 1\) including
+the zero ideal \(\brak{0}\).
+
+\begin{example}{}{}
+	Consider \(A = k[x, y]\) where \(k\) is a field, \(\mfq = (x, y^2)\).
+	Then,
+	\[
+		\bigslant{A}{\mfq} \quad \cong \quad \bigslant{k[x]}{(y^2)}
+	\]
+	where the zero-divisors are all the multiples of \(y\) and are
+	hence nilpotent.
+
+	Hence, \(\mfq\) is primary and it's radical is \(\mfp = (x, y)\).
+
+	Here, we have
+	\[
+		\rad(\mfq)^2 = \mfp^2 \subsetneq \mfq \subsetneq \mfp = \rad(\mfq)
+	\]
+\end{example}
+The above example shows that \textbf{a primary ideal
+need not be a power of a prime ideal}.
+
+Conversely, we also show that \textbf{a power of a prime ideal} \({\mfp}^n\)
+is \textbf{not necessarily primary} although it's radical is the prime \(\mfp\).
+
+\begin{example}{}{}
+	Consider \(A = \bigslant{k[x, y, z]}{(xy - z^2)}\).
+	Let \(\bar{x}, \bar{y}, \bar{z}\) denote the images of \(x, y, z\)
+	respectively in \(A\).
+
+	Consider the ideal \(\mfp = (\bar{x}, \bar{z})\).
+	Clearly, \(\mfp\) is a prime ideal since
+	\[
+		\bigslant{A}{\mfp} \quad \cong \quad k[y]
+	\]
+	which is an integral domain.
+
+	Now, we have \(\bar{z}^2 = \bar{x}\bar{y} \in \mfp^{2}\).
+	Clearly, \(\bar{x} \notin \mfp^2\).
+
+	Also, \(\bar{y}^n \in \mfp^{2} \implies \bar{y} \in \rad(\mfp^2) = \mfp\).
+	But, \(\bar{y} \notin \mfp\) and hence, \(\mfp^2\) is not primary.
+\end{example}
+
+However, the powers of a maximal ideal are primary.
+
+\begin{proposition}{Powers of a maximal \(\mfm\) are \(\mfm\)-primary}{}
+\label{prop:4_2}
+	If \(\rad(\mfa)\) is maximal, then \(\mfa\) is primary.
+	In particular, the powers of a maximal ideal are primary.
+\end{proposition}
+\begin{proof}
+	Let \(\rad(\mfa) = \mfm\) be maximal.
+	The image of \(\mfm\) in  \(\bigslant{A}{\mfa}\) is the
+	nilradical of \(\bigslant{A}{\mfa}\).
+
+	Hence, \(\bigslant{A}{\mfa}\) has only one prime ideal, which is the
+	nilradical of \(\bigslant{A}{\mfa}\).
+
+	Hence, any element of \(\bigslant{A}{\mfa}\) is either a unit
+	or nilpotent.
+
+	This implies that any zero-divisor in \(\bigslant{A}{\mfa}\) is nilpotent.
+
+	By proposition~\ref{prop:4_0}, \(\mfa\) is primary.
+\end{proof}
+
+
+\section{Intersections of primary ideals}
+\label{sec:4_intersections}
+
+
+\begin{lemma}{}{}
+\label{lemma:4_3}
+	Let \(\mfq_i\) where \(1 \leq i \leq n\) are \(\mfp\)-primary ideals
+	of \(A\).
+	Then, \(\mfq = \bigcap_{i = 1}^{n} \mfq_i\) is \(\mfp\)-primary.
+\end{lemma}
+\begin{proof}
+	We first show \(\rad(\mfq) = \mfp\).
+	\[
+		\rad(\mfq) = \rad \brak{\bigcap_{i = 1}^{n} \mfq_i} =
+		\bigcap_{i = 1}^{n} \rad(\mfq_i) = \bigcap_{i = 1}^{n} \mfp
+		= \mfp
+	\]
+	Now, we show that \(\mfq\) is primary.
+	Consider some \(ab \in \mfq\) such that \(a \notin \mfq\).
+
+	There exists an \(i\) such that \(a \notin \mfq_i\).
+	Then, \(b \in \mfp\).
+
+	Since \(\rad(\mfq) = \mfp\), we have \(b^n \in \mfq\)
+	for some \(n \geq 1\).
+\end{proof}
+
+
+\begin{lemma}{}{}
+\label{lemma:4_4}
+	Let \(\mfq\) be a \(\mfp\)-primary ideal of \(A\) and \(x \in A\).
+	Then,
+	\begin{enumerate}
+		\item \(x \in \mfq \implies \brak{\mfq \colon x} = (1)\).
+		\item \(x \notin \mfq \implies \brak{\mfq \colon x}\) is
+			\(\mfp\)-primary and hence, \(\rad\brak{\mfq \colon x} = \mfp\).
+		\item \(x \notin \mfp \implies \brak{\mfq \colon x}  = \mfq\).
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	\begin{enumerate}
+		\item By definition,
+		\begin{align*}
+			& \brak{\mfq \colon x} = \fbrak{y \in A \colon yx \in \mfq} \\
+			x \in \mfq \implies & yx \in \mfq \ \forall\ y \in A \implies
+			\brak{\mfq \colon x} = \brak{1}
+		\end{align*}
+
+		\item Consider \(xy \in \mfq\).
+		As \(x \notin \mfq\), \(y \in \mfp\).
+		Hence, we have
+		\[
+			\mfq \subseteq \brak{\mfq \colon x} \subseteq \mfp
+		\]
+		Taking radical, we have
+		\[
+			\rad\brak{\mfq \colon x} = \mfp
+		\]
+		Consider \(yz \in \brak{\mfq \colon x}\) with \(y \notin \mfp\).
+		Then, \(yzx \in \mfq\) and hence, \(zx \in \mfq\) which implies
+		that \(z \in \brak{\mfq \colon x}\).
+
+		\item Since \(x \notin \mfp\), \(x^n \notin \mfq\) for any
+		\(n \geq 1\).
+		\[
+			\brak{\mfq \colon x} = \fbrak{y \in A \colon yx \in \mfq} =
+			\fbrak{y \in A \colon y \in \mfq} = \mfq
+		\]
+	\end{enumerate}
+\end{proof}
+
+\subsection{Primary decomposition}
+
+\begin{definition}{Primary Decomposition}{}
+	A \textbf{primary decomposition} of an ideal \(\mfa\) of a ring \(A\)
+	is an expression of \(\mfa\) as an intersection of finitely many
+	primary ideals, say \(\mfq_i\)
+	\[
+		\mfa = \bigcap_{i = 1}^{n} \mfq_i
+	\]
+	We then say that \(\mfa\) is \textbf{decomposable} or \textbf{reducible}.
+\end{definition}
+
+\begin{note}
+	In general, a primary decomposition need not exist.
+	In this chapter, we restrict ourselves to ideals which
+	have a primary decomposition.
+\end{note}
+
+\begin{defn}{Minimal Primary Decomposition}{}
+	A primary decomposition \(\mfa = \bigcap_{i = 1}^{n} \mfq_i\) is said
+	to be \textbf{minimal} (or irredundant, or reduced, or normal) if
+	\begin{enumerate}
+		\item \(\rad(\mfq_i) \neq \rad(\mfq_j)\) for any \(i \neq j\).
+		\item \(\mfq_i \not\subseteq \bigcap_{j \neq i} \mfq_j\)
+			for all \(i\).
+	\end{enumerate}
+\end{defn}
+
+\begin{proposition}{}{}
+	Let \(\mfa\) be an ideal of a ring \(A\) with a primary decomposition
+	\[
+		\mfa = \bigcap_{i = 1}^{n} \mfq_i
+	\]
+	Then, \(\mfa\) has a minimal primary decomposition.
+\end{proposition}
+\begin{proof}
+	We can achieve the first condition by combining all the
+	\(\mfq_i\) with the same radical into one using the
+	lemma~\ref{lemma:4_3}.
+
+	The second condition can be achieved by removing all the
+	superfluous \(\mfq_i\).
+\end{proof}
+
+
+\subsection{Uniqueness of primary decomposition}
+
+\begin{theorem}{1st uniqueness theorem}{}
+\label{theorem:4_5}
+	Let \(\mfa\) be a decomposable ideal and let
+	\[
+		\mfa = \bigcap_{i = 1}^{n} \mfq_i
+	\]
+	be a minimal primary decomposition of \(\mfa\).
+	Let \(\mfp_i = \rad(\mfq_i)\).
+	Then, the \(\mfp_i\) are precisely the prime ideals
+	\(\rad\brak{\mfa \colon x} \brak{x \in A}\), and hence are
+	independent of the particular decomposition of \(\mfa\).
+\end{theorem}
+\begin{proof}
+	Consider some \(x \in A\).
+	\[
+		\brak{\mfa \colon x} = \brak{\bigcap_{i = 1}^{n} \mfq_i \colon x}
+		= \bigcap_{i = 1}^{n} \brak{\mfq_i \colon x}
+	\]
+	Using lemma~\ref{lemma:4_4}, we have
+	\[
+		\brak{\mfa \colon x} = \bigcap_{i = 1}^{n} \brak{\mfq_i \colon x}
+		= \bigcap_{x \notin \mfq_i}^{n} \mfp_i
+	\]
+	Suppose \(\rad(\mfa \colon x)\) is prime
+	(we assume this in order to show that \(\mfp_i\) occur in this form
+	and vice versa).
+
+	Using proposition 1.11, we have
+	\[
+		\rad\brak{\mfa \colon x} = \mfp_j \text{ for some } j
+		\ \st x \notin \mfq_j
+	\]
+	Hence, every prime ideal of the form \(\rad\brak{\mfa \colon x}\)
+	is one of the \(\mfp_i\).
+
+	Now, we need to show that every \(\mfp_i\) occurs in the form
+	\(\rad\brak{\mfa \colon x}\) for some \(x \in A\).
+
+	Notice that since the decomposition is minimal, we have
+	\[
+		\forall\ i, \ \exists\ x_i \notin \mfq_i \ \st
+		x_i \in \bigcap_{j \neq i} \mfq_j
+	\]
+
+	Hence, \(\rad\brak{\mfa \colon x_i} = \mfp_i\).
+\end{proof}
+
+\begin{note}
+	The prime ideals \(\mfp_i\) are said to \textbf{belong} to \(\mfa\)
+	or \textbf{associated} to \(\mfa\).
+
+	The ideal \(\mfa\) is primary if and only if it has only one
+	associated prime ideal.
+
+	The minimal elements of the set of associated prime ideals of \(\mfa\)
+	are called the \textbf{minimal/isolated
+	associated prime ideals} of \(\mfa\).
+
+	The others are called the \textbf{embedded associated prime ideals}
+	of \(\mfa\).
+\end{note}
+
+\begin{note}
+	Note that in the above proof, coupled with lemma~\ref{lemma:4_4},
+	we have shown that
+	\[
+		\forall\ i, \ \exists\ x_i \in A \ \st
+		\brak{\mfa \colon x_i} \text{ is } \mfp_i \text{-primary}
+	\]
+	Considering \(\bigslant{A}{\mfa}\) as an \(A\)-module,
+	theorem~\ref{theorem:4_5} is equivalent to saying that
+	\(\mfp_i\) are precisely the prime ideals which occur as
+	\(\rad\brak{\Ann(x)}\) for some	\(x \in \bigslant{A}{\mfa}\).
+\end{note}
+
+
+\begin{example}{}{}
+	Consider \(A = k[x, y]\) where \(k\) is a field.
+	Let \(\mfa = (x^2, xy)\).
+	Then, \(\mfa\) is decomposable since
+	\[
+		\mfa = \mfp_1 \cap \mfp_2^2
+		\quad \text{ where } \mfp_1 = (x) \AND \mfp_2 = (x, y)
+		\text{ are prime}
+	\]
+	\(\mfp_2\) being a maximal implies that \(\mfp_2^2\) is primary.
+
+	We have \(\rad(\mfp_1) = \mfp_1\) and \(\rad(\mfp_2^2) = \mfp_2\)
+	and hence, \(\rad\brak{\mfa} = \mfp_1 \cap \mfp_2 = \mfp_1\).
+\end{example}
+
+In the above example, we have \(\mfp_1 \subseteq \mfp_2\) and hence,
+\(\mfp_2\) is an embedded associated prime ideal of \(\mfa\) while
+\(\mfp_1\) is an isolated associated prime ideal of \(\mfa\).
+
+
+\begin{proposition}{}{}
+\label{prop:4_6}
+	Let \(\mfa\) be a decomposable ideal.
+	Then, any prime ideal \(\mfp \supseteq \mfa\) contains a minimal
+	prime ideal belonging to / associated with \(\mfa\).
+
+	Thus, the minimal prime ideals belonging to \(\mfa\) are precisely
+	the minimal elements of the set of prime ideals containing \(\mfa\).
+\end{proposition}
+
+\begin{proof}
+	Consider some prime ideal \(\mfp \supseteq \mfa\).
+	Then,
+	\begin{align*}
+		\mfp &\supseteq \bigcap_{i = 1}^{n} \mfq_i \\
+		\implies \rad(\mfp) &\supseteq \bigcap_{i = 1}^{n} \rad(\mfq_i) \\
+		\implies \mfp &\supseteq \bigcap_{i = 1}^{n} \mfp_i
+	\end{align*}
+	Hence, by \(1.11\), we have \(\mfp \supseteq \mfp_i\) for some \(i\)
+	which shows that \(\mfp\) contains a minimal prime ideal belonging to
+	\(\mfa\).
+\end{proof}
+
+
+\begin{proposition}{}{}
+\label{prop:4_7}
+	Let \(\mfa\) be a decomposable ideal, and let
+	\[
+		\mfa = \bigcap_{i = 1}^{n} \mfq_i
+	\]
+	be a minimal primary decomposition and let \(\mfp_i = \rad(\mfq_i)\).
+	Then,
+	\[
+		\bigcup_{i=1}^n \mfp_i =
+		\fbrak{x \in A \mid \brak{\mfa \colon x} \neq \mfa}
+	\]
+	In particular, if the zero ideal is decomposable, then the set \(D\)
+	of zero-divisors in \(A\) is the union of the prime ideals
+	belonging to / associated with the zero ideal.
+\end{proposition}
+\begin{proof}
+	If \(\mfa\) is decomposable, then 0 is decomposable in
+	\(\bigslant{A}{\mfa}\).
+	\[
+		0 = \bigcap_{i = 1}^{n} \bar{\mfq_i} \quad \text{ where }
+		\bar{\mfq_i} \text{ is the image of } \mfq_i \text{ in }
+		\bigslant{A}{\mfa}
+	\]
+	Hence, it is enough to prove the last statement.
+
+	We know that
+	\[
+		D = \bigcup_{x \in A} \rad\brak{0 \colon x}
+	\]
+	From the proof of theorem~\ref{theorem:4_5}, we have
+	\[
+		\rad\brak{0 \colon x} = \bigcap_{x \notin \mfq_j} \mfp_j
+		\subseteq \mfp_j \text{ for some } j
+	\]
+	Hence, we have
+	\[
+		D \subseteq \bigcup_{j = 1}^{n} \mfp_j
+	\]
+	Also from the proof of theorem~\ref{theorem:4_5}, we have
+	that each \(\mfp_i\) is of the form \(\rad\brak{0 \colon x}\)
+	for some \(x \in A\).
+	Hence,
+	\[
+		\bigcup_{j = 1}^{n} \mfp_j \subseteq D
+	\]
+\end{proof}
+
+Thus, (the zero ideal being decomposable)
+\begin{align*}
+	D &= \bigcup \mfp_i \text{ where } \mfp_i \text{ is associated to } 0 \\
+	\mfN &= \bigcap \mfp_i \text{ where } \mfp_i
+	\text{ is minimal and associated to } 0
+\end{align*}
+
+
+\section{Primary ideals under localization}
+
+\begin{proposition}{}{}
+\label{prop:4_8}
+	Let \(S\) be a multiplicatively closed subset of a ring \(A\),
+	and let \(\mfq\) be a \(\mfp\)-primary ideal of \(A\).
+	Then,
+	\begin{enumerate}
+		\item \(S \cap \mfp \neq \phi \implies S^{-1}\mfq = S^{-1} A\)
+		\item \(S \cap \mfp = \phi \implies S^{-1}\mfq\) is
+			\(S^{-1}\mfp\)-primary and it's contraction is \(\mfq\).
+	\end{enumerate}
+\end{proposition}
+\begin{proof} \
+	\begin{enumerate}
+		\item Consider some \(s \in S \cap \mfp\).
+		Then, \(s \in \mfp \implies s^n \in \mfq\) for some
+		\(n \geq 1\).
+
+		Hence,
+		\[
+			\frac{s^n}{1} \in S^{-1}\mfq \implies
+			\frac{s^n}{s^n} = \frac{1}{1} \in S^{-1}\mfq
+		\]
+		which implies that \(S^{-1}\mfq = S^{-1}A\).
+
+		\item If \(S \cap \mfp = \phi\), then, using
+		proposition~\ref{prop:3_11}(4), when \(S \cap \mfp = \phi\), we have
+		\[
+			s \in S \AND as \in \mfq \implies a \in \mfq
+			\implies \mfq^{ec} = \mfq
+		\]
+		Also from proposition~\ref{prop:3_11}(5), we have
+		\[
+			\rad\brak{\mfq^e} = \rad\brak{S^{-1}\mfq} = S^{-1}\mfp
+		\]
+		To verify that \(S^{-1}\mfq\) is primary, consider
+		\[
+			\frac{a}{s} \cdot \frac{b}{t} \in S^{-1}\mfq
+			\implies \frac{ab}{st} \in S^{-1}\mfq
+		\]
+		This boils down to \(ab \in \mfq\) and the proposition follows.
+	\end{enumerate}
+\end{proof}
+
+\begin{defn}{Contraction of an ideal in \(S^{-1}A\)}{}
+	For an ideal \(\mfa\) and a multiplicatively closed subset \(S\),
+	the \textbf{contraction} of \(\mfa\) in \(S^{-1}A\) is denoted by
+	\[
+		S\brak{\mfa} \coloneqq \text{Contraction of the ideal }
+		S^{-1}\mfa \normsg S^{-1}A \text{ where } \mfa \normsg A
+	\]
+\end{defn}
+
+\begin{proposition}{}{}
+\label{prop:4_9}
+	Let S be a multiplicatively closed subset of a \(A\) and let \(\mfa\)
+	be a decomposable ideal of \(A\).
+	Let
+	\[
+		\mfa = \bigcap_{i = 1}^{n} \mfq_i \qstq \mfp_i = \rad(\mfq_i)
+	\]
+	be a minimal primary decomposition of \(\mfa\).
+
+	Suppose the \(\mfq_i\) are numbered so that \(S\) meets
+	\(\mfp_{m+1}, \ldots, \mfp_n\) but not \(\mfp_1, \ldots, \mfp_m\).
+	Then,
+	\[
+		S^{-1}\mfa = \bigcap_{i = 1}^{m} S^{-1}\mfq_i
+		\quad\quad \text{ and } \quad\quad
+		S\brak{\mfa} = \bigcap_{i = 1}^{m} \mfq_i
+	\]
+	and these are minimal primary decompositions.
+\end{proposition}
+\begin{proof}
+	Using proposition~\ref{prop:3_11}(5) and proposition~\ref{prop:4_8},
+	we have
+	\begin{align*}
+		S^{-1}\mfa &= \bigcap_{i = 1}^{n} S^{-1}\mfq_i
+			&~\text{\ref{prop:3_11}(5)} \\
+		S^{-1}\mfa &= \bigcap_{i = 1}^{m} S^{-1}\mfq_i
+			&~\text{\ref{prop:4_8}} \\
+	\end{align*}
+	and \(S^{-1}\mfq_i\) are \(S^{-1}\mfp_i\)-primary for
+	\(i = 1, \ldots, m\).
+
+	Since \(\mfp_i\) are distinct, \(S^{-1}\mfp_i\) are distinct
+	and hence, we have a minimal primary decomposition of \(S^{-1}\mfa\).
+
+	Contracting both sides, we get
+	\[
+		S\brak{\mfa} = \brak{S^{-1}\mfa}^c =
+		\bigcap_{i = 1}^{m} \brak{S^{-1}\mfq_i}^c
+		= \bigcap_{i = 1}^{m} \mfq_i
+	\]
+	using proposition~\ref{prop:4_8} again.
+\end{proof}
+
+\begin{defn}{Set of associated isolated ideals}{}
+	A set \(\Sigma\) of prime ideals belonging to / associated with \(\mfa\)
+	is said to be \textbf{isolated} if it satisfies the following condition:
+	\[
+		\mfp' \text{ is a prime ideal associated with } \mfa \AND
+		\mfp' \subseteq \mfp \text{ for some } \mfp \in \Sigma
+		\implies \mfp' = \mfp
+	\]
+\end{defn}
+
+\begin{proposition}{}{}
+	Let \(\Sigma\) be an isolated set of prime ideals associated with
+	\(\mfa\) and let
+	\[
+		S = A \setminus \bigcup_{\mfp \in \Sigma} \mfp
+	\]
+	Then, \(S\) is multiplicatively closed and for any prime ideal
+	\(\mfp'\) associated with \(\mfa\), we have
+	\begin{align*}
+		\mfp' \in \Sigma &\implies \mfp' \cap S = \phi \\
+		\mfp' \notin \Sigma &\implies \mfp' \not\subseteq
+		\bigcup_{\mfp \in \Sigma} \mfp \implies \mfp' \cap S \neq \phi
+		& \text{using proposition 1.11}
+	\end{align*}
+\end{proposition}
+
+\subsection{2nd uniqueness theorem}
+\begin{theorem}{}{}
+\label{theorem:4_10}
+	Let \(\mfa\) be a decomposable ideal and let
+	\[
+		\mfa = \bigcap_{i = 1}^{n} \mfq_i
+	\]
+	be a minimal primary decomposition of \(\mfa\) and let
+	\(\fbrak{\mfp_{i_1}, \mfp_{i_2}}, \cdots, \mfp{i_m}\) be an
+	isolated set of prime ideals in \(\mfa\).
+	Then,
+	\[
+		\mfq_{i_1} \cap \cdots \cap \mfq_{i_m}
+	\]
+	is independent of the decomposition.
+\end{theorem}
+\begin{proof}
+	We know that \(\mfp_i\) depend only on \(\mfa\) using
+	theorem~\ref{theorem:4_5}.
+
+	Also, from proposition~\ref{prop:4_9}, we have
+	\[
+		q_{i_1} \cap \cdots \cap \mfq_{i_m} =
+		S(\mfa) \quad \text{where } S = A \setminus
+		\bigcup_{j = 1}^{m} \mfp_{i_j}
+	\]
+	and hence depends only on \(\mfa\).
+\end{proof}
+
+In particular, we have
+\begin{corollary}{}{}
+\label{corollary:4_11}
+	The isolated primary components, the primary components \(\mfp_i\)
+	corresponding to minimal prime ideals \(\mfp_i\) are uniquely determined
+	by \(\mfa\).
+\end{corollary}
+
+\begin{note}
+	On the other hand, the embedded primary components are in general
+	not uniquely determined bt \(\mfa\).
+	If \(A\) is a noetherian ring, then there are in fact
+	infinitely many choices for each embedded component
+	(refer to chapter 8, exercise 1).
+\end{note}

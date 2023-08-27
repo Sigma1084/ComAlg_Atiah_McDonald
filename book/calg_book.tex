@@ -1,0 +1,36 @@
+\documentclass{report}
+
+\input{../tex_template/preamble}
+\input{../tex_template/macros}
+\input{../tex_template/letterfonts}
+\input{../tex_template/commands}
+
+\title{\Huge{Commutative Algebra}}
+\author{\huge{Sumanth N R}}
+\date{\today}
+
+\usepackage{mathrsfs}
+\DeclareSymbolFont{letters}{OML}{ztmcm}{m}{it}
+\DeclareMathOperator{\rad}{r}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Max}{Max}
+
+\begin{document}
+
+\maketitle
+\newpage
+\pdfbookmark[section]{\contentsname}{toc}
+\tableofcontents
+\pagebreak
+
+
+\input{chapters/book_01_rings_and_ideals}
+\input{chapters/book_02_modules_p1}
+\input{chapters/book_02_modules_p2}
+\input{chapters/book_03_rings_and_modules_of_fractions}
+\input{chapters/book_04_primary_decomposition}
+\input{chapters/book_05_integral_dependence_and_valuations}
+\input{chapters/book_06_chain_conditions}
+\input{chapters/book_07_noetherian_rings}
+
+\end{document}

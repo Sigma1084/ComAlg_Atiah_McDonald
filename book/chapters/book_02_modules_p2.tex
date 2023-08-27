@@ -1,0 +1,834 @@
+\chapter*{Modules 2}  \label{ch:modules2}
+
+\section{Exact Sequences}
+A sequence of \(A\)-modules and \(A\)-module homomorphisms
+\[
+	\cdots \xrightarrow[\quad\quad]{} M_{i-1} \xrightarrow[\quad\quad]{f_i}
+	M_i \xrightarrow[\quad\quad]{f_{i+1}} M_{i+1}
+	\xrightarrow[\quad\quad]{} \cdots
+\]
+is said to be exact at \(M_i\) if
+\[
+	\Img(f_i) = \Ker(f_{i+1})
+\]
+
+The sequence is said to be exact if it is exact at every \(M_i\).
+
+In particular,
+\begin{enumerate}
+	\item \(0 \xrightarrow[\quad]{} M' \xrightarrow[\quad]{f} M\)
+	is exact \(\iff f\) is injective.
+	\item \(M \xrightarrow[\quad]{g} M'' \xrightarrow[\quad]{} 0\)
+	is exact \(\iff g\) is surjective.
+	\item \(0 \xrightarrow[\quad]{} M' \xrightarrow[\quad]{f} M
+	\xrightarrow[\quad]{g} M'' \xrightarrow[\quad]{} 0\)
+	is exact \(\iff f\) is injective and \(g\) is surjective.
+\end{enumerate}
+In the last example, \(g\) induces a homomorphism
+\(\bigslant{M}{f(M)} = \Coker(f)\) onto \(M''\).
+
+A sequence of type 3 is called a \emph{short exact sequence}.
+
+Any long exact sequence of \(A\)-modules can be split into
+short exact sequences.
+
+
+\subsection{Right exactness of the functor \(\Hom_A(-, N)\)}
+
+\begin{proposition}{}{}
+	Let
+	\[
+		M' \xrightarrow[\quad\quad]{u} M \xrightarrow[\quad\quad]{v} M''
+		\xrightarrow[\quad\quad]{} 0
+	\]
+	be a sequence of \(A\)-modules and homomorphisms.
+	Then, the sequence is exact if and only if
+
+	for all \(A\)-modules \(N\), the sequence
+	\[
+		\Hom_A(M', N) \xleftarrow[\quad\quad]{\bar{u}} \Hom_A(M, N)
+		\xleftarrow[\quad\quad]{\bar{v}} \Hom_A(M'', N)
+		\xleftarrow[\quad\quad]{} 0
+	\]
+	is exact.
+\end{proposition}
+
+\begin{proof} \ \\
+	\(\brak{\Longrightarrow}\)
+
+	For the if part, suppose that the sequence is exact.
+
+	Consider the sequence
+	\[
+		\Hom_A(M', N) \xleftarrow[\quad\quad]{\bar{u}} \Hom_A(M, N)
+		\xleftarrow[\quad\quad]{\bar{v}} \Hom_A(M'', N)
+		\xleftarrow[\quad\quad]{} 0
+	\]
+	for some \(A\)-module \(N\).
+
+	The maps \(\bar{u}\) and \(\bar{v}\) are defined as
+	\[
+		\bar{u}(f) = f \circ u \colon M' \to M \to N
+		\qandq \bar{v}(f'') = f'' \circ v \colon M \to M'' \to N
+	\]
+
+	We need to prove 2 things (exactness at 2 places):
+	\begin{enumerate}
+		\item \(\bar{v}\) is injective \(\OR \Ker\bar{v} = 0\).
+		\item \(\Img\bar{v} = \Ker\bar{u}\).
+	\end{enumerate}
+
+	First, we prove that \(\Ker\bar{v} = 0\).
+	\begin{align*}
+		f'' \in \Ker\bar{v} &\implies f'' \circ v (m) = 0 \ \forall\ m \in M \\
+		&\implies f'' \circ v(M) = 0 \\
+		&\implies f''(M'') = 0 \implies f'' = 0
+	\end{align*}
+
+	Now, we prove that
+	\[
+		\Img\bar{v} = \Ker\bar{u}
+	\]
+
+	Consider some \(f \in \Img\bar{v}\).
+	We need to show that \(f \in \Ker\bar{u}\).
+
+	Then, there exists \(f'' \in \Hom_A(M'', N)\) such that
+	\(f = f'' \circ v\).
+
+
+	This is equivalent to showing that \(\bar{u}(f) = 0\)
+	or \(f \circ u (M') = 0\).
+	\[
+		f \circ u (M') = f'' \circ v \circ u (M')
+		= f'' \circ v \circ \Img(u) = f'' \circ v \circ \Ker(v)
+		= f'' \circ 0 = 0
+	\]
+	Hence, we showed that
+	\[
+		\Img\bar{v} \subseteq \Ker\bar{u}
+	\]
+
+	Now, suppose that \(f \in \Ker\bar{u}\).
+	We need to show that \(f \in \Img\bar{v}\).
+
+	To show that \(f \in \Img\bar{v}\), we need to construct a
+	function \(f'' \in \Hom_A(M'', N)\) such that
+	\(f = \bar{v}(f'') = f'' \circ v\).
+
+	We know that \(v\) is surjective.
+	So, for every \(m'' \in M''\), there exists \(m \in M\) such that
+	\(v(m) = m''\) and hence, we can define a function \(f''\)
+	given by \(f''(m'') = f''(v(m)) = f(m)\).
+
+	We need to show that this map is well-defined.
+	Suppose
+	\begin{align*}
+		m'' = v(m_1) = v(m_2)
+	\end{align*}
+	Then, we need to prove that \(f(m_1) = f(m_2)\).
+
+	Since
+	\[
+		v(m_1) = v(m_2) \implies m_1 - m_2 \in \Ker(v) \subseteq \Ker(f)
+		\quad\quad\quad f = f'' \circ v
+	\]
+	This forces \(f(m_1) = f(m_2)\) and hence, \(f''\) is well-defined.
+
+	\vspace{3em}
+
+	\(\brak{\Longleftarrow}\)
+
+	Now, given the exactness of the sequence
+	\[
+		\Hom_A(M', N) \xleftarrow[\quad\quad]{\bar{u}} \Hom_A(M, N)
+		\xleftarrow[\quad\quad]{\bar{v}} \Hom_A(M'', N)
+		\xleftarrow[\quad\quad]{} 0
+	\]
+	for all \(A\)-modules \(N\), we need to show that the sequence
+	\[
+		M' \xrightarrow[\quad\quad]{u}
+		M \xrightarrow[\quad\quad]{v} M'' \xrightarrow[\quad\quad]{} 0
+	\]
+	is exact.
+
+	Similar to the previous proof, we need to show 2 things:
+	\begin{enumerate}
+		\item \(v\) is surjective \(\OR \Img v = M''\).
+		\item \(\Img u = \Ker v\).
+	\end{enumerate}
+
+	Notice that \(\bar{v}\) is injective for all \(A\)-modules \(N\)
+	and hence, let us put
+	\[
+		N = \bigslant{M''}{\Img(v)}
+	\]
+	We need to show that \(N = 0\).
+
+	Consider some \(f'' \in \Hom_A \brak{M'', \bigslant{M''}{\Img(v)}}\).
+
+	Notice that \(\bar{v}(f'') = f'' \circ v = 0\).
+
+	Since \(\bar{v}\) is injective, we have \(f'' = 0\).
+	\[
+		\implies \Hom_A \brak{M'', \bigslant{M''}{\Img(v)}} = 0
+		\implies \bigslant{M''}{\Img(v)} = 0
+		\implies M'' = \Img(v)
+	\]
+	Now, since we know that
+	\[
+		\Ker(\bar{u}) = \Img(\bar{v})
+		\implies f'' \circ v \circ u = 0 \ \forall\ f'' \in \Hom_A(M'', N)
+	\]
+	Putting \(f'' = 1\), the identity function, we get
+	\[
+		v \circ u = 0 \implies \Img(u) \subseteq \Ker(v)
+	\]
+	Finally, consider
+	\[
+		N = \bigslant{M}{\Img(u)}
+	\]
+	The natural map
+	\[
+		\phi \colon M \to \bigslant{M}{\Img(u)}
+		\quad \in \quad \Hom_A \brak{M, \bigslant{M}{\Img(u)}}
+	\]
+	Notice that
+	\[
+		\bar{u}(\phi) = \phi \circ u = 0 \implies
+		\phi \in \Ker(\bar{u}) = \Img(\bar{v})
+	\]
+	Hence, there is a function
+	\[
+		\psi \colon M'' \to \bigslant{M}{\Img(u)}
+		\qstq \phi = \psi \circ v
+	\]
+	And so, notice that
+	\[
+		\Ker(v) \subseteq \Ker(\phi) = \Img(u)
+	\]
+	And thus,
+	\[
+		\Ker(v) = \Img(u)
+	\]
+	and we are done.
+\end{proof}
+
+\subsection{Left exactness of the functor \(\Hom_A(M, -)\)}
+
+\begin{proposition}{}{}
+	Let
+	\[
+		0 \xrightarrow[\quad\quad]{} N' \xrightarrow[\quad\quad]{u}
+		N \xrightarrow[\quad\quad]{v} N''
+	\]
+	be a sequence of \(A\)-modules and homomorphisms.
+	Then, the sequence is exact if and only if
+
+	for all \(A\)-modules \(M\), the sequence
+	\[
+		0 \xrightarrow[\quad\quad]{} \Hom_A(M, N')
+		\xrightarrow[\quad\quad]{\bar{u}} \Hom_A(M, N)
+		\xrightarrow[\quad\quad]{\bar{v}} \Hom_A(M, N'')
+	\]
+	is exact.
+\end{proposition}
+
+\begin{proof} \ \\
+	The functions \(\bar{u}\) and \(\bar{v}\) are defined as
+	\[
+		\bar{u}(f) = u \circ f \quad\quad\quad
+		\bar{v}(f) = v \circ f
+	\]
+
+	\( \brak{\Longrightarrow} \)
+
+	We need to show 2 things:
+	\begin{enumerate}
+		\item \(\bar{u}\) is injective or \(\Ker(\bar{u}) = 0\).
+		\item \(\Img(\bar{u}) = \Ker(\bar{v})\).
+	\end{enumerate}
+
+	Consider some \(f' \in \Hom_A(M, N')\)
+	\begin{align*}
+		f' \in \Ker(\bar{u})
+		&\implies \bar{u}(f') = u \circ f' = 0 \\
+		&\implies \Img(f') \subseteq \Ker(u) = 0 \\
+		&\implies f' = 0 \implies \Ker(\bar{u}) = 0
+	\end{align*}
+
+	\(\Img(\bar{u}) \subseteq \Ker(\bar{v})\) can be shown by proving
+	\[
+		\bar{v} \circ \bar{u} = 0
+	\]
+
+	For some \(f' \in \Hom_A(M, N')\),
+	\[
+		\bar{v} \circ \bar{u}(f') = v \circ u \circ f'
+	\]
+	We know that
+	\[
+		v \circ u(n) = 0 \ \forall\ n' \in N'
+		\implies v \circ u \circ f' = 0
+	\]
+	Now, to prove \(\Ker(\bar{v}) \subseteq \Img(\bar{u})\),
+	consider some \(f \in \Ker(\bar{v})\).
+	We have
+	\begin{align*}
+		&v \circ f (n) = 0 \ \forall\ n \in N \\
+		\implies &\Img(f) \subseteq \Ker(v) = \Img(u) \\
+		\implies &\exists\ n' \in N' \st u(n') = f(m) \ \forall\ m \in M \\
+		&\text{Define } f' \colon M \to N' \text{ by } f'(m) = n' \\
+	\end{align*}
+	Hence, we have
+	\[
+		\bar{u}(f') = u \circ f' = f
+		\implies f \in \Img(\bar{u})
+		\implies \Ker(\bar{v}) \subseteq \Img(\bar{u})
+	\]
+
+	\vspace{3em}
+
+	\( \brak{\Longleftarrow} \)
+
+	We need to show 2 things:
+	\begin{enumerate}
+		\item \(u\) is injective or \(\Ker(u) = 0\).
+		\item \(\Img(u) = \Ker(v)\).
+	\end{enumerate}
+\end{proof}
+
+
+\begin{proposition}{}{}
+	Let
+	\begin{align*}
+		\xymatrix{
+			0 \ar[r] & M' \ar[d]_-{f'} \ar[r]^-{u} & M
+			\ar[d]_-{f} \ar[r]^-{v} & M''
+			\ar[d]^-{f''} \ar[r] & 0 \\
+			0 \ar[r] & N' \ar[r]_-{u'} & N
+			\ar[r]_-{v'} & N'' \ar[r] & 0
+		}
+	\end{align*}
+	be a commutative diagram of \(A\)-modules and homomorphisms,
+	with the rows exact.
+
+	Then, there exists an exact sequence
+	\begin{align*}
+		0 \xrightarrow[\quad]{} \Ker(f')
+		\xrightarrow[\quad]{\bar{u}} \Ker(f)
+		\xrightarrow[\quad]{\bar{v}} \Ker(f'')
+		\xrightarrow[\quad]{d} \Coker(f')
+		\xrightarrow[\quad]{\bar{u'}} \Coker(f)
+		\xrightarrow[\quad]{\bar{v'}} \Coker(f'')
+		\xrightarrow[\quad]{} 0
+	\end{align*}
+	in which \(\bar{u}, \bar{v}\) are restrictions of \(u, v\)
+	and \(\bar{u'}, \bar{v'}\) are induced by \(u', v'\).
+
+	The boundary homomorphism \(d\) is defined as
+	\[
+		\text{If } x'' \in \Ker(f'')
+	\]
+\end{proposition}
+
+
+\subsection{Additive Functions over Modules}
+
+\begin{defn}{Additive Functions}{}
+	Let \(\sC\) be a class of \(A\)-modules and let \(\lambda\) be a function
+	on \(\sC\) with values in \(\ZZ\).
+
+	The function \(\lambda\) is said to be \emph{additive} if for
+	every short exact sequence
+	\[
+		0 \xrightarrow[\quad\quad]{}
+		M' \xrightarrow[\quad\quad]{u}
+		M \xrightarrow[\quad\quad]{v}
+		M'' \xrightarrow[\quad\quad]{} 0
+	\]
+	in \(\sC\), we have
+	\[
+		\lambda(M') - \lambda(M) + \lambda(M'') = 0
+	\]
+\end{defn}
+
+\begin{proposition}{}{}
+	Let
+	\[
+		0 \xrightarrow[\quad\quad]{} M_0 \xrightarrow[\quad\quad]{}
+		M_1 \xrightarrow[\quad\quad]{} \cdots
+		\xrightarrow[\quad\quad]{} M_n \xrightarrow[\quad\quad]{} 0
+	\]
+	be an exact sequence of \(A\)-modules in which all the modules
+	and the kernels of the homomorphisms belong to \(\sC\).
+
+	Then, for any additive function \(\lambda\) on \(\sC\), we have
+	\[
+		\sum_{i=0}^n (-1)^i \lambda(M_i)
+	\]
+\end{proposition}
+
+
+\pagebreak
+\section{Tensor Product of Modules}
+
+\begin{defn}{\(A\)-bilinear}{}
+	Let \(M, N, P\) be three \(A\)-modules.
+	A mapping
+	\[
+	f \colon M \times N \to P
+	\]
+	is said to be \(A\)-\emph{bilinear} if
+
+	for each \(x \in M\), the mapping
+	\(
+	y \mapsto f(x, y)
+	\)
+	of \(N\) into \(P\) is \(A\)-linear and
+
+	for each \(y \in N\), the mapping
+	\(
+	x \mapsto f(x, y)
+	\)
+	of \(M\) into \(P\) is \(A\)-linear.
+\end{defn}
+
+We will construct an \(A\)-module \(T\), called the Tensor product of
+\(M\) and \(N\), with the property that the \(A\)-bilinear mappings
+\(M \times N \to P\) are in a natural one-to-one correspondence with
+the \(A\)-linear mappings \(T \to P\), for all \(A\)-modules \(P\).
+
+
+\begin{proposition}{Existence of Tensor Product}{}
+	Let \(M, N\) be \(A\)-modules.
+	Then, there exists a pair \(\brak{T, g}\) consisting of an \(A\)-module
+	\(T\) and an \(A\)-bilinear mapping \(g \colon M \times N \to T\),
+	with the following property:
+
+	Given any \(A\)-module \(P\) and any \(A\)-bilinear mapping
+	\[
+		f \colon M \times N \to P
+	\]
+	there exists a unique \(A\)-linear mapping
+	\[
+		f' \colon T \to P
+	\]
+	such that
+	\[
+		f = f' \circ g
+	\]
+	(in other words, every bilinear function on \(M \times N\) factors
+	through \(T\)).
+\end{proposition}
+
+\begin{proof}{}{}
+	Let \(C\) denote the free \(A\)-module \(A^{\brak{M \times N}}\).
+
+	The elements of \(C\) are formal linear combinations of elements
+	of \(M \times N\) with coefficients in \(A\).
+	That is, they are expressions of the form
+	\[
+		c \in C \implies c =
+		\sum_{i=1}^n a_i \cdot (m_i, n_i)
+		\quad\quad \Bigbrak{a_i \in A, (x_i, y_i) \in M \times N}
+	\]
+	Let \(D\) be a submodule of \(C\) generated by all elements of \(C\)
+	of the following types
+	\begin{gather*}
+		\brak{x + x', y} - \brak{x, y} - \brak{x', y} \\
+		\brak{x, y + y'} - \brak{x, y} - \brak{x, y'} \\
+		\brak{ax, y} - a \cdot \brak{x, y} \\
+		\brak{x, ay} - a \cdot \brak{x, y}
+	\end{gather*}
+
+	Now, let us define
+	\[
+		T = \bigslant{C}{D}
+	\]
+	For each basis element \(\brak{x, y}\) of \(C\), let
+	\(x \otimes y\) denote its image in \(T\).
+
+	Then, \(T\) is an \(A\)-module generated by the elements of the form
+	\(x \otimes y\), for \(x \in M\) and \(y \in N\).
+
+	Also, from our definitions, we have
+	\begin{gather*}
+		\brak{x + x'} \otimes y' = x \otimes y + x' \otimes y \\
+		x \otimes \brak{y + y'} = x \otimes y + x \otimes y' \\
+		\brak{ax} \otimes y = a \brak{x \otimes y} = x \otimes \brak{ay}
+	\end{gather*}
+
+	Equivalently, the mapping
+	\[
+		g \colon M \times N \to T
+	\]
+	denoted by
+	\[
+		g(x, y) = x \otimes y
+	\]
+	is \(A\)-bilinear.
+
+	Any map \(f\) of \(M \times N\) into an \(A\)-module \(P\) extends
+	by linearity to an \(A\)-module homomorphism
+	\[
+		f' \colon C \to P
+	\]
+	Suppose in particular that \(f\) is \(A\)-bilinear.
+	Then, from the definitions, \(f'\) vanishes on all the generators
+	of \(D\) and hence, on the whole of \(D\), and therefore induces
+	a well-defined \(A\)-linear mapping \(f' \colon T \to P\)
+	such that \(f'(x \otimes y) = f(x, y)\).
+
+	The map \(f'\) is uniquely determined by the proposition and hence,
+	satisfies the conditions of the proposition.
+\end{proof}
+
+\begin{proposition}{Uniqueness of Tensor Product}{}
+	The tensor product of \(M\) and \(N\) is unique up to isomorphism.
+	That is, if \(\brak{T, g}\) and \(\brak{T', g'}\) are two pairs
+	as in the proposition, then there exists a unique isomorphism
+	\[
+		j \colon T \to T' \qstq j \circ g = g'
+	\]
+\end{proposition}
+
+\begin{proof}
+	Replacing \((P, f)\) with \((T', g')\), we get a unique
+	\[
+		j' \colon T' \to T
+	\]
+	such that
+	\[
+		g' = j' \circ g
+	\]
+	Each of the compositions \(j' \circ j\) and \(j \circ j'\) must
+	be identity and hence, \(j\) is an isomorphism.
+\end{proof}
+
+
+\begin{note}
+	The notation \(x \otimes y\) is inherently ambiguous unless we
+	specify the tensor product to which it belongs.
+
+	Suppose \(M', N'\) be submodules of \(M, N\) respectively.
+	Then, it can happen that \(x \otimes y\) as an element of
+	\(M \times N\) is zero whilst \(x \otimes y\) as an element of
+	\(M' \times N'\) is non-zero.
+
+	An example is the case where
+	\[
+		A = \ZZ \quad M = \ZZ, N = \bigslant{\ZZ}{2\ZZ}
+		\quad M' = 2\ZZ, N' = \ZZ
+	\]
+	Here, the element \(2 \otimes 1\) is zero as an element of
+	\(\ZZ \times \bigslant{\ZZ}{2\ZZ}\)
+	but non-zero as an element of \(2\ZZ \times \bigslant{\ZZ}{2\ZZ}\).
+\end{note}
+
+\begin{defn}{Tensor Product}{}
+	The module thus constructed is called the Tensor product of \(M\)
+	and \(N\), and is denoted by \(M \otimes_A N\) or
+	\(M \otimes N\) when there is no ambiguity.
+\end{defn}
+
+If \((x_i)_{i \in I}\) and \((y_j)_{j \in J}\) are two families
+of generators of \(M\) and \(N\) respectively, then
+\[
+	(x_i \otimes y_j)_{i \in I, j \in J}
+\]
+is a family of generators of \(M \otimes N\).
+
+
+\begin{corollary}{}{}
+	Let \(x_i \in M\) and \(y_i \in N\) be such that
+	\[
+		\sum x_i \otimes y_i = 0 \quad\quad \text{in } M \otimes N
+	\]
+	Then, there exist finitely generated submodules \(M_0 \normsg M\)
+	and \(N_0 \normsg N\) such that
+	\[
+		\sum x_i \otimes y_i = 0 \quad\quad \text{in } M_0 \otimes N_0
+	\]
+\end{corollary}
+
+\begin{proof}
+	In the existence proof, if we had \(\sum x_i \otimes y_i = 0\)
+	in \(M \otimes N\), then we would have
+\end{proof}
+
+We will never need to use the construction of the tensor product but
+only use the Bilinear property of the tensor product.
+
+
+\subsection{Tensor Product of Multilinear Mappings}
+
+Instead of starting with bilinear mappings, we could have started with
+multilinear mappings and then constructed the tensor product.
+\[
+	f \colon M_1 \times M_2 \times \cdots \times M_r \to P
+\]
+defined in the same way and construct the tensor product
+\[
+	T \coloneqq M_1 \otimes M_2 \otimes \cdots \otimes M_r
+\]
+generated by the elements
+\[
+	x_1 \otimes x_1 \otimes \cdots \otimes x_r
+	\quad \brak{x_i \in M_i, 1 \leq i \leq r}
+\]
+
+
+\begin{defn}{Tensor Product of Multilinear Mappings}{}
+	Let \(M_1, \cdots, M_r\) be \(A\)-modules.
+	Then there exists a pair \(\brak{T, g}\) as in the proposition
+	consisting of an \(A\)-module \(T\) and an \(A\)-multilinear mapping
+	\[
+		g \colon M_1 \times M_2 \times \cdots \times M_r \to T
+	\]
+	with the following property:
+
+	Given any \(A\)-module \(P\) and any \(A\)-multilinear mapping
+	\[
+		f \colon M_1 \times M_2 \times \cdots \times M_r \to P
+	\]
+	there exists a unique \(A\)-linear mapping
+	\[
+		f' \colon T \to P
+	\]
+	such that
+	\[
+		f' \circ g = f
+	\]
+	Moreover, if \(\brak{T, g}\) and \(\brak{T', g'}\) are two such
+	pairs, then there exists a unique isomorphism
+	\[
+		j \colon T \to T' \qstq j \circ g = g'
+	\]
+	The module \(T\) is called the Tensor product of \(M_1, \cdots, M_r\)
+	and is denoted by
+	\[
+		T = M_1 \otimes_A M_2 \otimes_A \cdots \otimes_A M_r
+	\]
+\end{defn}
+
+
+\subsection{Properties of Tensor Product}
+
+\begin{proposition}{}{}
+	Let \(M, N, P\) be \(A\)-modules.
+	Then, there exist unique isomorphisms
+	\begin{enumerate}
+		\item \(M \otimes N \to N \otimes M\)
+		\item \(\brak{M \otimes N} \otimes P \to M \otimes (N \otimes P)
+			\to M \otimes N \otimes P\)
+		\item \(\brak{M \oplus N} \otimes P \to \brak{M \otimes P}
+			\oplus \brak{N \otimes P}\)
+		\item \(A \otimes M \to M\)
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof} \ \\
+	The point in each case is to show that the obvious isomorphisms
+	are well-defined using the definition of the tensor product.
+	\begin{enumerate}
+		\item Let us define our homomorphism as
+		\begin{align*}
+			f \colon M \otimes N &\to N \otimes M \\
+			x \otimes y &\mapsto y \otimes x
+		\end{align*}
+		Consider the \(R\)-(multi)linear map
+		\begin{align*}
+			g \colon M \times N &\to P = N \otimes M \\
+			(x, y) &\mapsto y \otimes x
+		\end{align*}
+		Now, \(g\) induces an \(R\)-(multi)linear maps
+		\[
+			M \times N \xrightarrow[\quad]{g_1} M \otimes N
+			\xrightarrow[\quad]{f} P = N \otimes M
+		\]
+		where
+		\[
+			f(x \otimes y) = y \otimes x
+		\]
+		and hence, \(f\) is well-defined.
+
+		To prove that \(f\) is an isomorphism, let us construct \(f\inv\)
+		from \(N \otimes M \to M \otimes N\) as the natural inverse of
+		\(f\) and it is well-defined by symmetry.
+
+
+		\item
+	\end{enumerate}
+\end{proof}
+
+
+\begin{exercise}{}{}
+	Let \(A, B\) be rings and let \(M\) be an \(A\)-module, \(P\) be
+	a \(B\)-module and \(N\) an \(\brak{A, B}\)-bimodule.
+
+	That is, \(N\) is simultaneously an \(A\) and \(B\) module and the two
+	structures are compatible in the sense that
+	\[
+		a(xb) = (ax)b \ \forall\ a \in A, b \in B, x \in N
+	\]
+
+	Then, \(M \otimes_A N\) is naturally a \(B\)-module and
+	\(N \otimes_B P\) is naturally an \(A\)-module and we have
+	\[
+		\brak{M \otimes_A N} \otimes_B P \cong M \otimes_A
+			\brak{N \otimes_B P}
+	\]
+\end{exercise}
+
+\subsection{Tensors of Homomorphisms}
+
+Suppose we have \(A\)-linear maps
+\[
+	f \colon M \to M', \quad g \colon N \to N'
+\]
+Define
+\[
+	h \colon M \times N \to M' \otimes N'
+	\quad\quad h(x, y) = f(x) \otimes g(y)
+\]
+It can be easily checked that \(h\) is an \(A\)-bilinear map
+and hence, induces a homomorphism
+\[
+	f \otimes g \colon M \otimes N \to M' \otimes N'
+	\quad\quad (f \otimes g)(x \otimes y) = f(x) \otimes g(y)
+\]
+If we have
+\[
+	f' \colon M' \to M'', \quad g' \colon N' \to N''
+\]
+then clearly, the homomorphisms
+\((f' \circ f) \otimes (g' \circ g)\) and
+\((f' \otimes g') \circ (f \otimes g)\) agree on all elements
+of the form \(x \otimes y\) in \(M \otimes N\).
+Since these elements generate \(M \otimes N\) as an \(A\)-module,
+\[
+	(f' \circ f) \otimes (g' \circ g) = (f' \otimes g') \circ (f \otimes g)
+\]
+
+
+\pagebreak
+
+\section{Restriction and Extension of scalars}
+
+Let
+\[
+	f \colon A \to B
+\]
+be a ring homomorphism.
+
+\subsection{Restriction of Scalars}
+If we have a \(B\)-module \(N\), we can view it as an \(A\)-module
+by defining the action of \(a \in A\) on \(x \in N\) as
+\[
+	a \cdot x \coloneqq f(a) \cdot x
+\]
+The \(A\)-module formed is said to be obtained from \(N\) by
+\emph{restricting the scalars}.
+
+\begin{proposition}{Restriction of Scalars preserves finitely generatedness}{}
+	Suppose \(N\) is finitely generated as a \(B\)-module and let
+	\[
+		f \colon A \to B
+	\]
+	be a ring homomorphism.
+	Then, \(N\) is finitely generated as an \(A\)-module.
+\end{proposition}
+\begin{proof}
+	Let \(y_1, \cdots, y_n\) generate \(N\) over \(B\) and let \(x_1,
+	\cdots, x_n\) generate \(B\) over \(A\).
+	Then, \(x_i y_j\) generate \(N\) over \(A\).
+\end{proof}
+
+\subsection{Extension of Scalars}
+Now, let \(M\) be an \(A\)-module.
+Since we have seen that \(B\) can be regarded as an \(A\)-module,
+we can form an \(A\)-module
+\[
+	M_B \coloneqq B \otimes_A M
+\]
+In fact, \(M_B\) has a natural \(B\)-module structure given by
+\[
+	b \cdot (b' \otimes x) = b b' \otimes x
+	\quad \forall\ b, b' \in B, x \in M
+\]
+The \(B\)-module \(M_B\) is said to be obtained from \(M\) by
+\emph{extension of scalars}.
+
+\begin{proposition}{Extension of Scalars preserves finitely generatedness}{}
+	Suppose \(M\) is finitely generated as an \(A\)-module and let
+	\[
+		f \colon A \to B
+	\]
+	be a ring homomorphism.
+	Then, \(M_B\) is finitely generated as a \(B\)-module.
+\end{proposition}
+
+\begin{proof}
+	If \(x_1, \cdots, x_n\) generate \(M\) over \(A\), then
+	\(1 \otimes x_i\) generate \(M_B\) over \(B\).
+\end{proof}
+
+\pagebreak
+
+\section{Exactness properties of tensor product}
+
+Let
+\[
+	f \colon M \times N \to P
+\]
+be a \(A\)-bilinear map.
+
+For each \(x \in M\), the mapping
+\begin{align*}
+	\phi_x \colon N &\to P \\
+	y &\mapsto f(x, y)
+\end{align*}
+is a \(A\)-linear map from \(N\) to \(P\) and hence, \(f\)
+gives rise to a \(A\)-linear map from \(M \to \Hom_A(N, P)\).
+\begin{align*}
+	\phi \colon M &\to \Hom_A(N, P) \\
+	x &\mapsto \phi_x \\
+	(x, y) &\mapsto \phi(x)(y)
+\end{align*}
+and is bilinear in \(x \in M\) and \(y \in N\).
+
+Hence, the set \(S\) of all \(A\)-bilinear mappings from \(M \times N\)
+to \(P\) is in natural one-to-one correspondence with
+\[
+	\Hom_A(M, \Hom_A(N, P))
+\]
+On the other hand, \(S\) is in one-to-one correspondence with
+\[
+	\Hom_A(M \otimes_A N, P)
+\]
+by the universal property of the tensor product.
+
+Hence, we have a canonical isomorphism
+\[
+	\boxed{\Hom_A(M \otimes_A N, P) \cong \Hom_A(M, \Hom_A(N, P))}
+\]
+
+\begin{proposition}{Right Exactness of Tensor Product}{}
+	Let
+	\[
+		M' \xrightarrow[\quad\quad]{f} M \xrightarrow[\quad\quad]{g} M''
+		\xrightarrow[\quad\quad]{} 0
+	\]
+	be an exact sequence of \(A\)-modules and \(f\) and \(g\) are
+	\(A\)-linear maps.
+	Let \(N\) be an \(A\)-module.
+
+	Then, the sequence
+	\[
+		M' \otimes_A N \xrightarrow[\quad\quad]{f \otimes_A 1} M \otimes_A N
+		\xrightarrow[\quad\quad]{g \otimes_A 1} M'' \otimes_A N
+		\xrightarrow[\quad\quad]{} 0
+	\]
+	where \(1\) denotes the identity map on \(N\) is exact.
+\end{proposition}

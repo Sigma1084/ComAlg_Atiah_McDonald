@@ -1,0 +1,1067 @@
+\chapter{Rings and modules of fractions}
+\label{ch:book_03_rings_and_modules_of_fractions}
+
+
+\section{Introduction and Definition}
+The formation of rings of fractions and the localization of rings
+is a very important tool in commutative algebra.
+
+They correspond to the algebro-geometric picture to concentrating attention
+on an open set or near a point.
+
+\subsection{Field of fractions over an integral domain}
+
+The procedure by which one constructs \(\QQ\) from \(\ZZ\) can
+be extended to any integral domain \(A\) and
+produces the \emph{field} of fractions of \(A\).
+
+Construct the equivalence relation \(\sim\) on the pairs of the
+integral domain \(A\) by declaring
+\[
+	\brak{a, s} \sim \brak{b, t} \iff a \cdot t - b \cdot s = 0
+\]
+
+Reflexivity and symmetry are easy to check.
+
+\begin{proof}[Proof for Transitivity] \
+
+	Suppose we have \(\brak{a, s} \sim \brak{b, t}\) and
+	\(\brak{b, t} \sim \brak{c, u}\).
+
+	Then we need to prove that \(\brak{a, s} \sim \brak{c, u}\).
+
+	We have
+	\begin{align*}
+		at - bs = 0 \AND bu - ct = 0 \\
+		\implies atu - bsu = 0 \\
+		\implies atu - bct = 0 \\
+		\implies t \brak{au - bc} = 0
+	\end{align*}
+	Now, we know that \(t \neq 0\) and \(A\) is an integral domain.
+	Therefore, \(au - bc = 0\) and hence
+	\[
+		\brak{a, s} \sim \brak{c, u}
+	\]
+\end{proof}
+
+This works only if \(A\) is an integral domain since proving
+that the relation is transitive involves cancelling.
+
+That is, the fact that \(A\) has no non-trivial zero divisors is crucial.
+
+Hence, we define the field of fractions of \(A\) as
+\[
+	\bigslant{A \times A^{\times}}{\sim}
+\]
+where \(A^{\times}\) is the set of non-zero elements of \(A\).
+
+It is easy to check that this is a field.
+
+\subsection{Localization of a ring at a multiplicative subset}
+
+\begin{defn}{Multiplicatively Closed Subset}{}
+	Let \(A\) be a ring and \(S\) be a subset of \(A\).
+
+	Then \(S\) is said to be \emph{multiplicatively closed} if
+	\(1 \in S\) and \(S\) is closed under multiplication.
+\end{defn}
+
+We can now define the localization of a ring at a multiplicative subset.
+Let \(S\) be a multiplicatively closed subset of \(A\).
+
+Define a relation
+\[
+	\sim \colon A \times S
+\]
+as follows
+\[
+	\brak{a, s} \sim \brak{b, t} \iff \brak{at - bs}u = 0
+	\text{ for some } u \in S
+\]
+Clearly, this relation is reflexive and symmetric.
+
+\begin{proof}[Proof for Transitivity] \
+
+	Suppose we have \(\brak{a, s} \sim \brak{b, t}\) and
+	\(\brak{b, t} \sim \brak{c, u}\).
+	Then we need to prove that \(\brak{a, s} \sim \brak{c, u}\).
+
+	For some \(v, w \in S\), we have
+	\begin{align*}
+		\brak{at - bs}v = 0 \AND \brak{bu - ct}w = 0 \\
+		\brak{at - bs}vuw = 0 \AND \brak{bu - ct}wsv = 0 \\
+		\implies \brak{atuvw - cstvw} = 0
+		\implies \brak{au - cs}tvw = 0
+	\end{align*}
+	Since \(S\) is multiplicatively closed, \(tvw \in S\).
+\end{proof}
+Thus, \(\sim\) is an equivalence relation.
+
+\begin{defn}{Localization of a ring}{}
+	We define the localization of \(A\) at a multiplicatively closed
+	subset \(S\) as
+	\[
+		S^{-1}A \coloneqq \bigslant{A \times S}{\sim}
+	\]
+	where \(\sim\) is the equivalence relation defined as
+	\[
+		\brak{a, s} \sim \brak{b, t} \iff \brak{at - bs}u = 0
+		\text{ for some } u \in S
+	\]
+	The elements of \(S^{-1}A\) are denoted by \(\bigslant{a}{s}\)
+	where \(a \in A\) and \(s \in S\).
+\end{defn}
+
+
+\subsection{Localization as a ring of fractions}
+
+We can define addition and multiplication on \(S^{-1}A\) as follows
+\begin{align*}
+	\frac{a}{s} + \frac{b}{t} & = \frac{at + bs}{st} \\
+	\frac{a}{s} \cdot \frac{b}{t} & = \frac{ab}{st}
+\end{align*}
+
+The identity element of \(S^{-1}A\) is \(\frac{1}{1}\).
+
+\begin{claim}{}{}
+	The addition and multiplication
+	of the elements of \(S^{-1} A\) is well-defined.
+\end{claim}
+
+\begin{proof}
+	We need to prove
+	\[
+		\frac{a}{s} + \frac{b}{t} = \frac{at + bs}{st}
+		=\frac{a_1 t_1 + b_1 s_1}{s_1 t_1}
+		\quad \text{ where } \frac{a_1}{s_1} = \frac{a}{s}
+		\quad \text{ and } \frac{b_1}{t_1} = \frac{b}{t}
+	\]
+	We know that for some \(u, v \in S\), we have
+	\[
+		\brak{a_1 s - a s_1}u = 0 \AND
+		\brak{b_1 t - b t_1}v = 0
+	\]
+	Simplifying, we have
+	\begin{align*}
+		\brak{a_1 s - a s_1} t t_1 u v = 0
+		\AND \brak{b_1 t - b t_1} s s_1 u v &= 0 \\
+		\brak{a_1 t_1 s t - a t s_1 t_1} u v = 0
+		\AND \brak{b_1 s_1 s t - b s s_1 t_1} u v &= 0 \\
+		\implies \Bigbrak{ \brak{a_1 t_1 + b_1 s_1} st -
+		\brak{a t + b s} s_1 t_1} uv &= 0 \\
+		\implies \boxed{
+			\frac{a_1 t_1 + b_1 s_1}{s_1 t_1} = \frac{a t + b s}{s t}
+		}
+	\end{align*}
+
+	Now, we need to prove that
+	\[
+		\frac{a}{s} \cdot \frac{b}{t} = \frac{ab}{st}
+		= \frac{a_1 b_1}{s_1 t_1}
+	\]
+
+	Similarly,
+	\begin{align*}
+		\brak{a_1 s - a s_1}u = 0 \AND
+		\brak{b_1 t - b t_1}v &= 0 \\
+		\brak{a_1 s - a s_1} b_1 t u v = 0 \AND
+		\brak{b_1 t - b t_1} a s_1 u v &= 0 \\
+		\brak{a_1 b_1 s t - a b_1  s_1 t} u v = 0 \AND
+		\brak{a b_1 s_1 t - a b s_1 t_1} u v &= 0 \\
+		\implies \brak{a_1 b_1 st - a b s_1 t_1} uv &= 0 \\
+		\implies \boxed{
+			\frac{a_1 b_1}{s_1 t_1} = \frac{ab}{st}
+		}
+	\end{align*}
+\end{proof}
+
+
+\section{Some properties of localizations}
+
+We will also have a ring homomorphism
+\[
+	f \colon A \to S^{-1}A \quad \text{ defined as }
+	f(a) = \frac{a}{1}
+\]
+Note that this is not injective in general.
+
+For example, consider \(A = \ZZ_6\) and \(S = \fbrak{1, 3}\).
+
+We will have \(f(0) = \frac{0}{1}\) and
+\(f(2) = \frac{2}{1} = \frac{6}{3} = \frac{0}{1} = f(0)\).
+
+\begin{proposition}{Universal Property of Localization}{}
+	Let \(g \colon A \to B\) be a ring homomorphism such that
+	\(g(s)\) is a unit for all \(s \in S\).
+	Then there exists a unique ring homomorphism
+	\[
+		h \colon S^{-1}A \to B
+	\]
+	such that \(g = h \circ f\).
+\end{proposition}
+
+\begin{proof}
+	For the uniqueness, suppose \(h\) satisfies the above property.
+	Then, we have
+	\[
+		g(a) = h \circ f(a) \quad \forall\ a \in A
+		\implies h\brak{\frac{a}{1}} = g(a)
+	\]
+	For any \(s \in S\), we have
+	\[
+		h(s) \cdot h \brak{\frac{1}{s}} =
+		h \brak{\frac{s}{s}} = h \brak{\frac{1}{1}} = g(1)
+		\implies h \brak{\frac{1}{s}} = g(s)^{-1}
+	\]
+	Hence, we will have
+	\[
+		h\brak{\frac{a}{s}} = g(a) \cdot g(s)^{-1}
+	\]
+	which is uniquely determined by \(g\).
+
+
+	Consider the map
+	\[
+		h \colon S^{-1}A \to B \quad \text{ defined as }
+		h\left(\frac{a}{s}\right) = g(a) \cdot g(s)^{-1}
+	\]
+	We need to prove that this is well-defined.
+
+	For the existence, consider \(\frac{a}{s} = \frac{a_1}{s_1}\).
+	Then, we have
+	\[
+		\brak{a_1 s - a s_1}u = 0 \text{ for some } u \in S
+	\]
+	Applying \(g\), we have
+	\[
+		\brak{g(a_1) g(s) - g(a) g(s_1)} g(u) = 0
+	\]
+	Now, since \(g(u)\) is a unit, we have
+	\[
+		g(a_1) g(s) = g(a) g(s_1)
+		\implies g(a) \cdot g(s)^{-1} = g(a_1) \cdot g(s_1)^{-1}
+	\]
+	and hence, \(h\) is well-defined.
+\end{proof}
+
+
+\begin{proposition}{}{}
+	The ring \(S^{-1}A\) and the homomorphism
+	\[
+		f \colon A \to S^{-1}A \quad \text{ defined as }
+		f(a) = \frac{a}{1}
+	\]
+	have the following properties:
+	\begin{enumerate}
+		\item \(s \in S \implies f(s)\) is a unit in \(S^{-1}A\)
+		\item \(f(a) = 0 \implies as = 0\) for some \(s \in S\)
+		\item Every element of \(S^{-1}A\) is of the form
+			\(f(a) \cdot f(s)^{-1}\) for some \(a \in A\) and
+			\(s \in S\)
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof} \
+	\begin{enumerate}
+		\item \(f(s) = \frac{s}{1}\) and when multiplied by
+		\(\frac{1}{s}\), we get \(1\) which proves that
+		\(f(s)\) is a unit.
+
+		\item \(f(a) = 0 \implies f(a) = \frac{a}{1} = \frac{0}{1}
+		\implies \brak{a \cdot 1 - 0 \cdot 1} s = 0\) for some \(s \in S\)
+		which implies \(as = 0\).
+
+		\item Clearly, any element of \(S\) is of the form \(\frac{a}{s}\)
+		which is precisely \(f(a) \cdot f(s)^{-1}\).
+	\end{enumerate}
+\end{proof}
+
+Conversely, these three conditions determine the ring \(S^{-1} A\)
+up to isomorphism.
+
+\begin{corollary}{}{}
+	If \(S\) is a multiplicative subset of \(A\) and
+	\(g \colon A \to B\) is a ring homomorphism such that
+	\begin{enumerate}
+		\item \(s \in S \implies g(s)\) is a unit in \(B\)
+		\item \(g(a) = 0 \implies as = 0\) for some \(s \in S\)
+		\item Every element of \(B\) is of the form
+			\(g(a) \cdot g(s)^{-1}\) for some \(a \in A\) and \(s \in S\)
+	\end{enumerate}
+	Then, there exists a unique isomorphism
+	\[
+		h \colon S^{-1}A \to B
+		\quad \text{ such that } \quad
+		h \circ f = g
+	\]
+\end{corollary}
+
+\begin{proof}
+	Using 1 and the universal property of localization, we have
+	a unique homomorphism
+	\[
+		h \colon S^{-1}A \to B
+		\quad \text{ such that } \quad
+		h \circ f = g
+		\quad \text{ defined by } \quad
+		h\brak{\frac{a}{s}} = g(a) \cdot g(s)^{-1}
+	\]
+	We now need to prove that this is an isomorphism.
+
+	Using 3, notice that \(h\) is surjective.
+	Consider the kernel of \(h\).
+	\begin{align*}
+		\frac{a}{s} \in \Ker h \implies g(a) \cdot g(s)^{-1} = 0
+		\implies g(a) = 0
+	\end{align*}
+	Using 2, we have \(as = 0\) for some \(s \in S\)
+	which implies \(\frac{a}{s} = \frac{0}{1}\).
+	Hence, \(\Ker h = \fbrak{0}\) and \(h\) is injective.
+\end{proof}
+
+
+\pagebreak
+
+
+\subsection{Localization at a prime ideal and an element}
+
+Let \(\mfp\) be a prime ideal of \(A\).
+Then \(S = A \setminus \mfp\) is a multiplicatively closed
+subset of \(A\).
+In fact,
+
+\begin{claim}{}{}
+	For a ring \(A\),
+	\[
+		A \setminus \mfp \text{ is multiplicatively closed }
+		\iff \mfp \text{ is a prime ideal }
+	\]
+\end{claim}
+
+\begin{proof}
+	Both the statements imply and are implied by
+	\[
+		a \notin \mfp \text{ and } b \notin \mfp
+		\implies ab \notin \mfp \quad
+		\forall\ a, b \in A
+		\qedhere
+	\]
+\end{proof}
+
+\begin{defn}{Localization at a prime ideal}{}
+	Let \(\mfp\) be a prime ideal of \(A\).
+	We define
+	\[
+		\boxed{
+			A_{\mfp} \coloneqq S^{-1}A
+			\quad \text{where} \quad
+			S = A \setminus \mfp
+		}
+	\]
+\end{defn}
+
+
+\begin{claim}{}{}
+	The set of the elements of \(A_{\mfp}\) of the form
+	\[
+		\mfm \coloneqq \fbrak{\textstyle{\frac{a}{s}} \mid a \in \mfp, s \in S}
+	\]
+	is a maximal ideal of \(A_{\mfp}\).
+\end{claim}
+\begin{proof}
+	Suppose we have an element \(\frac{b}{t}\) such that
+	\(\frac{b}{t} \notin \mfm\).
+	\[
+		\textstyle{\frac{b}{t}} \notin \mfm
+		\implies b \notin \mfp
+		\implies b \in S
+	\]
+	Now, this implies that \(\frac{b}{t}\) is a unit and hence,
+	\(\mfm\) is a maximal ideal.
+\end{proof}
+
+It proves that if we have an ideal \(\mfa\) that is not contained in
+\(\mfm\), then \(\mfa\) contains a unit.
+
+Now, this means \(\mfm\) is the only maximal ideal of \(A_{\mfp}\).
+
+\[
+	\boxed{
+		A_{\mfp} \text{ is a local ring}
+	}
+\]
+The process of passing from \(A\) to \(A_{\mfp}\) is called
+\emph{localization at a prime ideal}.
+
+In case of \(\ZZ\), \(\ZZ_{(p)}\) is the ring of rational numbers
+with denominators co-prime to \(p\).
+
+\begin{defn}{Localization at an element}{}
+	Let \(f \in A\).
+	We define
+	\[
+		\boxed{
+			A_f \coloneqq S^{-1}A
+			\quad \text{where} \quad
+			S = \fbrak{f^n}_{n \geq 0}
+		}
+	\]
+\end{defn}
+The elements of \(A_f\) are of the form
+\[
+	\frac{a}{f^n}
+	\quad \text{ where } \quad
+	a \in A \text{ and } n \geq 0
+\]
+
+\section{Localization using Modules}
+The construction of \(S^{-1}A\) can be carried out through an \(A\)-module
+\(M\) in place of the ring \(A\).
+
+Define the relation
+\[
+	\sim \colon M \times S
+\]
+as follows
+\[
+	\brak{m, s} \sim \brak{m', s'} \iff \exists\ t \in S \text{ such that }
+	\brak{sm' - s'm}t = 0
+\]
+
+As before, this is an equivalence relation and we define
+\[
+	S^{-1}M \coloneqq \bigslant{\brak{M \times S}}{\sim}
+\]
+The elements of \(S^{-1}M\) are denoted by \(\frac{m}{s}\) and
+\[
+	S^{-1}M \text{ is a } S^{-1}A\text{-module}
+\]
+with the action
+\[
+	\frac{a}{s} \cdot \frac{m}{t} = \frac{am}{st}
+\]
+When we have a prime ideal \(\mfp\) of \(A\), we can consider
+\[
+	M_{\mfp} \coloneqq S^{-1}M \quad \text{ where } \quad
+	S = A \setminus \mfp
+\]
+and
+\[
+	M_f \coloneqq S^{-1}M \quad \text{ where } \quad
+	S = \fbrak{f^n}_{n \geq 0}
+\]
+
+Also, when we have a \(A\)-module homomorphism
+\[
+	u \colon M \to N
+\]
+This gives rise to an \(S^{-1}A\)-module homomorphism
+\[
+	S^{-1}u \colon S^{-1}M \to S^{-1}N
+\]
+defined by
+\[
+	S^{-1}u \brak{\frac{m}{s}} = \frac{u(m)}{s}
+\]
+We also have
+\[
+	S^{-1} \brak{v \circ u} = \brak{S^{-1}v} \circ \brak{S^{-1}u}
+\]
+
+
+\begin{proposition}{}{}
+	The operation \(S^{-1}\) is exact.
+	That is,
+	\[
+		M' \xrightarrow[\quad\quad]{f} M \xrightarrow[\quad\quad]{g} M''
+		\text{ is exact at } M \qquad\implies\qquad
+		S^{-1}M' \xrightarrow[\quad\quad]{S^{-1}f} S^{-1}M
+		\xrightarrow[\quad\quad]{S^{-1}g} S^{-1}M'' \text{ is exact at }
+		S^{-1}M
+	\]
+\end{proposition}
+\begin{proof}
+	We have
+	\[
+		g \circ f = 0 \implies S^{-1}g \circ S^{-1}f
+		= S^{-1}\brak{g \circ f} = 0
+	\]
+	Hence, we have
+	\[
+		\Img \brak{S^{-1}f} \subseteq \Ker \brak{S^{-1}g}
+	\]
+	To prove the reserve inclusion, suppose we have an element
+	\(\frac{m}{s} \in \Ker \brak{S^{-1}g}\).
+	Then, we have
+	\[
+		S^{-1}g \brak{\frac{m}{s}} = \frac{g(m)}{s} = 0
+		\implies \exists\ t \in S \text{ such that }
+		tg(m) = 0 \implies tg(m) = g(tm) = 0
+	\]
+	Hence, we have \(tm \in \Ker g = \Img f\).
+	\[
+		\therefore \exists\ m' \in M' \text{ such that }
+		f(m') = tm \implies f\brak{\frac{m'}{st}} = \frac{tm}{st}
+		= \frac{m}{s}
+	\]
+	This proves
+	\[
+		\Ker \brak{S^{-1}g} \subseteq \Img \brak{S^{-1}f}
+	\]
+	and we are done.
+\end{proof}
+
+The above proposition proves that if \(M' \normsg M\) is a submodule,
+then \(S^{-1}M' \normsg S^{-1}M\).
+
+\begin{corollary}{}{}
+	Formation of fractions commutes with formation of finite
+	sums, finite intersections and quotients.
+	Precisely, if \(N, P\) are submodules of \(M\), then
+	\begin{enumerate}
+		\item \(S^{-1}\brak{N + P} = S^{-1}N + S^{-1}P\)
+		\item \(S^{-1}\brak{N \cap P} = S^{-1}N \cap S^{-1}P\)
+		\item The \(S^{-1}A\)-modules are isomorphic
+		\[
+			S^{-1}\brak{\bigslant{M}{N}} \cong
+			\bigslant{\brak{S^{-1}M}}{\brak{S^{-1}N}}
+		\]
+	\end{enumerate}
+\end{corollary}
+
+\begin{proof} \
+
+	\begin{enumerate}
+		\item It is easy to check that
+		\[
+			\frac{n + p}{s} \in S^{-1}\brak{N + P} \text{ where }
+			n \in N, p \in P \iff \frac{n}{s} + \frac{p}{s}
+			\in S^{-1}N + S^{-1}P
+		\]
+
+		\item One way is easy.
+		It can be checked that
+		\[
+			m \in N \cap P \implies \frac{m}{s} \in S^{-1}N \AND
+			\frac{m}{s} \in S^{-1}P \implies \frac{m}{s} \in
+			S^{-1}N \cap S^{-1}P
+		\]
+		For the other way,
+		\[
+			\frac{m}{s} \in S^{-1}N \cap S^{-1}P
+			\implies \exists\ n \in N, p \in P \AND s_n, s_p \in S
+			\text{ such that } \frac{m}{s} = \frac{n}{s_n} = \frac{p}{s_p}
+		\]
+		This implies that
+		\[
+			\exists\ t \in S \text{ such that }
+			t\brak{s_p n - s_n p} = 0 \implies
+			w \coloneqq t s_p n = t s_n p \in N \cap P
+		\]
+		We now have
+		\[
+			\frac{m}{s} = \frac{n}{s_n} =
+			\frac{w}{ts_n s_p} \in S^{-1}\brak{N \cap P}
+		\]
+
+		\item Consider the exact sequence
+		\[
+			N \xrightarrow[\quad\quad]{} M \xrightarrow[\quad\quad]{}
+			\bigslant{M}{N}
+		\]
+		Since the operation \(S^{-1}\) is exact, we have
+		\[
+			S^{-1}N \xrightarrow[\quad\quad]{}
+			S^{-1}M \xrightarrow[\quad\quad]{}
+			S^{-1}\brak{\bigslant{M}{N}}
+		\]
+		is exact and hence,
+		\[
+			S^{-1}\brak{\bigslant{M}{N}} \cong
+			\bigslant{\brak{S^{-1}M}}{\brak{S^{-1}N}}
+		\]
+	\end{enumerate}
+\end{proof}
+
+\begin{proposition}{}{}
+	Let \(M\) be an \(A\)-module.
+	Then, the \(S^{-1}A\) modules are isomorphic
+	\[
+		S^{-1}M \cong S^{-1}A \otimes_A M
+	\]
+	More precisely, there is a unique isomorphism
+	\[
+		f \colon S^{-1}A \otimes_A M \to S^{-1}M
+	\]
+	such that
+	\[
+		f\brak{\frac{a}{s} \otimes m} = \frac{am}{s}
+		\qquad \forall\ a \in A, m \in M, s \in S
+	\]
+\end{proposition}
+\begin{proof}
+	The mapping
+	\[
+		S^{-1}A \times M \to S^{-1}M
+	\]
+	given by
+	\[
+		\brak{\frac{a}{s}, m} \mapsto \frac{am}{s}
+	\]
+	is \(A\)-bilinear and hence, by the universal property of
+	tensor products, there is a unique \(A\)-module homomorphism
+	\[
+		f \colon S^{-1}A \otimes_A M \to S^{-1}M
+	\]
+	which proves the uniqueness of \(f\).
+
+	Clearly, \(f\) is surjective.
+	To prove injectivity, suppose we have
+	\[
+		\sum_{i} \frac{a_i}{s_i} \otimes m_i \in \Ker f
+	\]
+	Let us define
+	\[
+		s \coloneqq \prod_{i} s_i \qandq t_i \coloneqq \prod_{j \neq i} s_j
+	\]
+	Now, we have
+	\[
+		\sum_{i} \brak{\frac{a_i}{s_i} \otimes m_i}
+		= \sum_{i} \brak{\frac{a_i t_i}{s} \otimes m_i}
+		= \sum_{i} \brak{\frac{1}{s} \otimes a_i t_i m_i}
+		= \frac{1}{s} \otimes \brak{\sum_{i} a_i t_i m_i}
+		= \frac{1}{s} \otimes m
+	\]
+	where \(m \coloneqq \sum_{i} a_i t_i m_i\) is an element of \(M\).
+
+	We have,
+	\[
+		f\brak{\frac{1}{s} \otimes m} = 0 \implies \frac{m}{s} = 0
+		\implies \exists\ t \in S \text{ such that } tm = 0
+	\]
+	Hence,
+	\[
+		\frac{1}{s} \otimes m = \frac{t}{st} \otimes m
+		= \frac{1}{st} \otimes tm = \frac{1}{st} \otimes 0 = 0
+	\]
+	which proves that \(f\) is injective.
+	Hence, \(f\) is an isomorphism.
+\end{proof}
+
+
+\begin{corollary}{}{}
+	\(S^{-1}A\) is a flat \(A\)-module.
+\end{corollary}
+\begin{proof}
+	TODO % TODO
+\end{proof}
+
+
+\begin{proposition}{}{}
+	If \(M, N\) are \(A\)-modules, there is a unique isomorphism
+	of \(S^{-1}A\)-modules
+	\[
+		f \colon S^{-1}M \otimes_{S^{-1}A} S^{-1}N
+		\to S^{-1}\brak{M \otimes_A N}
+	\]
+	such that
+	\[
+		f\brak{\frac{m}{s} \otimes \frac{n}{t}} =
+		\frac{m \otimes n}{st} \qquad \forall\ m \in M, n \in N, s, t \in S
+	\]
+	In particular, if \(\mfp\) is any prime ideal, then
+	\[
+		M_{\mfp} \otimes_{A_{\mfp}} N_{\mfp} \cong
+		\brak{M \otimes_A N}_{\mfp}
+	\]
+	as \(A_\mfp\)-modules.
+\end{proposition}
+\begin{proof}
+	TODO Tensors % TODO
+\end{proof}
+
+
+\pagebreak
+
+
+\section{Local Properties}
+
+\begin{definition}{Local Property}{}
+	A property \(P\) of a ring \(A\) (or of an \(A\)-module \(M\))
+	is called a \textbf{local property} if
+	\[
+		A \text{ (or } M \text{)} \text{ has } P \iff
+		A_\mathfrak{p} \text{ (or } M_\mathfrak{p} \text{)} \text{ has } P
+		\qquad \forall\ \mathfrak{p} \in \Spec A
+	\]
+	where \(A_\mathfrak{p} \coloneqq S^{-1}A\) and
+	\(S \coloneqq A \setminus \mathfrak{p}\) and
+	\(\Spec A\) is the set of prime ideals of \(A\).
+\end{definition}
+
+\begin{proposition}{}{}
+	Let \(M\) be an \(A\)-module.
+	Then, the following are equivalent:
+	\begin{enumerate}
+		\item \(M = 0\)
+		\item \(M_\mathfrak{p} = 0\) for all prime ideals
+			\(\mathfrak{p}\) of \(A\)
+		\item \(M_\mathfrak{m} = 0\) for all maximal ideals
+			\(\mathfrak{m}\) of \(A\)
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	\(\brak{1 \implies 2 \implies 3}\) is clear.
+	We prove \(\brak{3 \implies 1}\).
+
+	Suppose \(3\) holds and \(M \neq 0\).
+	Then, there exists \(m \in M\) such that \(m \neq 0\).
+
+	Consider \(\mfa = \Ann(m)\).
+	Clearly, \(\mfa \neq A\) and hence, \(\mfa \subseteq \mfm\)
+	for some maximal ideal \(\mfm\) of \(A\).
+
+	Consider the element \(\frac{m}{1} \in M_\mfm\).
+	This element is zero and hence is killed by an element,
+	\(a \in A \setminus \mfm\).
+
+	This is impossible since \(a \notin \mfm \implies a \notin \mfa\)
+	but annihilates \((x)\).
+\end{proof}
+
+
+\begin{proposition}{}{}
+	Let \(\phi \colon M \to N\) be an \(A\)-module homomorphism.
+	Then, the following are equivalent:
+	\begin{enumerate}
+		\item \(\phi\) is injective
+		\item \(\phi_\mathfrak{p} \colon M_\mathfrak{p} \to N_\mathfrak{p}\)
+			is injective for all prime ideals \(\mathfrak{p}\) of \(A\)
+		\item \(\phi_\mathfrak{m} \colon M_\mathfrak{m} \to N_\mathfrak{m}\)
+			is injective for all maximal ideals \(\mathfrak{m}\) of \(A\)
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	\(\brak{1 \implies 2}\)
+	\[
+		0 \to M \to N \text{ is exact}
+		\implies 0 \to M_\mathfrak{p} \to N_\mathfrak{p} \text{ is exact}
+	\]
+	and hence, \(\phi_\mathfrak{p}\) is injective for all \(\mathfrak{p}\).
+
+	\(\brak{2 \implies 3}\) is clear.
+
+	\(\brak{3 \implies 1}\)
+	Notice that the sequence
+	\[
+		0 \xrightarrow[\quad\quad]{} \ker \phi
+		\xrightarrow[\quad\quad]{i} M
+		\xrightarrow[\quad\quad]{\phi} N
+	\]
+	is exact and hence,
+	\[
+		0 \xrightarrow[\quad\quad]{} \ker \phi_\mathfrak{m}
+		\xrightarrow[\quad\quad]{i_{\mfm}} M_\mathfrak{m}
+		\xrightarrow[\quad\quad]{\phi_\mathfrak{m}} N_\mathfrak{m}
+	\]
+	is exact for all maximal ideals \(\mathfrak{m}\) of \(A\).
+
+	Since \(\Img(i_{\mfm}) = \Ker(\phi_{\mfm}) = 0\), and using the
+	fact that \(i_{\mfm}\) is an inclusion, we can conclude that
+	\(\Ker(\phi_{\mfm}) = 0\) for all maximal ideals \(\mfm\) of \(A\).
+
+	Hence, we have \(\brak{\ker \phi}_\mathfrak{m} = 0\) for
+	all maximal ideals \(\mathfrak{m}\) of \(A\).
+
+	Using the previous proposition, we can conclude that
+	\(\ker \phi = 0\) and hence, \(\phi\) is injective.
+\end{proof}
+
+
+\subsection{Flatness as a Local Property}
+
+\begin{proposition}{}{}
+	Let \(M\) be an \(A\)-module.
+	Then, the following are equivalent:
+	\begin{enumerate}
+		\item \(M\) is a flat \(A\)-module
+		\item \(M_\mathfrak{p}\) is a flat \(A_\mathfrak{p}\)-module
+			for all prime ideals \(\mathfrak{p}\) of \(A\)
+		\item \(M_\mathfrak{m}\) is a flat \(A_\mathfrak{m}\)-module
+			for all maximal ideals \(\mathfrak{m}\) of \(A\)
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	TODO  % TODO Flatness as a Local Property proof
+\end{proof}
+
+
+\pagebreak
+
+
+\section{Extended and Contracted Ideals in Rings of Fractions}
+
+Let \(A\) be a ring and \(S \subseteq A\) be a multiplicative
+subset of \(A\) and let
+\[
+	\boxed{f \colon A \to S^{-1}A \qquad a \mapsto \frac{a}{1}}
+\]
+be the canonical map.
+
+Let
+\begin{align*}
+	\sC &\coloneqq \fbrak{\mfa \normsg A \mid \mfa \text{ is a contraction
+		of an ideal of } S^{-1}A} \\
+	\sE &\coloneqq \fbrak{\mfb \normsg S^{-1}A \mid \mfb \text{ is an
+		extension of an ideal of } A}
+\end{align*}
+
+If \(\mfa\) is an ideal in \(A\), then the extension of \(\mfa\) is
+\(S^{-1} \mfa\) where the elements of \(S^{-1} \mfa\) are of the form
+\(\frac{a}{s}\) where \(a \in \mfa\) and \(s \in S\).
+
+\begin{proposition}{}{}
+\label{prop:3_11}
+	\begin{enumerate}
+		\item Every ideal in \(S^{-1}A\) is an extended ideal.
+		\item If \(\mfa\) is an ideal in \(A\), then
+			\(\mfa^{ec} = \cup_{s \in S} \brak{\mfa : s}\).
+			Hence, \(\mfa^e = (1) \iff \mfa\) meets \(S\).
+		\item \(\mfa \in \sC \iff \) No element of \(S\) is a zero divisor
+			on \(\bigslant{A}{\mfa}\).
+		\item The prime ideals of \(S^{-1}A\) are in one-to-one
+			correspondence with the prime ideals of \(A\) that do not
+			meet S\@.
+		\item The operation \(S^{-1}\) commutes with formation of
+			finite sums, products, intersections and radicals.
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof} \
+	\begin{enumerate}
+		\item
+		Let \(\mfb\) be an ideal in \(S^{-1}A\).
+		Consider some element in \(\mfb\), say \(\frac{x}{s}\).
+		Then, \(\frac{x}{s} \cdot \frac{s}{1} = \frac{x}{1} \in \mfb\).
+
+		Hence, \(x \in \mfb^c\) and \(\frac{x}{s} \in \mfb^{ce}\).
+		For this ideal, we have \(\mfb \subseteq \mfb^{ce}\).
+
+		Since for any general ideal, we have
+		\(\mfb \supseteq \mfb^{ce}\), we can conclude that
+		\(\mfb = \mfb^{ce}\) and hence, \(\mfb \in \sE\).
+
+		\item
+		Notice that any element of \(\mfa^{e}\) is of the form
+		\[
+			\sum_{i=1}^{n} \frac{a_i}{s_i}
+			= \frac{a}{s} \quad \text{for some} \quad a \in \mfa
+			\qandq s \in S
+		\]
+		after taking \(s = s_1 \cdots s_n\).
+
+		Also, notice that
+		\[
+			xs \in \mfa \iff x \brak{s} \subseteq \mfa
+		\]
+		where \(\brak{s}\) is the ideal generated by \(s\).
+
+		Now,
+		\begin{align*}
+			\mfa^{ec} &= \fbrak{x \in A \mid \frac{x}{1} = \frac{a}{s}
+				\text{ for some } a \in \mfa, s \in S} \\
+			&= \fbrak{x \in A \mid xst \in \mfa \text{ for some } a \in \mfa,
+				s, t \in S} \\
+			&= \fbrak{x \in A \mid xs \in \mfa \text{ for some } s \in S} \\
+			&= \fbrak{x \in A \mid x \brak{s} \subseteq \mfa
+				\text{ for some } s \in S} \\
+			&= \cup_{s \in S} \fbrak{x \in A \mid x \brak{s} \subseteq \mfa} \\
+			\mfa^{ec} &= \cup_{s \in S} \brak{\mfa : s}
+		\end{align*}
+		For the next part,
+		\[
+			\mfa^{e} = \fbrak{\frac{a}{s} \mid a \in \mfa, s \in S}
+		\]
+		The element \(\frac{1}{1} \in \mfa^{e} \iff\)
+		there exists some \(a \in \mfa\) and \(s \in S\) such that
+		\(\frac{a}{s} = \frac{1}{1}\).
+
+		This corresponds to \(at = st\) for some \(t \in S\)
+		which is equivalent to \(st \in \mfa\).
+
+		Thus,
+		\[
+			\frac{1}{1} \in \mfa^{e} \iff \exists\ t \in S \st t \in \mfa
+		\]
+
+		\item Notice that
+		\begin{align*}
+			& \mfa \in \sC \\
+			\iff & \mfa^{ec} \subseteq \mfa \quad\quad (\text{since }
+				\mfa^{ec} = \mfa \AND \mfa^{ec} \supseteq \mfa
+				\text{ holds for any ideal}) \\
+			\iff & \brak{xs \in \mfa \text{ for some } s \in S
+				\implies x \in \mfa} \\
+			\iff & \brak{\bar{x} \in \bigslant{A}{\mfa}, \quad
+				\bar{x}s = 0 \text{ for some } s \in S
+				\implies \bar{x} = 0} \\
+			\iff & \text{No element of } S \text{ is a zero divisor on }
+				\bigslant{A}{\mfa}
+		\end{align*}
+
+		\item
+		Consider some prime ideal \(\mfq\) in \(S^{-1}A\).
+		Then, \(\mfq = \fbrak{\frac{a}{s} \mid a \in \mfp, s \in S}\)
+		for some prime ideal \(\mfp\) of \(A\).
+
+		If there is an element \(\frac{a}{s} \in \mfq\) such that
+		\(a \in S\), this implies that \(\frac{1}{s} \in \mfq\) and hence,
+		\(\mfq = S^{-1}A\).
+
+		Thus, we can assume that \(a \notin S\) for any \(a \in \mfp\)
+		and hence, \(\mfp \cap S = \emptyset\). \\
+
+		Conversely, let \(\mfp\) be a prime ideal in \(A\) such that
+		\(\mfp \cap S = \emptyset\).
+
+		We want to show that \(\mfq = \fbrak{\frac{a}{s} \mid a \in \mfp,
+		s \in S}\) is a prime ideal in \(S^{-1}A\).
+
+		Consider 2 elements \(\frac{a}{s}, \frac{b}{t} \notin \mfq\).
+		We need to show that \(\frac{a}{s} \cdot \frac{b}{t} \notin \mfq\).
+
+		Suppose \(\frac{a}{s} \cdot \frac{b}{t} \in \mfq\).
+		Then, \(\frac{ab}{st} \in \mfq \implies abu \in \mfp\)
+		for some \(u \in S\).
+
+		But this implies that \(a \in \mfp\) or \(b \in \mfp\) or
+		\(u \in \mfp\) neither of which is possible.
+
+		\item
+		Using the fact that every ideal in \(S^{-1}A\) is an extended ideal,
+		we can deduce that \(S^{-1}\) commutes with formation of finite
+		sums and products.
+		Intersections has been proven earlier.
+
+		For radicals, we already have \(\rad(\mfa)^e \subseteq
+		\rad(\mfa^e)\). \\
+		Consider some element \(\frac{a}{s} \in \rad(\mfa^e)\).
+		Then, \(\brak{\frac{a}{s}}^n \in \mfa^e\) for some \(n \geq 1\).
+
+		That is, \(\frac{a^n}{s^n} \in \mfa^e\) and hence,
+		\(a^n t \in \mfa\) for some \(t \in S\).
+		If \(t \notin \mfa\), we are done.
+
+		\(t \in \mfa\) TODO  % TODO
+	\end{enumerate}
+\end{proof}
+
+
+\begin{corollary}{}{}
+	If \(\mfN\) is the nilradical of \(A\), then \(S^{-1}\mfN\) is the
+	nilradical of \(S^{-1}A\).
+\end{corollary}
+\begin{proof}
+	S
+\end{proof}
+
+\begin{corollary}{}{}
+	If \(\mfp\) is a prime ideal of \(A\), the prime ideals of a local ring
+	\(A_{\mfp}\) are in one-to-one correspondence with the prime ideals of
+	\(A\) that are contained in \(\mfp\).
+\end{corollary}
+\begin{proof}
+	Consider \(S = A \setminus \mfp\) in the 4th part of the proposition.
+\end{proof}
+
+\begin{note}
+	Thus, the passage from \(A\) to \(A_{\mfp}\) cuts of all
+	the prime ideals that are not contained in \(\mfp\).
+
+	In the other direction, the passage from \(A\) to \(A_{\mfp}\) cuts
+	of all the prime ideals except those containing \(\mfp\). \\
+
+	Hence, if \(\mfp\) and \(\mfq\) are prime ideals of \(A\) such that
+	\(\mfp \supseteq \mfq\), then localizing at \(\mfp\) and then
+	taking quotient mod \(\mfq\) (these operations commute), we are
+	restricting our attention to those prime ideals that
+	lie between \(\mfq\) and \(\mfp\). \\
+
+	In particular, if \(\mfp = \mfq\), we will be left with a field,
+	called the residue field of \(A\) at \(\mfp\), which can be obtained
+	either as the field of fractions at \(\bigslant{A}{\mfp}\) or as
+	the residue field of the local ring \(A_{\mfp}\).
+\end{note}
+
+
+\begin{proposition}{}{}
+	Let \(M\) be a finitely generated \(A\)-module, \(S\) a multiplicatively
+	closed subset of \(A\).
+	Then,
+	\[
+		S^{-1} \brak{\Ann(M)} = \Ann(S^{-1}M)
+	\]
+\end{proposition}
+\begin{proof}
+	If the proposition is true for \(M\) and \(N\), then it is true for
+	\(M + N\).
+	\begin{align*}
+		S^{-1} \brak{\Ann(M + N)} &= S^{-1} \brak{\Ann(M) \cap \Ann(N)} \\
+		&= S^{-1} \brak{\Ann(M)} \cap S^{-1} \brak{\Ann(N)} \\
+		&= \Ann(S^{-1}M) \cap \Ann(S^{-1}N) \\
+		&= \Ann(S^{-1}M + S^{-1}N) \\
+		&= \Ann(S^{-1}(M + N))
+	\end{align*}
+	Thus, it is enough to prove the proposition for \(M\) generated by
+	one element.
+
+	We know that \(M \cong \bigslant{A}{\Ann(M)}\) as an \(A\)-module.
+	Hence, we have
+	\[
+		S^{-1}M \cong S^{-1} \brak{\bigslant{A}{\Ann(M)}}
+		\cong \bigslant{S^{-1}A}{S^{-1} \brak{\Ann(M)}}
+	\]
+	Hence, we have \(\Ann(S^{-1}M) = S^{-1} \brak{\Ann(M)}\).
+\end{proof}
+
+\begin{corollary}{}{}
+	If \(N, P\) are submodules of an \(A\)-module \(M\), and if \(P\)
+	is finitely generated, then
+	\[
+		S^{-1} \brak{N \colon P} = \brak{S^{-1}N \colon S^{-1}P}
+	\]
+\end{corollary}
+\begin{proof}
+	We know that
+	\[
+		\brak{N \colon P} \cong \Ann \brak{\bigslant{\brak{N + P}}{N}}
+	\]
+	and now, we can apply the previous proposition.
+\end{proof}
+
+\begin{proposition}{}{}
+	Let \(A \to B\) be a ring homomorphism and let \(\mfp\) be a prime
+	ideal in \(A\).
+	Then, \(\mfp\) is a contraction of a prime ideal of \(B\) if and
+	only if \(\mfp^{ec} = \mfp\).
+\end{proposition}
+\begin{proof}
+	\(\brak{\Longleftarrow}\) is clear.
+
+	\(\brak{\Longrightarrow}\)
+	Let \(\mfp^{ec} = \mfp\).
+	Let \(S\) be the image of \(A \setminus \mfp\) in \(B\).
+	Then, \(S\) is a multiplicatively closed subset of \(B\).
+
+	Clearly, \(\mfp^e\) does not meet \(S\) and using (3.9), we can
+	conclude that \(S^{-1}B \neq B\) and is hence, contained in a maximal
+	ideal \(\mfm\) of \(B\).
+
+	If \(\mfq\) is the contraction of \(\mfm\) in \(B\), then \(\mfq\)
+	is prime, \(\mfq \cap S = \emptyset\) and \(\mfp \subseteq \mfq\).
+
+	Hence, \(\mfq^c = \mfp\).
+\end{proof}

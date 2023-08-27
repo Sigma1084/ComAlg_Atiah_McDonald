@@ -1,0 +1,543 @@
+\chapter{Rings and Ideals} \label{ch:rings-and-ideals}
+
+\begin{exercise}{}{}
+	Let \( x \) be a nilpotent element of a ring \( A \).
+	Show that \( 1 + x \) is a unit of A\@.
+	Deduce that the sum of a nilpotent element and a unit is a unit.
+\end{exercise}
+
+Suppose \( x^n = 0 \) for some \( n \in \NN \). \\
+Clearly, \( \brak{1 + x}\brak{1 - x + x^2 \ldots + \brak{-1}^{n-1} x^{n-1}}
+= 1 - x^n = 1 \). \\
+Hence, \( 1 + x \) is a unit. \\
+Consider \( u + x \) for some unit \( u \).
+Write \( u + x = u \brak{1 + xu\inv} \). \\
+Now, we know that \( xu\inv \) is nilpotent with the same \( n \)
+and hence, \brak{1 + xu\inv} is a unit. \\
+Since product of units is a unit, we can conclude \( u + x \)
+is a unit.
+
+
+
+\begin{exercise}{}{}
+	Let \( A \) be a ring and \( A\sbrak{x} \) be the ring of
+	polynomials in an intermediate \( x \) with coefficients in \( A \).
+	Let \( f = a_0 + a_1 x + \ldots + a_n x^n \in A\sbrak{x} \).
+	Prove that
+	\begin{enumerate}
+		\item \( f \) is a unit \( \iff a_0 \) is a unit in \( A \) and
+			\( a_1, \ldots, a_n \) are nilpotent.
+		\item \( f \) is nilpotent \( \iff a_0, a_1, \ldots, a_n \)
+			are nilpotent.
+		\item \( f \) is a zero-divisor \( \iff \) there exists \( a \neq 0 \)
+			 in \( A \) such that \( af = 0 \).
+		\item \( f \) is said to be primitive if \brak{a_0, a_1, \ldots, a_n}
+			\( = \brak{1} \).
+			Prove that if \( f, g \in A\sbrak{x} \), then
+			\( fg \) is primitive \( \iff f \AND g \) are primitive.
+	\end{enumerate}
+\end{exercise}
+
+\begin{enumerate}
+
+	\item
+	We prove the result using induction on the degree of the polynomial.
+	Base case \( n = 0 \) is trivially correct since \( a_0 \) is a unit
+	in \( A\sbrak{x} \iff a_0 \) is a unit in \( A \).
+	Let us assume the result for all polynomials of degree \( n-1 \) or lower.
+
+	\( \implies \) \\
+	Suppose the inverse of \( f \) be
+	\( g(x) = b_0 + b_1 x + \ldots + b_m x^m \). \\
+	Observe that \( a_n^{r+1} b_{m-r} = 0 \ \forall\ r \). \\
+	\( r = 0 : \) Co-efficient of \( x^{n+m} \) is 0.
+	Thus, \( a_n b_m = 0 \implies a_n^{0+1} b_{m-0} = 0 \). \\
+	\( r = 1 : \) Co-efficient of \( x^{n+m-1} \) is 0.
+	Thus, \( a_n b_{m-1} + a_{n-1} b_m = 0 \implies a_n^{1+1} b_{m-1} = 0 \).
+	after multiplying by \( a_n \). \\
+	\( \ldots \) \\
+	\( r = m : a_n^{m+1} b_0 = 0 \) \\
+	Since we also know that \( a_0 b_0 = 1 \), we know that \( b_0 \) is
+	a unit.
+	Multiplying \( a_0 \) in the above equation, we can see that
+	\( a_n^{m+1} = 0 \) and hence \( a_n \) is nilpotent. \\
+	We also know that the element \( a_n x^n \) is nilpotent in the
+	polynomial ring and hence \( f - a_n x^n \) is a unit using the
+	result that the sum of a unit and a nilpotent element is a unit. \\
+	But \( f - a_n x^n \) is an \( n-1 \) or a lower degree polynomial and
+	hence, the result holds, that is \( a_1, \ldots, a_{n-1} \) are also
+	nilpotent along with \( a_0 \) being a unit.
+
+	\( \Longleftarrow \) \\
+	Using \( a_0, a_1, \ldots, a_{n-1} \), we construct \( f - a_n x^n \)
+	which is a unit using the induction hypothesis and we know that
+	\( a_n x^n \) is a nilpotent element and hence,
+	\( f - a_n x^n + a_n x^n = f \) being the sum of unit and
+	a nilpotent element, is a unit.
+
+
+	\item
+	We prove the result by induction on the degree of the polynomial.
+	\( n = 0 \) is trivially correct since
+	\( a_0 \) is a nilpotent element of \( A \) if and only if \( a_0 \) is
+	a nilpotent element of \( A\sbrak{x} \). \\
+	Assume the result for all polynomials of degree \( n-1 \) or lower.
+
+	\( \implies \) \\
+	\( f = a_0 + a_1 x + \ldots + a_n x^n \) is nilpotent.
+	Thus, for some \( r \in \NN \), \( f^r = 0 \).
+	Considering the \( rn^{\text{th}} \) coefficient and setting it to zero,
+	we get \( a_n^r = 0 \) and thus, \( a_n x^n \) is a nilpotent
+	element of \( A\sbrak{x} \).
+	Since we know that the sum of 2 nilpotent elements is nilpotent,
+	\( f - a_n x^n \) being a polynomial of degree less than \( n \)
+	is nilpotent and we get \( a_0, \ldots, a_{n-1} \) are nilpotent.
+
+	\( \Longleftarrow \) \\
+	\( a_0, \ldots, a_n \) are nilpotent elements of \( A \). \\
+	Clearly, \( a_n x^n \) is nilpotent and the polynomial
+	\( a_0 + a_1 x + \ldots + a_{n-1} x^{n-1} \) is nilpotent using
+	the induction hypothesis.
+	Adding the above two, we get \( f \) is nilpotent.
+
+
+	\item
+	The only if part is trivial since \( a \in A\sbrak{x} \).
+	Proof for the \( \implies \) part. \\
+	Suppose \( f \) is a zero-divisor.
+	Then, there exists \( g \in A\sbrak{x} \) with the least degree
+	such that \( fg = 0 \).
+	We have \( a_n b_m = 0 \) since the coefficient of \( x^{n+m} \) is 0. \\
+	This implies \( a_n g = 0 \) since \( a_n g f = 0 \) and
+	if \( a_n g \neq 0 \), it is a polynomial of degree less than n and
+	annihilates \( f \) which contradicts the minimality of the degree of
+	\( g \). \\
+
+	We show by induction that \( a_{n-r} g = 0 \) for \( 0 \leq r \leq n \).
+	The base case being \( r = 0, a_{n} g = 0 \) is shown above. \\
+	Let us just go 1 level for better underdstanding. \\
+	Since we proved \( a_n g = 0 \), we showed that \( a_n b_i = 0 \)
+	for all \( i \). \\
+	Since \( f g = 0 \), considering the coefficient of \( x^{n+m-1} \),
+	we have \( a_n b_{m-1} + a_{n-1} b_m = 0 \) but \( a_n b_{m-1} = 0 \). \\
+	Thus, \( a_{n-1} b_m = 0 \) and \( a_{n-1} \) annihilates the leading
+	co-efficient of \( g \). \\
+	Using the same argument as before, we can see that \( a_{n-1} g = 0 \). \\
+
+	Now, we can use the induction hypothesis to show that
+	\( a_{n-i} g = 0 \) for \( 0 \leq i \leq n \) and hence,
+	\( a_0 g = 0 \). \\
+	Thus, \( a_i b_j = 0 \) for all \( 0 \leq i \leq n \) and
+	\( 0 \leq j \leq m \). \\
+	Also, \( b_m \neq 0 \) and \( a_i b_m = 0 \) for all \( i \),
+	we can conclude that \( b_m f = 0 \). \\
+
+
+	\item
+	Suppose \( f = a_0 + a_1 x + \ldots + a_n x^n \) \\
+	\( g = b_0 + b_1 x + \ldots + b_m x^m \) and \\
+	\( fg = c_0 + c_1 x + \ldots + c_{n+m} x^{n+m} \) where
+	\( c_i = \sum_{j=0}^i a_j b_{i-j} \) for \( 0 \leq i \leq n+m \).
+
+	\( \implies \) \\
+	Suppose \( fg \) is primitive. \\
+	Then, \( \exists\ \gamma_1, \gamma_2, \ldots, \gamma_n \in A \)
+	such that \( \gamma_1 c_1 + \gamma_2 c_2 + \ldots +
+	\gamma_{m+n} c_{m+n}  = 1 \). \\
+	Thus,
+	\[ \sum_{i=0}^n \sum_{j=0}^m a_i b_j \gamma_{i+j} = 1 \]
+	Putting \( \alpha_i \coloneqq \sum_{j=0}^m b_j \gamma_{i+j} \),
+	we get \( \sum_{i=1}^n a_i \alpha_i = 1 \) and hence,
+	\( f \) is primitive. \\
+	Similarly, we get \( g \) is primitive.
+
+	\( \Longleftarrow \) \\
+	We prove the result using the contrapositive. \\
+	Suppose \( fg \) is not primitive. \\
+	Then, \( \brak{c_0, c_1, \ldots, c_{m+n}} \) is a non-trivial
+	ideal of \( A \), and is contained in some maximal ideal,
+	say \( \mfc \) and \( 1 \notin \mfc \). \\
+	Clearly, \( \bigslant{A}{\mfc} \) is a field. \\
+	We have \( fg \equiv 0 \pmod{\mfc} \).
+	Since \( \bigslant{A}{\mfc} \) is a field, this implies
+	\( f \equiv 0 \pmod{\mfc} \OR g \equiv 0 \pmod{\mfc} \). \\
+	This means, either \( f \OR g \) is contained in \( \mfc \) which implies
+	\( 1 \) does not belong to it and hence is not primitive.
+\end{enumerate}
+
+
+\begin{exercise}{}{}
+	Generalize the results of Exercise 2 to a polynomial ring
+	\( A \sbrak{x_1, \ldots, x_r} \) in several indeterminates.
+\end{exercise}
+
+Suppose we consider the polynomial ring \( A \sbrak{x_1, \ldots, x_r} \).
+An element of the above ring looks like,
+\[
+	f = \sum_{i_1 + i_2 + \ldots + i_r \leq n}
+	a_{i_1, i_2, \ldots, i_r} x_1^{i_1} x_2^{i_2} \cdots x_r^{i_r}
+\]
+
+\begin{enumerate}
+	\item \( f \) is a unit in \( A \sbrak{x_1, \ldots, x_r} \)
+	\( \iff a_{0, 0, \ldots, 0} \) is a unit in \( A \) and
+	every other co-efficient is nilpotent.
+
+	\item \( f \) is a nilpotent element in \( A \sbrak{x_1, \ldots, x_r} \)
+	\( \iff a_{i_1, i_2, \ldots, i_r} \) is a nilpotent element in \( A \)
+	for any combination of \( \brak{i_1, i_2, \ldots, i_r} \).
+
+	\item \( f \) is a zero-divisor in \( A \sbrak{x_1, \ldots, x_r} \)
+	\( \iff \ \exists\ a \neq 0 \in A \) such that \( a f = 0 \).
+
+	\item Suppose \( f, g \in A \sbrak{x_1, \ldots, x_r} \). \\
+	\( fg \) is primitive in \( A \sbrak{x_1, \ldots, x_r} \)
+	\( \iff f \) and \( g \) are primitive in \( A \sbrak{x_1, \ldots, x_r} \).
+\end{enumerate}
+
+
+
+\begin{exercise}{}{}
+	In the ring \( A \sbrak{x} \), the Jacobson radical is equal to
+	nilradical.
+\end{exercise}
+
+We know that every maximal ideal is a prime ideal and hence, the nilradical
+is contained in the Jacobson radical.
+
+We need to prove that Jacobson radical is contained in nilradical.
+
+Let \( f(x) \in \mfR \implies 1 - fg \) is a unit in \( A[x] \ \forall\
+g \in A[x] \).
+Suppose
+\[
+	f(x) = a_0 + a_1 x \cdots a_n x^n
+\]
+We use the fact that if \( h(x) = h_0 + \cdots + h_k x^k \) is unit,
+\( h_0 \) is a unit and \( h_1, \cdots, h_k \) are nilpotent.
+
+Putting \( g = x \), we see that \( 1 - fx \) is a unit and hence
+\( a_0, a_1, \cdots a_n \) are nilpotent.
+
+Since coefficients of \( f \) are nilpotent, we can conclude
+that \( f \) is nilpotent.
+\[
+	f \in \mfR \implies f \in \mfN
+\]
+Hence, Jacobson radical is contained in nilradical and we proved the result.
+
+
+\begin{exercise}{}{}
+	Let \( A \) be a ring and let \( A[[x]] \) be a ring of formal
+	power series \( f = \sum_{i=0}^{\infty} a_n x^n \) with coefficients
+	in \( A \).
+	Show that
+	\begin{enumerate}
+		\item \( f \) is a unit in \( A[[x]] \iff a_o \) is a unit in \( A \).
+		\item \( f \) is a nilpotent element in \( A[[x]] \implies a_n \) is
+		nilpotent for any \( n \geq 0 \).
+		Is the converse true?
+		\item \( f \) belongs to the Jacobson radical of \( A[[x]] \iff
+		a_0 \) belongs to the Jacobson radical of \( A \).
+		\item The contraction of a maximal ideal \( \mfm \) of \( A[[x]] \)
+		is a maximal ideal of \( A \) and \( \mfm \) is generated by
+		\( \mfm^c \AND x \).
+		\item Every prime ideal of \( A \) is a contraction of a prime ideal
+		of \( A[[x]] \).
+	\end{enumerate}
+\end{exercise}
+
+\begin{enumerate}
+	\item
+	\( \brak{\implies} \) \\
+	Now, \( f \) is a unit in \( A[[x]] \) \\
+	\( \implies \exists\ g = \sum_{i=0}^{\infty} b_i x^i \in A[[x]] \)
+	such that \( fg = 1 \) \\
+	\( \implies a_0 b_0 = 1 \implies a_0 \) is a unit. \\
+
+	\( \brak{\Longleftarrow} \) \\
+	Suppose \( a_0 \) is a unit in \( A \). \\
+	Let us try to construct \( g = \sum_{i \geq 0} b_i \)
+	such that \( fg = 1 \). \\
+	Since \( a_0 \) is a unit, there is a \( b_0 \) such that
+	\( a_0 b_0 = 1 \).
+	Since the coefficient of \( x^n \) is \( 0\ \forall\ n \in \NN \)
+	in \( fg \), we have
+	\[
+		0 = \sum_{i=0}^n a_{n-i} b_{i}
+		\implies a_0 b_n = - \sum_{i=0}^{n-1} a_{n-i} b_{i}
+		\implies b_n = - b_0 \sum_{i=0}^{n-1} a_{n-i} b_{i}
+	\]
+	We just expressed \( b_n \) in terms of \( b_0, \cdots, b_{n-1} \)
+	such that coefficient of \( x^n \) in \( fg = 0 \). \\
+	\( \exists\ g \in A[[x]] \) such that \( fg = 1 \).
+
+
+	\item
+	Suppose \( f \) be a nilpotent element in \( A[[x]] \).
+	Then, \( f^n = 0 \) for some \( n \in \NN \). \\
+	Coefficient of \( 1 \) in \( f^n \) is \( a_0^n = 0 \)
+	\( \implies a_0 \) is nilpotent. \\
+	Now, consider the element \( f_1 = f - a_0 \).
+	Since \(f' = a_1 x + a_2 x^2 + \cdots\), being the sum of
+	nilpotent elements, is nilpotent, and \(f' = xf_1\).
+	Thus, \(f_1\) is nilpotent. \\
+	\(a_1\) being the coefficient of \(1\) in \(f_1\), is nilpotent
+	and using the same argument, we can show that \(a_2\) is nilpotent.
+	Thus, \(a_n\) is nilpotent for any \(n \geq 0\).
+
+	\item
+	\( \brak{\implies} \) \\
+	\(f\) belongs to the Jacobson radical of \(A[[x]]\)
+	\(\implies 1 - fg\) is a unit \(\forall\ g \in A[[x]]\). \\
+	Putting \(g = y\) for some \(y \in A\), we get
+	\(1 - a_0 y\) is a unit in \(A \ \forall\ y \in A\) using the
+	previous proposition. \\
+	This means \(a_0 \in \mfR_A\).
+
+	\(\brak{\Longleftarrow}\) \\
+	Suppose \(a_0 \in \mfR \implies 1-a_0 y\) is a unit in
+	\(A \ \forall\ y \in A\). \\
+	Cosider some \(g = \sum_{i \geq 0} b_i x^i \in A[[x]]\). \\
+	\(1-a_0 b_0\) is a unit in \(A \implies 1 - fg\) is a unit
+	in \(A[[x]]\) for any \(g \in A[[x]]\). \\
+	This proves the claim.
+\end{enumerate}
+
+
+\begin{exercise}{}{}
+	A ring \( A \) is such that every ideal not contained in the Nilradical
+	contains a non-zero idempotent (that is, an element \( e \) such that
+	\( e^2 = e \) and \( e \neq 0 \)).
+	Prove that the Nilradical and the Jacobson radical of \( A \) are equal.
+\end{exercise}
+
+It is trvial to note that \(\mfN \subseteq \mfR\).
+
+If \(\mfR \nsubseteq \mfN\), then there exists an idempotent \(e \in \mfR\)
+such that \(e^2 \neq e, e \neq 0\).
+We show that this is not possible.
+
+Since \(e \in \mfR\), \(1 - ey\) is a unit in \(A\) for every \(y \in A\).
+Putting \(y = 1\), we get \(1 - e\) is a unit in \(A\).
+
+Since \(e, 1 \in \mfm\), we have \(1-e \in \mfm\) for some maximal ideal
+\(\mfm\).
+
+Also, note that \(\brak{1-e}e = e - e^2 = 0 \implies e = 0\)
+since \(1-e\) is a unit which is a contradiction.
+
+Hence, \(\mfN = \mfR\).
+
+
+\begin{exercise}{}{}
+	Let \( A \) be a ring in which every element \( x \) satisfies
+	\( x^n = x \) for some \( n \in \NN \AND n > 1 \) depending on \( x \).
+	Show that every prime ideal of \( A \) is maximal.
+\end{exercise}
+
+Suppose \( \mfp \) be a prime ideal of \( A \).
+
+Consider a non zero element \( x \in \bigslant{A}{\mfp} \)
+\( \implies x^n \in \bigslant{A}{\mfp} \) for some \( n>1 \in \NN \).
+
+Therefore, \( x^n - x \in \bigslant{A}{\mfp} \implies x\brak{x^{n-1} - 1}
+\in \bigslant{A}{\mfp} \).
+
+Since \( \bigslant{A}{\mfp} \) is an integral domain and
+\( x \) is chosen to be a non zero element, \\
+\( x\brak{x^{n-1} - 1} = 0 \implies x^{n-1} - 1 = 0
+\implies x\inv = x^{n-2} \).
+
+We therefore proved that any non-zero element in \( \bigslant{A}{\mfp} \)
+is a unit and hence \( \bigslant{A}{\mfp} \) is a field.
+
+Thus, we conclude \( \mfp \) is a maximal ideal.
+
+
+\begin{exercise}{}{}
+	Let A be a ring \(\neq\) 0.
+	Show that the set of prime ideals of \(A\) has minimal elements
+	with respect to inclusion.
+\end{exercise}
+
+Suppose we take the set of prime ideals of \(A\) and consider
+the inclusion relation on it as a partial order defined by
+\[
+	\mfp_1 < \mfp_2 \iff \mfp_1 \supset \mfp_2
+\]
+This forms a chain in the set of prime ideals of \(A\).
+
+Using Zorn's lemma, we can show that there exists a maximal element
+\( \mfp \) in the chain which is the minimal prime ideal of \(A\).
+
+
+\begin{exercise}{}{}
+	Let \(\mfa \neq (1)\) be an ideal in a ring \(A\).
+	Show that \(\mfa = r(\mfa) \iff \mfa\) is an intersection
+	of prime ideals.
+\end{exercise}
+
+One side is trivial since \(r(\mfa)\) is the intersection of all prime ideals
+containing \(\mfa\).
+
+
+
+
+\begin{exercise}{}{}
+	Let \(A\) be a ring, \(\mfN\) its nilradical.
+	Show that the following are equivalent.
+	\begin{enumerate}
+		\item \(A\) has exactly one prime ideal.
+		\item \(A\) Every element of \(A\) is a unit or nilpotent.
+		\item \(\bigslant{A}{\mfN}\) is a field.
+	\end{enumerate}
+\end{exercise}
+
+\(\brak{1 \implies 3}\) \\
+Suppose \(A\) has exactly one prime ideal, \(\mfp\).
+Then, \(\mfN = \mfp\).
+
+Since any maximal ideal is a prime ideal, and we only have one prime ideal,
+the prime ideal must be a maximal ideal and since \(\mfp = \mfN\),
+\(\mfN\) is a maximal ideal and \(A\) is a local ring.
+
+We directly get the result that \(\bigslant{A}{\mfN}\) is a field.
+
+
+\(\brak{3 \implies 2}\) \\
+Suppose \(\bigslant{A}{\mfN}\) is a field.
+
+Consider some \(x \in A\).
+If \(x \in \mfN\), it is nilpotent and if \(x \notin \mfN\),
+\[
+	\exists\ y \in A, y \notin \mfN \st \brak{x + \mfN}\brak{y + \mfN}
+	= 1 + \mfN \quad \implies xy - 1 \in \mfN
+\]
+
+Clearly, since the sum of a unit and a nilpotent unit is a unit, we have
+\( xy - 1 + 1 = xy\) is a unit in \(A\).
+\[
+	\implies \exists\ z \in A \st xyz = 1
+\]
+
+\(yz\) is the inverse of \(x\) and hence \(x\) is a unit in \(A\).
+
+Therefore, every element of \(A\) is either nilpotent or a unit. \\
+
+
+\(\brak{2 \implies 3}\) \\
+We need to prove that \(\bigslant{A}{\mfN}\) is a field.
+
+Suppose we consider \(x \in A, x \notin \mfN\)
+\[
+	\implies \exists\ y \in A, y \notin \mfN \st xy = 1
+\]
+Clearly,
+\[
+	\implies (x + \mfN)(y + \mfN) = 1 + \mfN
+\]
+and hence, we can see that \(\bigslant{A}{\mfN}\) is a field. \\
+
+
+\(\brak{3 \implies 1}\) \\
+We can see that \(\mfN\) is a maximal ideal.
+
+Suppose for contradiction, let there be at least 2 distinct prime ideals
+\( \mfp_1, \mfp_2 \) in \(A\).
+
+Clearly, this means that
+\[
+	\mfN \subseteq \mfp_1 \AND \mfN \subseteq \mfp_2
+\]
+
+We claim that
+\[
+	\mfN \subset \mfp_1 \OR \mfN \subset \mfp_2
+\]
+
+since if that does not hold, then we have
+\[
+	\mfN = \mfp_1 = \mfp_2
+\]
+which contradicts the fact that \( \mfp_1 \) and \( \mfp_2 \) are distinct
+and if it holds, it contradicts the maximality of \(\mfN\).
+
+And hence, we can see that there is only a single prime ideal in \(A\).
+
+
+\begin{exercise}{}{}
+	A ring \(A\) is called a Boolean ring if \(x^2 = x\) for every
+	\(x \in A\).
+	In a Boolean ring, show that
+	\begin{enumerate}
+		\item \(2x = 0 \ \forall\ x \in A\)
+		\item Every prime ideal \(\mfp\) is maximal and
+		\(\bigslant{A}{\mfp}\) is a field with 2 elements.
+		\item Every finitely generated ideal in \(A\) is principal.
+	\end{enumerate}
+\end{exercise}
+
+\begin{enumerate}
+	\item
+	Since \(x^2 = x \ \forall\ x \in A\), we have
+	\begin{align*}
+		(1+x)^2 &= (1+x) \\
+		\implies \cancel{1} + 2x + \cancel{x^2} &= \cancel{1} + \cancel{x} \\
+		\implies 2x &= 0 \quad \forall\ x \in A
+	\end{align*}
+
+	\item
+	Consider some prime ideal \(\mfp\).
+	We know that every element of \(\bigslant{A}{\mfp}\) satisfies
+	\(x^2 = x\).
+	Since \(\mfp\) is a prime ideal, \(\bigslant{A}{\mfp}\) is an
+	integral domain, all the elements of \(\bigslant{A}{\mfp}\) are
+	the elements that satisfy \(x = x^2\).
+	\[
+		x = x^2 \implies x(1-x) = 0 \implies x = 0 \OR x = 1
+	\]
+	Hence, \(A\) is a field with 2 elements which implies that
+	\(\mfp\) is a maximal ideal.
+
+	\item
+	We need to show that any ideal generated by 2 elements
+	can be generated by a single element. \\
+	In other words, we need to show that
+	\[
+		\brak{x, y} = \brak{z} \quad\quad
+		\text{for some } z \in A
+		\numberthis \label{eq:q11_to-prove}
+	\]
+	We claim that
+	\[
+		z = x + y - xy
+	\]
+	since \(xz = x \AND yz = y\) and it satisfies~\eqref{eq:q11_to-prove}.
+
+	Hence, we can merge any finite number of generators into a single
+	generator which implies every finitely generated ideal is principal.
+\end{enumerate}
+
+
+\begin{exercise}{}{}
+	A local ring contains no idempotents \(\neq 0, 1\).
+\end{exercise}
+
+Recall that a ring \(A\) is called a local ring if it contains a unique
+maximal ideal \(\mfm\).
+
+%Now, if there is some element \(x \in A\) such that \(x^2 = x\),
+%then, we must have \(x^2 + \mfm = x + \mfm\).
+%\[
+%	\implies x \equiv 0 \pmod{\mfm} \qorq x \equiv 1 \pmod{\mfm}
+%\]
+%since \(\bigslant{A}{\mfm}\) is a field.
+
+Notice that if \(e\) is an idempotent in \(A\), then \(e(e-1) = e^2 - e = 0\)
+shows that \(e\) and \(e-1\) are zero divisors and hence, not units.
+Thus, \(e, 1-e \in \mfm\) but
+\begin{gather*}
+	\implies e + (1-e) = 1 \in \mfm \\
+	\Longrightarrow \Longleftarrow
+\end{gather*}

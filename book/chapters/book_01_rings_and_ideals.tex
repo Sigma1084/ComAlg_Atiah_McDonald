@@ -1,0 +1,1085 @@
+\chapter{Rings and Ideals} \label{ch:rings-and-ideals}
+
+\section{Rings and Ring Homomorphisms}
+Throughout the book, we will be working with
+\textbf{commutative rings with identity}.
+We will define a ring as
+\begin{definition}{Ring}{}
+	A ring \( A \) is a set with two binary operations
+	\begin{align*}
+		+ : A \times A &\to A \\
+		\cdot : A \times A &\to A
+	\end{align*}
+	such that
+	\begin{enumerate}
+		\item \( A \) is an abelian group under \( + \) (identity
+		denoted by \( 0 \) and inverse denoted by \( -x \) forall \( x \)).
+		\item Multiplication \( \cdot \) is associative and
+		distributive over addition.
+		\item Multiplication \( \cdot \) is commutative.
+		\item There exists an element \( 1 \) such that
+		\( 1 \cdot x = x \cdot 1 = x \) for all \( x \in A \).
+	\end{enumerate}
+\end{definition}
+
+\begin{note}{}
+	Throughout the book, the word \textbf{ring} will be used to
+	indicate a commutative ring with identity unless specified otherwise.
+\end{note}
+
+
+\begin{defn}{}{}
+	A \textbf{ring homomorphism} is a function \( f : A \to B \) satisfying
+	\begin{align*}
+		f(x + y) &= f(x) + f(y) \\
+		f(x \cdot y) &= f(x) \cdot f(y) \\
+		f(1) &= 1
+	\end{align*}
+\end{defn}
+
+
+\section{Ideals and Quotient Rings}
+An ideal \( \mfa \) of a ring \( A \) is a subset of \( A \) which is closed
+under addition and multiplication with absorption property.
+\begin{defn}{Ideal}{}
+	An ideal \( \mfa \) of a ring \( A \) is a subset of \( A \) such that
+	\[
+		A\mfa \subseteq \mfa
+	\]
+	That is,
+	\[
+		x \in A, y \in \mfa \implies xy \in \mfa
+	\]
+\end{defn}
+
+Consider \( \bigslant{A}{\mfa} \) to be the set of all cosets of
+\( \mfa \) in \( A \) of the form \( x + \mfa \) for \( x \in A \).
+
+Let us define a ring homomorphism \( \phi: A \to \bigslant{A}{\mfa} \)
+that maps each element \( x \in A \) to its coset \( x + \mfa \).
+Clearly, \( \phi \) is a surjective ring homomorphism.
+
+\begin{theorem}{Correspondence Theorem}{}
+	There is a one-to-one order preserving correspondence between
+	ideals \( \mfb \) of a ring \( A \) which contain \( \mfa \)
+	and the ideals \( \overline{\mfb} \) of the quotient ring
+	\( \bigslant{A}{\mfa} \).
+\end{theorem}
+
+\begin{theorem}{First Isomorphism Theorem}{}
+	Let \( f: A \to B \) be any ring homomorphism.
+	The kernel of \( f \), say \( \mfa \) is an ideal of \( A \) and
+	the image of \( f \), say \( C \) is a subring of \( B \).
+
+	Then \( f \) induces a ring isomorphism \( \bigslant{A}{\mfa} \cong C \).
+\end{theorem}
+
+We also use the notation \( x \equiv y \pmod \mfa \) and this means that
+\( x - y \in \mfa \).
+
+
+\section{Zero Divisors, Nilpotent Elements, Units}
+A \textbf{zero-divisor} in a ring \( A \) is an element \( x \)
+which \textit{divides} 0.
+\begin{defn}{Zero Divisor}{}
+	An element \( x \in A \) is called a \textbf{zero-divisor} if
+	\[
+		\exists\ y \in A \qstq xy = 0
+	\]
+\end{defn}
+
+A ring with no zero-divisors is called an integral domain.
+\begin{defn}{Integral Domain}{}
+	A ring \( A \) is called an \textbf{integral domain} if
+	\[
+		\forall\ x, y \in A \st xy = 0 \implies x = 0 \OR y = 0
+	\]
+\end{defn}
+
+\begin{defn}{Nilpotent Element}{}
+	An element \( x \in A \) is called \textbf{nilpotent} if
+	\[
+		\exists\ n \in \NN \qstq x^n = 0
+	\]
+\end{defn}
+
+\begin{note}{}{}
+	\( x \in A \) is nilpotent \( \implies \) \( x \) is a zero-divisor.
+
+	The converse is not true in general.
+\end{note}
+
+A unit in a ring \( A \) is an element \( x \)
+which \textit{divides} 1.
+\begin{defn}{Unit}{}
+	An element \( x \in A \) is called a \textbf{unit} if
+	\[
+		\exists\ y \in A \qstq xy = 1
+	\]
+\end{defn}
+
+\begin{theorem}{Group of Units}{}
+	The set of units of a ring \( A \) form a group
+	under multiplication.
+\end{theorem}
+
+\begin{defn}{Principal Ideal}{}
+	The multiples \( ax \) of an element \( x \) form a principal ideal,
+	denoted by \brak{x} or \( Ax \).
+\end{defn}
+
+Note that
+\[
+	x \text{ is a unit} \iff \brak{x} = A = \brak{1}
+\]
+The zero ideal \brak{0} is usually denoted by 0.
+
+\begin{defn}{Field}{}
+	A field is a ring A in which \( 1 \neq 0 \) and every non-zero
+	element is a unit.
+\end{defn}
+Every field is an integral domain but the converse is not true in general.
+
+\begin{proposition}{}{}
+	Let \( A \) be a ring with \( 1 \neq 0 \).
+	Then, the following are equivalent.
+	\begin{enumerate}
+		\item \( A \) is a field.
+		\item The only ideals are \brak{0} and \brak{1}.
+		\item Every homomorphism from \( A \) into a non-zero ring
+		\( B \) is injective.
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	\( 1 \implies 2 \) \\
+	Consider a non-zero ideal \( \mfa \) of \( A \). \\
+	\( \implies \) \( \mfa \) contains a non-zero element \( x \). \\
+	Since \( A \) is a field, \( x \) is a unit. \\
+	\( \implies \) \( \exists\ y \in A \st xy = 1 \)
+		and thus \( 1 \in \mfa \). \\
+	\( \implies \mfa = A = (1) \) \\
+
+	\( 2 \implies 3 \) \\
+	Consider a ring homomorphism \( f: A \to B \) with \( B \neq 0 \). \\
+	If \( \Ker\brak{f} \neq 0 \implies \Ker\brak{f} = \brak{1} \) \\
+	But \( \Ker\brak{f} = \brak{1} \implies \Img\brak{f} = B = 0 \) \\
+	We have \( \Ker\brak{f} = 0 \) and hence, we can conclude that
+	\( f \) is injective. \\
+
+	\( 3 \implies 1 \) \\
+	Consider an element \( x \in A \) which is not a unit. \\
+	Clearly, \( \brak{x} \neq \brak{1} \).
+	Thus, \( B = \bigslant{A}{\brak{x}} \) is a non-zero ring. \\
+	Consider the natural homomorphism from \( A \) to \( B \) given by
+	\( a \mapsto a + \brak{x} \). \\
+	Clearly, the kernel is given by \brak{x} and since \( B \neq 0 \)
+	and the homomorphism is injective, we have \( \brak{x} = 0 \). \\
+	\( \implies x = 0 \) \\
+	Thus, 0 is the only non-unit of \( A \) which implies \( A \)
+	is a field.
+\end{proof}
+
+
+
+\section{Prime Ideals and Maximal Ideals}
+
+\begin{defn}{Prime Ideal}{}
+	An ideal \( \mfp \) of \( A \) is called a \textbf{prime ideal} if
+	\( \mfp \neq \brak{1} \) and
+	\[
+		\forall\ x, y \in A \st xy \in \mfp \implies x \in \mfp \OR y \in \mfp
+	\]
+\end{defn}
+
+\begin{defn}{Maximal Ideal}{}
+	An ideal \( \mfm \) of \( A \) is called a \textbf{maximal ideal} if
+	\( \mfm \neq \brak{1} \) and
+	there is no ideal \( \mfa \) of \( A \) such that
+	\( \mfm \subset \mfa \subset \brak{1} \) (Strict inclusion).
+	Equivalently,
+	\[
+		\mfm \subseteq \mfa \subseteq \brak{1} \implies
+		\mfm = \mfa \OR \mfa = \brak{1}
+	\]
+\end{defn}
+
+\begin{theorem}{}{}
+	Suppose \( \mfp \AND \mfm \) be ideals of \( A \).
+	Then,
+	\begin{align*}
+		\mfp \text{ is a prime ideal} &\iff
+			\bigslant{A}{\mfp} \text{ is an Integral Domain} \\
+		\mfm \text{ is a maximal ideal} &\iff
+			\bigslant{A}{\mfm} \text{ is a Field}
+	\end{align*}
+\end{theorem}
+\begin{proof}
+	Trivial
+\end{proof}
+
+\begin{corollary}{}{}
+	Every maximal ideal is a prime ideal.
+\end{corollary}
+
+\begin{lemma}{}{}
+	The zero ideal is prime \( \iff A \) is an integral domain.
+\end{lemma}
+\begin{proof}
+	\brak{0} is a prime ideal \\
+	\( \iff \forall\ x, y \in A \st xy = 0 \implies x = 0 \OR y = 0 \) \\
+	\( \iff A \) is an integral domain.
+\end{proof}
+
+Consider a ring homomorphism \( f: A \to B \).
+\begin{claim}{}{}
+	When \( \mfq \) is a prime ideal of \( B \), then
+	\( f\inv \brak{\mfq} \) is a prime ideal of \( A \).
+\end{claim}
+\begin{proof}
+	Consider a homomorphism \( g: A \to \bigslant{B}{\mfq} \) given by
+	\[ g(a) \coloneqq f(a) \pmod \mfq \]
+	The kernel of the above homomorphism is given by,
+	\[ \Ker\brak{g} = f\inv\brak{q} \]
+	Using the first homomorphism theorem, we have
+	\[ \bigslant{A}{f\inv\brak{q}} \cong g\brak{A} \]
+	s
+\end{proof}
+
+\begin{note}
+	The same claim does not hold for maximal ideals.
+\end{note}
+
+Prime ideals are fundamental to the whole of commutative algebra.
+The following theorem and its corollaries ensure that there
+is always a sufficient supply of them.
+
+\begin{theorem}{}{}
+	Every ring \( A \neq 0 \) has at least one maximal ideal.
+\end{theorem}
+\begin{proof}
+	Follows from Zorn's Lemma
+\end{proof}
+
+\begin{corollary}{}{}
+	If \( \mfa \) is an ideal of \( A \), then there exists a
+	maximal ideal \( \mfm \) such that \( \mfa \subseteq \mfm \).
+\end{corollary}
+\begin{proof}
+	Apply the theorem to \( \bigslant{A}{\mfa} \)
+\end{proof}
+
+\begin{corollary}{}{}
+	Every non-unit of \( A \) is contained in a maximal ideal.
+\end{corollary}
+
+
+\subsection{Local Ring and Residue Field}
+
+Note that fields contain exactly one maximal ideal.
+It is not true that a ring containing exactly one maximal ideal is a field.
+\begin{defn}{Local Ring and Residue Field}{}
+	A ring \( A \) is called a \textbf{local ring} if it contains
+	\textbf{exactly one} maximal ideal. \\
+	The field \( \bigslant{A}{\mfm} \) is called the \textbf{residue field}.
+\end{defn}
+Note that every field is a local ring.
+
+\begin{proposition}{}{}
+	\begin{enumerate}
+		\item Let \( A \) be a ring and \( \mfm \neq \brak{1} \) be an
+		ideal of \( A \) such that every \( x \in A \setminus \mfm \)
+		is a unit.
+		Then, \( A \) is a local ring and \( \mfm \) is a maximal ideal.
+		\item Let \( A \) be a ring and \( \mfm \) a maximal ideal of
+		\( A \), such that every element of \( 1 + \mfm \) is a unit
+		in \( A \).
+		Then, \( A \) is a local ring.
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	Let \( A \) be a ring.
+	\begin{enumerate}
+		\item Consider a maximal ideal \( \mfa \) of \( A \).
+		If \( \mfa \) contains a unit, then \( \mfa = A \) which
+		implies \( \mfa \) is not maximal.
+		We know that \( A \setminus \mfm \) contains only units and hence,
+		\( \mfa \subseteq A \setminus \brak{A \setminus \mfm} \)
+		which implies \( \mfa \subseteq \mfm \).
+		Since \( \mfa \) is maximal, this means \( \mfa = \mfm \).
+
+		\item Consider an element \( x \in A \setminus \mfm \).
+		Since \( \mfm \) is maximal, the ideal generated by
+		\( x \AND \mfm \) is \brak{1} and hence, \\
+		\( \exists\ y \in A, t \in \mfm \st xy + t = 1 \).
+		Hence, \( xy \in 1 + \mfm \) and is therefore a unit.
+		Applying the previous part, we get that \( A \) is a local ring.
+	\end{enumerate}
+\end{proof}
+
+
+\begin{example}{}{}
+	\begin{enumerate}
+		\item A = \( \kappa\sbrak{x_1, x_2, \ldots, x_n} \) where
+		\( \kappa \) is a field.
+		Let \( f \) be an irreducible polynomial.
+		By uniqueness of factorization, the ideal generated by
+		\( f \) is a prime ideal.
+
+		\item Consider \( A = \ZZ \).
+		Every ideal in \ZZ\ is of the form \brak{a} for some \( a \in \ZZ \).
+		\brak{p} is prime if and only if \( p \) is a prime number.
+		Clearly, \( \bigslant{\ZZ}{\brak{p}} \) is a field.
+
+		\item A \textbf{principal ideal domain} is a ring \( A \) where
+		every ideal is generated by a single element.
+		In a PID, every prime ideal is a maximal ideal.
+	\end{enumerate}
+\end{example}
+
+
+\section{Nilradical and Jacobson Radical}
+\begin{defn}{Nilradical}{}
+	The set of all nilpotent elements of a ring \( A \), denoted by
+	\( \mfN \) is called the \textbf{nilradical} of \( A \).
+	\[
+		\mfN \coloneqq \fbrak{a \in A \mid \exists\ n \in \NN \st
+		a^n = 0}
+	\]
+\end{defn}
+
+\begin{proposition}{}{}	\label{prop:nilradical_ideal}
+	The set of all nilpotent elements of a ring \( A \) is an ideal.
+	Furthermore, \( \bigslant{A}{\mfN} \) has no nilpotent
+	elements \( \neq 0 \).
+\end{proposition}
+\begin{proof}
+	Enough to prove the properties of an ideal.
+	\begin{enumerate}
+		\item (Closed) Let \( a, b \in \mfN \).
+		Then, \( \exists\ n, m \in \NN \st a^n = b^m = 0 \). \\
+		Now, consider \( \brak{a+b}^{m+n-1} \).
+		\[
+			\brak{a+b}^{m+n-1} = \sum_{i=0}^{m+n-1} \binom{m+n-1}{r}
+			a^r b^{m+n-1-r}
+		\]
+		Either \( r \geq n \) or \( m+n-1-r \geq m \).
+		Otherwise, we have \( m + n - 1 \geq m + n \) which is clearly
+		a contradiction. \\
+		Therefore, we have \( \brak{a+b}^{m+n-1} = 0
+		\implies a+b \in \mfN \). \\
+		Clearly, \( (ab)^{mn} = 0 \implies ab \in \mfN \).
+
+		\item (Absorption) Let \( a \in \mfN \).
+		Then, \( \exists\ n \in \NN \st a^n = 0 \).
+		For any \( b \in A \), \( \brak{ba}^n = b^n a^n = 0 \).
+
+		\item (Non Empty) \( 0 \in \mfN \).
+	\end{enumerate}
+	Thus, we proved that \( \mfN \) is an ideal in \( A \). \\
+	
+	For the next part, suppose \( a + \mfN, a \in A \) is nilpotent in
+	\( \bigslant{A}{\mfN} \). \\
+	Then, \( \exists\ n \in \NN \st \brak{a + \mfN}^n = a^n + \mfN
+	= 0 + \mfN \). \\
+	Clearly, this means \( a^n \in \mfN \implies \exists\ m \in \NN
+	\st \brak{a^n}^m = 0 \implies a^{nm} = 0 \). \\
+	Hence, we have \( a \in \mfN \). \\
+	Therefore, \( a + \mfN \) is nilpotent in \( \bigslant{A}{\mfN} \)
+	implies  \( a + \mfN = 0 + \mfN \) is
+	the zero element of \( \bigslant{A}{\mfN} \).
+\end{proof}
+
+\begin{proposition}{}{} \label{prop:nilradical_intersection_primes}
+	The nilradical, \( \mfN \) of a ring \( A \) is the
+	intersection of all the prime ideals of \( A \).
+\end{proposition}
+\begin{proof}
+	Suppose \( \mfN' \) denote the intersection of all the prime ideals
+	of \( A \). \\
+
+	First, we prove \( \mfN \subseteq \mfN' \). \\
+	Consider any \( a \in \mfN \).
+	Then, \( \exists\ n \in \NN \st a^n = 0 \). \\
+	We also know that \( 0 \in \mfp\ \forall \) prime ideals \( \mfp \)
+	\( \implies a^n \in \mfp \implies a \in \mfp\ \forall \)
+	prime ideals \( \mfp \). \\
+	Hence, we have \( a \in \mfN' \). \\
+
+	Then, we prove that \( a \notin \mfN \implies a \notin \mfN' \). \\
+	(TODO)
+
+\end{proof}
+
+
+\begin{defn}{Jacobson Radical}{}
+	The Jacobson radical of a ring \( A \), denoted by \( \mfR \) is
+	defined as the intersection of all maximal ideals of \( A \).
+\end{defn}
+
+\begin{proposition}{}{}
+	\( x \in \mfR \iff 1 - xy \) is a unit in \( A\ \forall\ y \in A \).
+\end{proposition}
+\begin{proof}
+	\brak{\implies} \\
+	Proof by contradiction. \\
+	Suppose \( x \in \mfR \) and \( 1 - xy \) is not a unit in \( A \).
+	Then, using a result from before, we know that \( 1 - xy \) is
+	contained in some maximal ideal, say \( \mfm \). \\
+	Now, since \( x \in \mfR \implies x \in \mfm \), we have
+	\( 1 - xy \in \mfm \implies 1 \in \mfm \), which
+	is a contradiction. \\
+
+	\brak{\Longleftarrow} \\
+	Proof by contradiction. \\
+	Suppose \( 1 - xy \) is a unit in \( A \) for all \( y \in A \)
+	and \( x \notin \mfm \) for some maximal ideal \( \mfm \). \\
+	Then, \brak{x} and \( \mfm \) generate the entire ring and so
+	we have \( u + xy = 1 \) for some \( u \in \mfm \) and some
+	\( y \in A \). \\
+	This implies \( 1 - xy \in \mfm \) and thus can't be a unit
+	which is a contradiction.
+\end{proof}
+
+
+\begin{note}
+	The nilradical is contained in the Jacobson radical.
+\end{note}
+
+
+\section{Operations on Ideals}
+\begin{defn}{Operations on Ideals}{}
+	\begin{enumerate}
+		\item Sum of ideals: Consider 2 ideals \( \mfa, \mfb \) in a ring
+		\( A \).
+		Then, their sum \( \mfa + \mfb \) is defined by
+		\[
+			\mfa + \mfb = \fbrak{x + y \mid x \in \mfa, y \in \mfb}
+		\]
+		More generally, we define the sum of a (finite) family of ideals
+		\( \fbrak{\mfa_i}_{i \in I} \)
+		\[
+			\sum_{i \in I} \mfa_i = \fbrak{\sum_{i \in I} x_i \mid
+			x_i \in \mfa_i}
+		\]
+
+		\item Intersection of ideals: Consider 2 ideals \( \mfa, \mfb \)
+		in a ring \( A \).
+		Then, their intersection \( \mfa \cap \mfb \) forms an ideal.
+		\[
+			\mfa \cap \mfb = \fbrak{x \mid x \in \mfa \AND x \in \mfb}
+		\]
+
+		\item Product of ideals: Consider 2 ideals \( \mfa, \mfb \) in a
+		ring \( A \).
+		Then, the product of ideals \( \mfa \mfb \) is defined to be
+		the ideal generated by all products of elements of \( \mfa \)
+		and \( \mfb \).
+		\[
+			\mfa \mfb = \fbrak{\sum_{i=1}^n x_i y_i
+			\mid x_i \in \mfa, y_i \in \mfb, n \in \NN}
+		\]
+		Similarly, we can define the product of a (finite) family of ideals
+		\( \fbrak{\mfa_i}_{i \in I} \)
+		\[
+			\prod_{i \in I} \mfa_i = \fbrak{\sum_{j=1}^n \prod_{i \in I}
+				x_{ji} \mid x_{ji} \in \mfa_i, j \in \NN}
+		\]
+	\end{enumerate}
+\end{defn}
+The product is particularly useful in defining the powers of ideals. \\
+\( \mfa^n \) is generated by elements of the form
+\( x_1 x_2 \ldots x_n \) where \( x_i \in \mfa \) for all \( i \). \\
+Conventionally, \( \mfa^0 = \brak{1} \) is defined. \\
+
+Note that the operations sum, product and intersection are all
+commutative and associative. \\
+There is also the distributive law
+\[
+	\mfa \brak{\mfb + \mfc} = \mfa \mfb + \mfa \mfc
+\]
+
+In \ZZ, \( \cap \AND + \) are distributive but this is not true in
+general. \\
+In general, we have the \textbf{modular law}
+\[
+	\mfa \cap \brak{\mfb + \mfc} = \mfa \cap \mfb + \mfa \cap \mfc
+	\quad
+	\textbf{ if } \mfa \supseteq  \mfb \OR \mfa \supseteq \mfc
+\]
+
+Again, in \ZZ, we have \brak{\mfa + \mfb}\brak{\mfa \cap \mfb}
+\( = \mfa \mfb \) but this is not true in general. \\
+In general, we have
+\[
+	\brak{\mfa + \mfb} \brak{\mfa \cap \mfb} \subseteq \mfa \mfb
+\]
+
+
+We clearly have \( \mfa \mfb \subseteq \mfa \cap \mfb \) and hence,
+we have
+\[
+	\mfa \cap \mfb = \mfa \mfb \text{ provided } \mfa + \mfb = \brak{1}
+\]
+This lets us define coprime (or comaximal) ideals.
+
+\begin{defn}{Coprime (or Comaximal) ideals}{}
+	Let \( \mfa, \mfb \) be ideals in a ring \( A \).
+	Then, \( \mfa \) and \( \mfb \) are coprime (or comaximal) if
+	\( \mfa + \mfb = \brak{1} \).
+\end{defn}
+Thus, for coprime ideals, we have \( \mfa \cap \mfb = \mfa \mfb \). \\
+Clearly, 2 ideals are coprime if and only if there exist
+\( x \in \mfa \) and \( y \in \mfb \) such that \( x + y = 1 \). \\
+
+
+\subsection{Set of Rings and Coprime Ideals}
+
+Consider rings \( A_1, \ldots, A_n \).
+Then, the \textbf{direct product} of these rings
+is a ring with component-wise addition and multiplication.
+\[
+	A \coloneqq \prod_{i=1}^n A_i =
+	\fbrak{(x_1, \ldots, x_n) \mid x_i \in A_i}
+\]
+We can also define projections \( p_i: A \to A_i \)
+defined by \( p_i(x) = x_i \). \\
+
+Let \( A \) be a ring and \( \mfa_1, \ldots, \mfa_n \) be ideals in \( A \).
+Define the homomorphism given by
+\begin{align*}
+	\phi \colon A &\to \prod_{i=1}^n \bigslant{A}{\mfa_i} \\
+	x &\mapsto (x + \mfa_1, \ldots, x + \mfa_n)
+\end{align*}
+
+
+\begin{proposition}{}{}
+	\begin{enumerate}
+		\item If \( \mfa_i, \mfa_j \) are coprime when \( i \neq j \), then,
+		\[
+			\prod_{i=1}^n \mfa_i = \bigcap_{i=1}^n \mfa_i
+		\]
+
+		\item \( \phi \) is surjective \( \iff \mfa_i, \mfa_j \)
+		are coprime whenever \( i \neq j \).
+
+		\item \( \phi \) is injective \( \iff \bigcap \mfa_i = \brak{0} \).
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	\
+	\begin{enumerate}
+		\item We prove the claim by induction.
+		\( n = 2 \) being the base case was done before. \\
+		Now, suppose \( \prod_{i=1}^{n-1} \mfa_i =
+		\bigcap_{i=1}^{n-1} \mfa_i = \mfb \). \\
+		We show that \( \mfb \) and \( \mfa_n \) are coprime.
+		Since \( \mfa_n \) and \( \mfa_i \) are coprime, for every
+		\( 1 \leq i \leq n-1 \), we have some \( x_i \in \mfa_i \AND
+		y_i \in \mfa_n \) such that \( x_i + y_i = 1 \).
+		\[
+			\implies x \coloneqq \prod_{i=1}^{n-1} x_i =
+			\prod_{i=1}^{n-1} \brak{1-y_i} \quad = 1 \pmod{\mfa_n}
+		\]
+		Hence, \( \exists\ x \in \mfb, y \in \mfa_n \)
+		such that \( x + y = 1 \). \\
+		Thus, \( \mfb \) and \( \mfa_n \) are coprime. \\
+		And hence, we have \( \mfb \mfa_n = \mfb \cap \mfa_n \).
+		\[
+			\implies \prod_{i=1}^n \mfa_i = \bigcap_{i=1}^n \mfa_i
+		\]
+
+		\item \brak{\implies} \\
+		We show that \( \mfa_1 \AND \mfa_2 \) are coprime. \\
+		Since \( \phi \) is surjective, \( \exists\ x \in A \)
+		such that \( \phi(x) = \brak{1, 0, \ldots, 0} \). \\
+		Now, we know that \( x \equiv 1 \pmod{\mfa_1} \) and
+		\( x \equiv 0 \pmod{\mfa_2} \). \\
+		We have \( 1-x \in \mfa_1 \AND x \in \mfa_2 \) but
+		\( 1-x + x = 1 \). \\
+		\( \implies \mfa_1 \AND \mfa_2 \) are coprime. \\
+		Similarly, it can be shown that \( a_i \) is coprime
+		to \( a_j \) for all \( i \neq j \).
+
+		\brak{\Longleftarrow} \\
+		It is enough to show that there is an element
+		\( x \in A \) such that \( \phi(x) = \brak{1, 0, \ldots, 0} \). \\
+		For every \( i \) such that \( 2 \leq i \leq n \),
+		we have \( u_i \in \mfa_1, v_i \in \mfa_i \) satisfying
+		\( u_i + v_i = 1 \). \\
+		Consider \( x = \prod_{i=1}^{n-1} v_i \).
+		Thus, we have \( x \equiv 0 \pmod{\mfa_i} \) when \( i > 1 \) and \\
+		\( x \equiv \prod_{i=1}^{n-1} \brak{1-u_i} \equiv 1 \pmod{\mfa_1} \).
+
+		\item
+		The kernel of the homomorphism \( \phi \) is clearly
+		\( \bigcap \mfa_i \). \\
+		If a homomorphism is injective, the kernel is singleton and
+		vice versa. \\
+		Thus, the homomorphism is injective
+		\( \iff \bigcap \mfa_i = \brak{0} \).
+	\end{enumerate}
+\end{proof}
+
+\subsection{Prime Avoidance Lemma}
+The union of ideals is not in general an ideal.
+\begin{lemma}{(Prime Avoidance Lemma)}{}
+	Let \( \mfp_1, \ldots, \mfp_n \) be prime ideals and
+	\( \mfa \) be an ideal contained in \( \bigcup_{i=1}^n \mfp_i \).
+	Then, \( \mfa \subseteq \mfp_i \) for some \( i \).
+\end{lemma}
+\begin{proof}
+	We perform induction on the statement \\
+	For any ideal \( \mfa \) contained in an arbitrary union
+	of \( n \) prime ideals, \( \bigcup_{i=1}^n \mfp_i \),
+	we have \( \mfa \subseteq \mfp_i \) for some \( i \). \\
+	Equivalently, for any ideal \( \mfa \nsubseteq \mfp_i \ \forall\ i
+	\implies \mfa \nsubseteq \bigcup_{i=1}^n \mfp_i \) \\
+
+
+	The base case for \( n = 1 \) is trivial.
+	Let us assume the result for \( n-1 \). \\
+	We prove by the induction hypothesis by contradiction. \\
+	Suppose \( \mfa \subseteq \bigcup_{i=1}^{n} \mfp_i \) and
+	\( \mfa \nsubseteq \mfp_i \ \forall\ i \). \\
+
+	This means \( \displaystyle \mfa \nsubseteq \bigcup_{j \neq i}
+		\mfp_j \ \forall\ i \) \\
+	\( \displaystyle \implies \exists\ x_i \in
+		\mfa \setminus \bigcup_{j \neq i} \mfp_j \) \\
+	If for some \( i \), we have \( x_i \notin \mfp_i \), we get
+	\( \displaystyle x_i \notin \bigcup_{i=1}^n \mfp_i \) and
+	\( x_i \in \mfa \) which is a contradiction. \\
+
+	Otherwise, we have \( x_i \in \mfp_i \ \forall\ i \).
+	Consider the element
+	\[
+		y = \sum_{i=1}^n \prod_{j=1, j \neq i}^n x_j
+	\]
+	Clearly for all \( i \), \( y \notin \mfp_i \) and \( y \in \mfa \). \\
+	Thus, we can conclude that \( \mfa \nsubseteq \bigcup_{i=1}^n \mfp_i \)
+	which is clearly a contradiction.
+\end{proof}
+
+\begin{corollary}{}{}
+	Let \( \mfa_1, \mfa_2, \ldots, \mfa_n \) be ideals and let \( \mfp \)
+	be a prime ideal such that \( \mfp \supseteq \bigcap_{i=1}^n \mfa_i \). \\
+	Then, \( \mfp \supseteq \mfa_i \) for some \( i \). \\
+	If \( \mfp = \bigcap \mfa_i \), then \( \mfp = \mfa_i \) for some \( i \).
+\end{corollary}
+
+\begin{proof}
+	Proof by contradiction.
+	Suppose \( \mfp \nsupseteq \mfa_i \ \forall\ i \).
+
+	Then \( \forall\ i \), we have
+	\( x_i \in \mfa_i, x_i \notin \mfp \) \\
+	\( y \coloneqq \prod_{i=1}^n x_i \ \in \ \prod_{i=1}^n \mfa_i
+	\ \subseteq \ \bigcap \mfa_i \)
+
+	But, \( y \notin \mfp \) since \( \mfp \) is a prime
+	ideal but we have \( y \in \bigcap \mfa_i \) which is a contradiction. \\
+
+	\( \mfp = \bigcap \mfa_i \implies \mfp \subseteq \mfa_i \).
+	We also showed that \( \mfp \supseteq \mfa_i \)
+	which implies \( \mfp = \mfa_i \).
+\end{proof}
+
+
+\subsection{Ideal Quotient}
+
+\begin{defn}{Ideal Quotient}{}
+	If \( \mfa \AND \mfb \) are ideals in a ring \( A \), then
+	their \emph{quotient} is defined as
+	\[
+		\brak{\mfa \colon \mfb} \coloneqq 
+		\fbrak{x \in A \mid x \mfb \subseteq \mfa}
+	\]
+	which is an ideal.
+\end{defn}
+
+In particular, \brak{0 \colon \mfb} is called the \emph{annihilator}
+of \( \mfb \) and is denoted by \( \text{Ann}\brak{\mfb} \).
+
+Using this notation, the set of all zero divisors of \( \mfa \) is
+given by
+\[
+	D = \bigcup_{x \neq 0} \text{Ann} \brak{x}
+\]
+
+If \( \mfb \) is a principal ideal \brak{x}, then we write
+\( \brak{\mfa \colon x} \) instead.
+
+
+\begin{example}{}{}
+	Consider A = \( \ZZ \) and \( \mfa = \brak{m} \AND \mfb = \brak{n} \)
+	where \( m = \prod_p p^{\mu_p} \) and \( n = \prod_p p^{\nu_p} \).
+
+	Then, \( \brak{\mfa \colon \mfb} = \brak{q} \) where
+	\( q = \prod_p p^{\gamma_p} \) and
+	\( \gamma_p = \max \brak{\mu_p - \nu_p, 0} \).
+
+	Hence, \( q = m / \gcd(m, n) \)
+\end{example}
+
+
+\begin{proposition}{}{}
+	\begin{enumerate}
+		\item \( \mfa \subseteq \brak{\mfa \colon \mfb} \)
+		\item \( \brak{\mfa \colon \mfb} \mfb \subseteq \mfa \)
+		\item \( \brak{\brak{\mfa \colon \mfb} \colon \mfc} =
+			\brak{\mfa \colon \mfb \mfc} =
+			\brak{\brak{\mfa \colon \mfc} \colon \mfb} \)
+		\item \( \brak{\cap_i \mfa_i \colon \mfb} =
+			\cap_i \brak{\mfa_i \colon \mfb} \)
+		\item \( \brak{\mfa \colon \sum_i \mfb_i} =
+			\cap_i \brak{\mfa \colon \mfb_i} \)
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	\
+	\begin{enumerate}
+		\item Follows by definition.
+		\( \forall\ x \in \mfa, \ x \mfb \subseteq \mfa \).
+		\item Consider an element \( x \in \brak{\mfa \colon \mfb} \).
+		By definition, \( x \mfb \subseteq \mfa \) and hence
+		\( \brak{\mfa \colon \mfb} \mfb \subseteq \mfa \)
+
+		\item Consider an element
+		\( x \in \brak{\brak{\mfa \colon \mfb} \colon \mfc} \)
+		\( \implies x \mfc \subseteq \brak{\mfa \colon \mfb} \). \\
+		Thus, for any element \( y \in \mfc \), we have
+		\( xy\mfb \subseteq \mfa \implies x \mfb \mfc \subseteq \mfa
+		\implies x \in \brak{\mfa \colon \mfb \mfc} \). \\
+
+		Now, consider an element \( x \in \brak{\mfa \colon \mfb \mfc} \)
+		\( \implies x \mfb \mfc \subseteq \mfa \). \\
+		Thus, for any element \( y \in \mfc \), we have
+		\( xy \mfb \subseteq \mfa \implies xy \in \brak{\mfa \colon \mfb}
+		\implies x \mfc \subseteq \brak{\mfa \colon \mfb} \) \\
+		This implies \( x \in \brak{\brak{\mfa \colon \mfb} \colon \mfc} \)
+
+		\item \( x \in \brak{\cap_i \mfa_i \colon \mfb}
+		\iff x \mfb \subseteq \cap_i \mfa_i \iff x \mfb \subseteq \mfa_i
+		\ \forall\ i \iff x \in \brak{\mfa_i \colon \mfb} \ \forall\ i
+		\iff x \in \cap_i \brak{\mfa_i \colon \mfb} \)
+
+		\item \( x \in \brak{\mfa \colon \sum_i \mfb_i} \iff
+		x \sum_i \mfb_i \subseteq \mfa \iff x \mfb_i \subseteq \mfa
+		\ \forall\ i \iff x \in \cap_i \brak{\mfa \colon \mfb_i} \)
+	\end{enumerate}
+\end{proof}
+
+
+\section{Radical}
+\begin{defn}{Radical}{}
+	The \emph{radical} of an ideal \( \mfa \) is defined as
+	\[
+		\rad \brak{\mfa} \coloneqq
+		\fbrak{x \in A \mid x^n \in \mfa \text{ for some } n \in \NN}
+	\]
+\end{defn}
+If \( \phi \colon A \to \bigslant{A}{\mfa} \) is the standard homomorphism,
+then
+\[
+	\rad \brak{\mfa} = \phi\inv \brak{\mfN_{A / \mfa}}
+\]
+
+\begin{proposition}{}{}
+	\begin{enumerate}
+		\item \( \rad \brak{\mfa} \) is an ideal
+		\item \( \rad \brak{\mfa} \) is the
+			intersection of all prime ideals containing \( \mfa \)
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	\
+	\begin{enumerate}
+		\item Using proposition~\ref{prop:nilradical_ideal} and the
+			stanard homomorphism, we have the result.
+		\item Using proposition~\ref{prop:nilradical_intersection_primes}
+			on \( \bigslant{A}{\mfa} \), we have the result.
+	\end{enumerate}
+\end{proof}
+
+\begin{proposition}{}{}
+	\begin{enumerate}
+		\item \( \rad \brak{\mfa} \supseteq \mfa \)
+		\item \( \rad \brak{\rad \brak{\mfa}} = \rad \brak{\mfa} \)
+		\item \( \rad \brak{\mfa \mfb} = \rad \brak{\mfa \cap \mfb}
+			= \rad \brak{\mfa} \cap \rad \brak{\mfb} \)
+		\item \( \rad \brak{\mfa} = \brak{1} \iff \mfa = \brak{1} \)
+		\item \( \rad \brak{\mfa + \mfb} = \rad \brak{\rad \brak{\mfa} +
+			\rad \brak{\mfb}} \)
+		\item If \( \mfp \) is a prime ideal,
+			\( \rad \brak{\mfp^n} = \mfp \ \forall\ n \in \NN \)
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	\
+	\begin{enumerate}
+		\item Clearly for any \( x \in \mfa \), \( x^1 \in \mfa \) and
+			hence, \( x \in \rad \brak{\mfa} \).
+		\item For any \( x \in \rad \brak{\rad \brak{\mfa}} \),
+			\( x^n \in \rad \brak{\mfa} \) for some \( n \in \NN \)
+			and this implies \( x^{mn} \in \mfa \) for some \( m \in \NN \)
+			and hence, \( x \in \rad \brak{\mfa} \).
+		\item Consider an element \( x \in \rad \brak{\mfa \mfb} \).
+			By definition, \( x^n \in \mfa \mfb \) for some \( n \in \NN \)
+			and hence, \( x^n \in \mfa \) and \( x^n \in \mfb \). \\
+			Thus, \( x \in \rad \brak{\mfa} \) and \( x \in \rad \brak{\mfb} \)
+			and hence, \( x \in \rad \brak{\mfa} \cap \rad \brak{\mfb} \). \\
+			Also, \( x^n \in \mfa \cap \mfb \implies
+			x^n \in \rad \brak{\mfa \cap \mfb} \). \\
+			Now, we assume \( x \in \rad \brak{\mfa \cap \mfb} \)
+			and try to prove \( x \in \rad \brak{\mfa \mfb} \). \\
+			\( x^n \in \mfa \AND x^m \in \mfb \) for some \( n, m \in \NN \).
+			This implies \( x^{nm} \in \mfa \AND x^{mn} \in \mfb \)
+			and hence \( x^{2mn} \in \mfa \mfb \).
+		\item \( \mfa = \brak{1} \implies \rad \brak{\mfa} = \brak{1} \)
+			is obvious.
+			For the other side, assume \( \rad \brak{\mfa} = \brak{1} \). \\
+			This means \( 1 \in \rad \brak{\mfa} \implies 1 \in \mfa \)
+			since \( 1 \) is idempotent.
+			Hence, \( \mfa = \brak{1} \).
+		\item Clearly, \( \mfa \subseteq \rad \brak{\mfa} \) and
+			\( \mfb \subseteq \rad \brak{\mfb} \).
+			This implies \( \mfa + \mfb \subseteq \rad \brak{\mfa} +
+			\rad \brak{\mfb} \) and hence \( \rad \brak{\mfa + \mfb}
+			\subseteq \rad \brak{\rad \brak{\mfa} + \rad \brak{\mfb}} \). \\
+			Suppose \( x \in \rad \brak{\rad\brak{\mfa} + \rad\brak{\mfb}} \).
+			Then \( x^n = y + z \) for some \( x, y \in A \)
+			with \( y^m \in \mfa, z^k \in \mfb \AND m, k \in \NN \). \\
+			Consider \( \brak{x^n}^{m+k-1} = \brak{y+z}^{m+k-1} =
+			c_0 y^{m+k-1}z^0 + c_1 y^{m+k-2}z^1 + \cdots +
+			c_{m+k-1} y^0 z^{m+k-1} \) \\
+			\( = y^m \brak{c_0 y^{k-1} z^0 + c_1 y^{k-2} z^1 + \cdots
+			+ c_{k-1} y^0 z^{k-1}} + z^k \brak{c_k y^{m+1} z^0 + c_{k+1}
+			y^{m} z^1 + \cdots + c_{m+k-1} y^0 z^{m}} \) \\
+			\( = y^m \alpha + z^k \beta \in \mfa + \mfb \).
+			Thus, \( x \in \rad \brak{\mfa + \mfb} \).
+		\item
+			We have \( \rad \brak{\mfp^n} = \rad \brak{\mfp} \) for any \(n\)
+			using the third part of this proposition. \\
+			Suppose \( x \in \rad \brak{\mfp} \implies
+			x^m \in \mfp \) for some \( m \in \NN \).
+			Choose \( m \) to be the minimum number for which
+			\( x^m \in \mfp \).
+			If \( m = 1 \), we are done.
+			Otherwise \( x^m = x x^{m-1} \in \mfp \).
+			This implies \( x \in \mfp \) in which case we are done or
+			\( x^{m-1} \in \mfp \) contradicts the minimality of \( m \).
+	\end{enumerate}
+\end{proof}
+
+
+\begin{proposition}{}{}
+	The set of zero-divisors of \( A \),
+	\[
+		D = \bigcup_{x \neq 0} \rad \brak{\Ann\brak{x}}
+	\]
+\end{proposition}
+
+\begin{proof}
+	Claim: \( x \in \rad\brak{D} \implies x \in D \).
+	It is easy to see that if \( x^n \) is a zero divisor,
+	then \( x \) is a zero divisor.
+	Hence,
+	\[
+		D = \rad\brak{D} = \rad \brak{\bigcup_{x \neq 0} \Ann\brak{x}} =
+		\bigcup_{x \neq 0} \rad \brak{\Ann\brak{x}} \qedhere
+	\]
+\end{proof}
+
+\begin{proposition}{}{}
+	Let \( \mfa, \mfb \) be ideals of ring \( A \) such that
+	\( \rad\brak{\mfa} \AND \rad\brak{\mfb} \) are coprime.
+	Then, \( \mfa \AND \mfb \) are coprime.
+\end{proposition}
+
+\begin{proof}
+	Using the propositions proved above,
+	\( \rad\brak{\mfa + \mfb} = \rad\brak{\rad\brak{\mfa} + \rad\brak{\mfb}}
+	= \rad\brak{1} = \brak{1} \).
+	Hence, \( \mfa + \mfb = \brak{1} \).
+\end{proof}
+
+
+
+\section{Extension and Contraction}
+
+Let \(f \colon A \to B\) be a ring homomorphism.
+If \(\mfa\) is an ideal in \(A\), then \(f(\mfa)\) is not necessarily
+an ideal in \(B\).
+
+\begin{example}{}{}
+	Let \(f\) be an embedding from \(\ZZ\) to \(\QQ\).
+	And non-zero ideal in \(\ZZ\) taken to \(\QQ\) will not remain an ideal.
+\end{example}
+
+And thus, we define the extension and contraction of ideals.
+
+\begin{defn}{Extension}{}
+	If \(f\colon A \to B\) is a ring homomorphism and \(\mfa\) is an ideal
+	in \(A\), then the \emph{extension} of \(\mfa\) by \(f\) is the ideal
+	\(Bf(\mfa)\) generated by \(f(\mfa)\) in \(B\), explicitly defined as
+	\[
+		a^e \coloneqq \sum y_i f(x_i) \quad\quad y_i \in B, x_i \in \mfa
+	\]
+\end{defn}
+
+\begin{defn}{Contraction}{}
+	If \(f\colon A \to B\) is a ring homomorphism and \(\mfb\) is an ideal
+	in \(B\), then the \emph{contraction} of \(\mfb\), \(f\inv(\mfb)\)
+	is always an ideal in \(A\), denoted by \(\mfb^c\).
+\end{defn}
+
+\begin{proposition}{}{}
+	Suppose \(f\colon A \to B\) is a ring homomorphism.
+	Then,
+	\[
+		\mfb \text{ is prime} \implies \mfb^c = f^{-1}(\mfb) \text{ is prime}
+	\]
+	The contractions of prime ideals are prime ideals.
+\end{proposition}
+
+\begin{proof}
+	Suppose \(\mfb\) is a prime ideal in \(B\).
+	If \( f\inv(\mfb) = 0 \), we're done.
+	Otherwise, let \(a_1, a_2 \in f\inv(\mfb)\).
+
+	Then, \(f(a_1), f(a_2) \in \mfb\).
+	\begin{align*}
+		a_1 \cdot a_2 \in f\inv(\mfb)
+		&\implies f(a_1 \cdot a_2) \in \mfb \\
+		&\implies f(a_1) \cdot f(a_2) \in \mfb \\
+		&\implies f(a_1) \in \mfb \OR f(a_2) \in \mfb \\
+		a_1 \cdot a_2 \in f\inv(\mfb)
+		&\implies a_1 \in f\inv(\mfb) \OR a_2 \in f\inv(\mfb)
+	\end{align*}
+	Hence, \(f\inv(\mfb) = \mfb^c \) is a prime ideal in \(A\).
+\end{proof}
+
+
+\subsection{Factorizing the Homomorphism \(f\)}
+
+We can factorize the homomorphism \(f\) as follows.
+\[
+	A \xrightarrow[\quad\quad]{p} f(A) \xrightarrow[\quad\quad]{j} B
+\]
+where \(p\) is a surjective ring homomorphism and \(j\) is an injective
+ring homomorphism.
+
+Then, \(f\) is a composition of \(p\) and \(j\).
+
+
+For \(p\), the situation is very simple and using the Correspondence
+theorem, we can conclude that there is a one-to-one correspondence between
+the ideals of \(A\) and the ideals of \(f(A)\) that contain
+the kernel of \(p\).
+
+For \(j\), the situation is a far more complicated.
+Consider the example from algebraic number theory.
+
+\begin{example}{}{}
+	Consider \(\ZZ \to \ZZ\sbrak{i}\) where \(i^2 = -1\).
+
+	A prime ideal \((p)\) in \(\ZZ\) may or may not stay prime when
+	extended to \(\ZZ\sbrak{i}\).
+
+	The situation is as follows.
+	\begin{enumerate}
+		\item \((2)^e = \brak{\brak{1+i}^2}\)
+		\item If \(p \equiv 1 \pmod{4}\) then the extension of \(p\) is
+			a product of two distinct prime ideals in \(\ZZ\sbrak{i}\).
+			(eg. \((5)^e = (2+i)(2-i)\))
+		\item If \(p \equiv 3 \pmod{4}\) then the extension of \(p\) is
+			a prime ideal in \(\ZZ\sbrak{i}\).
+	\end{enumerate}
+\end{example}
+Of the above, the second case is not a trivial result.
+It is equivalent to saying that a prime \(p \equiv 1 \pmod{4}\) can be
+expressed uniquely as a sum of two integer squares.
+
+
+\subsection{Some Properties of Extraction and Contraction}
+
+\begin{proposition}{}{}
+	Let \(f\colon A \to B\) be a ring homomorphism
+	and \(\mfa\) and \(\mfb\) are ideals in \(A\) and \(B\), respectively.
+	Then,
+	\begin{enumerate}
+		\item \(\mfa \subseteq \mfa^{ec}, \mfb \supseteq \mfb^{ce}\)
+		\item \(\mfb^{c} = \mfb^{cec}, \mfa^{e} = \mfa^{ece}\)
+		\item If \(C\) is a set of contracted ideals in \(A\) and if
+		\(E\) is the set of extended ideals in \(B\), then
+		\[
+			C = \fbrak{\mfa \mid \mfa^{ec} = \mfa}
+			\quad E = \fbrak{\mfb \mid \mfb^{ce} = \mfb}
+		\]
+		and \(\mfa \mapsto \mfa^e\) is a bijective map of \(C\) onto \(E\)
+		whose inverse is \(\mfb \mapsto \mfb^c\).
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof} \
+	\begin{enumerate}
+		\item
+			\(\mfa \subseteq \mfa^{ec}\)
+			\begin{align*}
+				a \in \mfa &\implies f(a) \in f(\mfa) \\
+				&\implies f(a) \in Bf(\mfa) = \mfa^e \\
+				&\implies a \in \mfa^{ec}
+			\end{align*}
+			\(\mfb \supseteq \mfb^{ce}\)
+			\begin{align*}
+				&\implies  f(f\inv(\mfb)) \subseteq \mfb
+			\end{align*}
+		\item
+			\(\mfb^{c} = \mfb^{cec}\)
+			\begin{align*}
+				\mfb^c \subseteq (\mfb^c)^{ec} \AND
+				\mfb \supseteq \mfb^{ce} \implies \mfb^c \supseteq \mfb^{cec}
+			\end{align*}
+			\(\mfa^{e} = \mfa^{ece}\)
+			\begin{align*}
+				\mfa \subseteq \mfa^{ec} \implies \mfa^e \subseteq \mfa^{ece}
+				\AND \mfa^{e} \supseteq (\mfa^e)^{ce}
+			\end{align*}
+		\item
+			\begin{align*}
+				\mfa \in C &\implies \mfa = \mfb^c = \mfb^{cec} = \mfa^{ec} \\
+				\mfb \in E &\implies \mfb = \mfa^e = \mfa^{ece} = \mfb^{ce}
+			\end{align*}
+	\end{enumerate}
+\end{proof}
+
+\begin{proposition}{}{}
+	If \(f\colon A \to B\) is a ring homomorphism and
+	if \(\mfa_1, \mfa_2\) are ideals in \(A\),
+	then
+	\begin{enumerate}
+		\item \(\brak{\mfa_1 + \mfa_2}^e = \mfa_1^e + \mfa_2^e\)
+		\item \(\brak{\mfa_1 \cap \mfa_2}^e \subseteq \mfa_1^e \cap \mfa_2^e\)
+		\item \(\brak{\mfa_1 \mfa_2}^e = \mfa_1^e \mfa_2^e\)
+		\item \(\brak{\mfa_1 \colon \mfa_2}^e
+			\subseteq \brak{\mfa_1 \colon \mfa_2}^e\)
+		\item \(r(\mfa)^e \subseteq r(\mfa^e)\)
+	\end{enumerate}
+\end{proposition}
+
+\begin{proposition}{}{}
+	If \(f\colon A \to B\) is a ring homomorphism and
+	if \(\mfb_1, \mfb_2\) are ideals in \(B\),
+	then
+	\begin{enumerate}
+		\item \(\brak{\mfb_1 + \mfb_2}^c \supseteq \mfb_1^c + \mfb_2^c\)
+		\item \(\brak{\mfb_1 \cap \mfb_2}^c = \mfb_1^c \cap \mfb_2^c\)
+		\item \(\brak{\mfb_1 \mfb_2}^c \supseteq \mfb_1^c \mfb_2^c\)
+		\item \(\brak{\mfb_1 \colon \mfb_2}^c
+			\subseteq \brak{\mfb_1 \colon \mfb_2}^c\)
+		\item \(r(\mfb)^c = r(\mfb^c)\)
+	\end{enumerate}
+\end{proposition}

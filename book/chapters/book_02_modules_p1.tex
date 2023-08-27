@@ -1,0 +1,555 @@
+\chapter{Modules 1} \label{ch:modules1}
+
+\section{Modules and Module Homomorphisms}
+
+\begin{definition}{Module}{}
+	Let \( A \) be a ring (commutative, with identity).
+	A \emph{(left) \( A \)-module} is an abelian group \( M \)
+	(written additively) on which \( A \) acts linearly
+	(written multiplicatively).
+
+	More precisely, it is a pair \brak{M, \mu_A} where \( M \)
+	is an abelian group and \(\mu_A: A \times M \to M\) is a
+	map satisfying the following axioms:
+
+	\begin{enumerate}
+		\item \( a(x + y) = ax + ay \)
+		\item \( (a + b)x = ax + bx \)
+		\item \( (ab)x = a(bx) \)
+		\item \( 1x = x \)
+	\end{enumerate}
+
+	for any \( a, b \in A \AND x, y \in M \).
+\end{definition}
+
+Equivalently, a module is an abelian group \( M \) with a
+ring homomorphism \( A \to \End(M) \) where \( \End(M) \)
+is the ring of endomorphisms of the abelian group \( M \).
+
+\begin{example}{Modules}{}
+	The following are common examples of modules.
+	\begin{enumerate}
+		\item The ideals, \( \mfa \) of a ring \( A \) are \( A \)
+		modules.
+		In particular, \( A \) is itself an \( A \) module.
+		\item If \( A \) is a field \( \kappa \), then
+		\( \kappa \)-modules are \( \kappa \)-vector spaces.
+		\item If \( A \) is \( \ZZ \), then abelian groups are
+		\( \ZZ \)-modules.
+		\item If \( A = \kappa[x] \) where \( \kappa \) is a field,
+		an \( \kappa[x] \)-module is a \( \kappa \)-vector space
+		with a linear transformation.
+	\end{enumerate}
+\end{example}
+
+
+\subsection{Homomorphisms of Modules}
+\begin{defn}{}{}
+	Let \(M, N\) be \(A\)-modules and \(f: M \to N\) a map.
+	Then, we say that \(f\) is an \emph{\(A\)-module homomorphism} or an
+	\emph{\(A\)-linear map} if it satisfies:
+	\begin{align*}
+		f(x + y) &= f(x) + f(y) \quad\quad \forall\ x, y \in M \\
+		f(ax) &= a \cdot f(x) \quad \quad \forall\ a \in A \AND x \in M
+	\end{align*}
+\end{defn}
+
+Note that if \( A \) is a field, then a module homomorphism is
+the same as a Linear Transformation of vector spaces.
+
+
+\subsection{Module of Homomorphisms from \(M\) to \(N\)}
+The set of all \(A\)-module homomorphisms from \(M\) to \(N\) can
+be thought of as a module over \(A\).
+
+Let us define \(f+g\) and \(af\) for \(f, g: M \to N\) and \(a \in A\) as
+\begin{align*}
+	\brak{f+g}(x) &= f(x) + g(x) \\
+	\brak{af}(x) &= a \cdot f(x)
+\end{align*}
+
+This module is called the \emph{module of \(A\)-module homomorphisms
+from \(M\) to \(N\)} and is denoted by \(\Hom_A(M, N)\).
+
+For any module \(M\), there is a natural isomorphism
+\[
+	\Hom_A(A, M) \cong M
+\]
+The idea being, any \(A\)-module homomorphism from \(A\) to \(M\) is
+uniquely determined by \(f(1)\) which can be any element in \(M\).
+
+
+
+\section{Submodules and Quotient Modules}
+In simple words, a submodule, \(M'\) of \(M\) is a normal subgroup of \(M\)
+which is closed under multiplication by elements of \(A\).
+
+The abelian group \(\bigslant{M}{M'}\) then inherits the \(A\)-module
+structure from \(M\), defined by
+\[
+	a(x+M') = ax + M'
+\]
+
+Some natural examples of submodules occur during homomorphisms.
+
+Consider the \(A\)-ring homomorphism \(f: M \to N\)
+\[
+	\Ker(f) = \fbrak{x \in M \mid f(x) = 0}
+\]
+is a submodule of \(M\).
+
+Similarly, the image of \(f\) is the set
+\[
+	\Img(f) = f(M)
+\]
+is a submodule of \(N\) along with the cokernel, which is the quotient
+submodule of \(N\).
+\[
+	\Coker(f) = \bigslant{N}{\Img(f)}
+\]
+
+
+\section{Operation on Submodules}
+
+Let \(M\) be an \(A\)-module and \(\fbrak{M_i}_{i \in \sI}\) be a
+family of submodules of \(M\). \\
+Then, the \emph{sum} \(\sum M_i\) of the submodules is the set
+fo all (finite) sums \(\sum x_i\) where \(x_i \in M_i\) for all \(i\).
+
+The sum is the smallest submodule containing all the \(M_i\).
+
+\begin{proposition}{}{}
+	Suppose \(M_1, M_2 \normsg M\) be \(A\)-submodules of \(M\).
+	Then,
+	\[ M_1 + M_2 \normsg M \]
+\end{proposition}
+
+\begin{proof}
+	Let \(x \in M_1 \AND y \in M_2\) and \(a \in A\).
+	We know that \(M_1 + M_2\) is a normal subgroup of \(M\).
+
+	\[
+		a(x + y) = ax + ay \in M_1 + M_2 \quad \text{since}
+		\quad ax \in M_1 \AND ay \in M_2
+	\]
+
+	Hence, \(M_1 + M_2 \normsg M\).
+\end{proof}
+
+
+\begin{proposition}{}{}
+	Suppose \(M_1, M_2 \normsg M\) be \(A\)-submodules of \(M\).
+	Then,
+	\[ M_1 \cap M_2 \normsg M \]
+\end{proposition}
+
+\begin{proof}
+	Clearly, \(M_1 \cap M_2\) is a normal subgroup of \(M\).
+
+	Consider \(x \in M_1 \cap M_2\).
+	Then, \(x \in M_1\) and \(x \in M_2\)
+	and \(ax \in M_1 \AND ax \in M_2\) for all \(a \in A\).
+
+	\(\implies ax \in M_1 \cap M_2 \implies M_1 \cap M_2 \normsg M\).
+\end{proof}
+
+\begin{note}
+	The intersection \(\bigcap M_i\) is again a submodule of \(M\) and hence,
+	the submodules of \(M\) form a complete lattice with
+	respect to inclusion.
+\end{note}
+
+
+\subsection{Isomorphism Theorems}
+
+\begin{theorem}{First Isomorphism Theorem}{}
+	Let \(M, N\) be \(A\)-modules and
+	\[
+		f \colon M \to N
+	\]
+	be a \(A\)-module homomorphism.
+	Then,
+	\[
+		\bigslant{M}{\Ker{f}} \cong \Img{f}
+	\]
+\end{theorem}
+
+\begin{theorem}{Second Isomorphism Theorem}{}
+	Let \(M\) be an \(A\)-module and let \( L \normsg N \normsg M\)
+	be submodules of \(M\).
+	Then,
+	\[
+		\bigslant{\bigslant{M}{L}}{\bigslant{N}{L}} \cong
+		\bigslant{M}{N}
+	\]
+\end{theorem}
+
+\begin{proof}
+	Define a homomorphism
+	\begin{align*}
+		\theta \colon \bigslant{M}{L} &\to \bigslant{M}{N} \\
+		x + L &\mapsto x + N
+	\end{align*}
+	The kernel of this homomorphism is
+	\begin{align*}
+		x \in \Ker(\theta) &\implies x + L \mapsto 0 + N \\
+		&\implies x \mapsto 0 + \bigslant{N}{L} \\
+		&\implies x \in \bigslant{N}{L} \\
+		\therefore \Ker(\theta) &= \ \bigslant{N}{L}
+	\end{align*}
+	Using First Isomorphism Theorem, we get
+	\[
+		\bigslant{\bigslant{M}{L}}{\bigslant{N}{L}} \cong
+		\bigslant{M}{N} \qedhere
+	\]
+\end{proof}
+
+
+\begin{theorem}{Third Isomorphism Theorem}{}
+	Let \(M\) be an \(A\)-module and let \( M_1, M_2 \normsg M\).
+	Then,
+	\[
+		\bigslant{\brak{M_1 + M_2}}{M_1} \cong
+		\bigslant{M_2}{\brak{M_1 \cap M_2}}
+	\]
+\end{theorem}
+
+\begin{proof}
+	Consider the homomorphism defined by
+	\begin{align*}
+		\theta \colon M_2 &\to \bigslant{(M_1 + M_2)}{M_1} \\
+		x &\to x + M_1
+	\end{align*}
+	The homomorphism is surjective and the kernel is
+	\begin{align*}
+		\Ker(\theta) &= \fbrak{x \in M_2 \mid x + M_1 = 0 + M_1} \\
+		&= \fbrak{x \in M_2 \mid x \in M_1} \\
+		\Ker(\theta) &= M_1 \cap M_2
+	\end{align*}
+	Using the first isomorphism theorem, we get
+	\[
+		\bigslant{\brak{M_1 + M_2}}{M_1} \cong
+		\bigslant{M_2}{\brak{M_1 \cap M_2}} \qedhere
+	\]
+\end{proof}
+
+
+\subsection{Ideal Product}
+We can not, in general define the product of two modules but we can define
+the product of a module with an ideal.
+\[
+	\mfa M \coloneqq \fbrak{a x \mid a \in A \AND x \in M}
+\]
+
+\begin{claim}{}{}
+	If \(N, P \normsg M\) are submodules of \(M\), then we can define
+	\[
+		\brak{N \colon P} \coloneqq \fbrak{a \in A \mid aP \subseteq N}
+	\]
+	Then \(\brak{N \colon P}\) is an ideal of \(A\).
+\end{claim}
+
+\begin{proof}
+	\(a, b \in \brak{N \colon P} \implies aP, bP \subseteq N\).
+
+	Clearly, \(\implies aP + bP \subseteq N \AND abP \subseteq N\) and hence,
+	\(ab \in \brak{N \colon P}\).
+
+	Consider \( r \in A \).
+	\( arP \subseteq aP \subseteq N\) and hence, \(ar \in \brak{N, P}\).
+\end{proof}
+
+Particularly, the ideal \(\brak{0 \colon M}\)
+is called the \emph{annihilator} of \(M\).
+
+\begin{defn}{Faithful Module}{}
+	An \(A\)-module \(M\) is called \emph{faithful} if
+	\(\Ann(M) = 0\).
+\end{defn}
+
+\begin{proposition}{}{}
+	For any \(A\)-module \(M\) and submodules \(N, P \normsg M\),
+	\begin{enumerate}
+		\item \(\Ann(N+P) = \Ann(N) \cap \Ann(P)\)
+		\item \(\brak{N \colon P} = \Ann\brak{\bigslant{\brak{N+P}}{N}}\)
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof} \
+	\begin{enumerate}
+		\item
+		\(a \in \Ann(N+P) \implies an = 0\ \forall\ n \in N \AND ap = 0\
+		\forall\ p \in P\)
+		and hence, \(a \in \Ann(N) \cap \Ann(P)\).
+
+		Conversely, \(a \in \Ann(N) \cap \Ann(P) \implies
+		a(n+p) = an + ap = 0\).
+		and this implies \(a \in \Ann(N+P)\).
+
+		Hence proved.
+
+		\item
+		\(a \in \brak{N \colon P} \implies aP \subseteq N
+		\implies a(P+N) \subseteq (0+N) \implies a \in
+		\Ann\brak{\bigslant{\brak{N+P}}{N}}\).
+
+		Conversely, \(a \in \Ann\brak{\bigslant{\brak{N+P}}{N}} \implies
+		a(p + N) = (0 + N) \ \forall\ p \in P \implies aP \subseteq N
+		\implies a \in \brak{N \colon P}\).
+
+		Hence proved.
+	\end{enumerate}
+\end{proof}
+
+\subsection{Generators}
+
+The set
+\[
+	Ax \coloneqq \brak{x} \coloneqq \fbrak{ax \mid a \in A}
+\]
+for some \(x \in M\) is a submodule of \(M\) and is called the submodule
+generated by \(x\). \\
+
+If
+\[
+	M = \sum_{i \in \sI} A x_i
+\]
+then \(\fbrak{x_i}_{i \in \sI}\) are called the \emph{generators} of \(M\).
+
+This means every element of \(M\) can be expressed (not necessarily uniquely)
+as a finite linear combination of the \(x_i\) with coefficients in \(A\).
+
+An \(A\)-module \(M\) is said to be \emph{finitely generated} if it has a
+finite set of generators.
+
+
+\section{Direct Sum and Product}
+
+If \(M, N\) are \(A\)-modules, then the \emph{direct sum} of \(M\) and \(N\)
+is defined as
+\[
+	M \oplus N \coloneqq \fbrak{\brak{m, n} \mid m \in M \AND n \in N}
+\]
+is an \(A\)-module with the obvious coordinate wise
+addition and scalar multiplication.
+
+More generally, if \(\fbrak{M_i}_{i \in \sI}\) is a family of \(A\)-modules,
+then the \emph{direct sum} of the modules is defined as
+\[
+	\bigoplus_{i \in \sI} M_i \coloneqq \fbrak{\brak{m_i}_{i \in \sI} \mid
+	m_i \in M_i \text{ and finitely many } m_i \neq 0}
+\]
+
+If we drop the condition that the \(m_i\) are finitely many, then we get the
+\emph{direct product} of the modules.
+\[
+	\prod_{i \in \sI} M_i \coloneqq \fbrak{\brak{m_i}_{i \in \sI} \mid
+	m_i \in M_i}
+\]
+If the indexing set is finite, the direct product is the same as the direct
+sum, but need not be in general.
+
+\subsection{Ring}
+Suppose the ring \(A\) is a direct product \(\prod_{i=1}^n A_i\).
+
+Then the set of all elements of the form
+\[
+	\brak{0, 0, \cdots, a_i, \cdots, 0}
+\]
+with \(a_i \in A_i\) is an ideal \(\mfa_i\) of \(A\).
+
+(It is not a subring (except in trivial cases) since the identity element
+\(1\) is not in the ideal.)
+
+If we consider the ring \(A\) as a module over itself, then
+\(A\) is a direct sum of the ideals \(\mfa_i\).
+\[
+	A = \mfa_1 \oplus \mfa_2 \oplus \cdots \oplus \mfa_n
+\]
+
+The identity element of \(\mfa_i\), say \(e_i\) is an idempotent element
+in \(A\) and we can also observe that
+\[
+	\mfa_i = \brak{e_i}
+\]
+(Here, we are looking at \(e_i\) being an element of the module generating
+a submodule by the action of the ring where the submodule is the ideal)
+
+
+\pagebreak
+\section{Finitely Generated Modules}
+
+\begin{defn}{Free \(A\)-module}{}
+	An \(A\)-module \(M\) is called \emph{free} if it is isomorphic to
+	an \(A\)-module of the form \(\bigoplus_{i \in \sI} M_i\) where
+	\[
+		M_i \cong A \brak{\text{as an } A\text{-module}}
+	\]
+	The notation \(A^{\brak{\sI}}\) is sometimes used.
+\end{defn}
+
+
+\begin{proposition}{}{}
+	\(M\) is a finitely generated \(A\)-module \(\iff M\) is
+	isomorphic to a quotient of \(A^n\) for some \(n \in \NN\).
+\end{proposition}
+
+\begin{proof} \brak{\implies}
+	Suppose \(x_1, \cdots, x_n\) generate \(M\).
+	Let us define an \(A\)-linear map onto \(M\) by
+	\begin{align*}
+		\phi \colon A^n &\to M \\
+		(a_1, \cdots, a_n) &\mapsto a_1 x_1 + \cdots + a_n x_n
+	\end{align*}
+	\(\phi\), being surjective, using the first isomorphism theorem, we
+	can say
+	\[
+		M \cong \bigslant{A^n}{\Ker(\phi)}
+	\]
+
+	\brak{\Longleftarrow}
+	Now, we have a surjective \(A\)-linear map \(A^n\) onto \(M\). \\
+	If \(e_i = \brak{0, \cdots, 1, \cdots, 0}\), then clearly,
+	\(\fbrak{\phi(e_i)}_{\brak{1 \leq i \leq n}}\) generate \(M\).
+\end{proof}
+
+
+\begin{proposition}{}{}
+	Let \(M\) be a finitely generated \(A\)-module and \(\mfa\) be an ideal
+	of \(A\), and let \(\phi\) be an \(A\)-module endomorphism of \(M\)
+	such that \(\phi(M) \subseteq \mfa M\).
+	Then \(\phi\) satisfies an equation of the form
+	\[
+		\phi^n + a_1 \phi^{n-1} + \cdots + a_n = 0
+	\]
+	where \(a_i \in \mfa\).
+\end{proposition}
+
+\begin{proof}
+	Let \(x_1, \cdots, x_n\) be a set of generators of \(M\).
+	Then, each \(\phi(x_i) \in \mfa M\), and so we can write
+	\begin{align*}
+		\phi(x_i) &= \sum_{j=1}^n a_{ij} x_j \quad
+		\brak{1 \leq i \leq n ; a_{ij} \in \mfa} \\
+		\implies \sum_{j=1}^n \brak{\delta_{ij}\phi - a_{ij}} x_j &= 0
+		\quad \text{where } \delta_{ij} = 1 \text{ if } i = j \text{ and }
+		0 \text{ otherwise}
+	\end{align*}
+	Suppose \(T = \fbrak{\delta_{ij}\phi - a_{ij}}_{ij}\) be a matrix.
+	We have \(Tx = 0\).
+
+	Multiplying by \(\text{Adj}(T)\) on the left, we get
+	\begin{align*}
+		\text{Adj}(T) \ T x &= 0 \\
+		\implies \det(T) &= 0 \\
+	\end{align*}
+	Expanding \(\det(T)\), we get the desired equation.
+\end{proof}
+
+
+\begin{corollary}{}{}
+	Let \(M\) be a finitely generated \(A\)-module and let \(\mfa\) be
+	an ideal of \(A\) such that \(\mfa M = M\).
+	Then, there exists an \(x \equiv 1 \pmod{\mfa}\) such that
+	\(xM = 0\).
+\end{corollary}
+\begin{proof}
+	Putting \(\phi\) as the identity map, we get
+	\[
+		x = 1 + a_1 + \cdots + a_n
+	\]
+	where \(a_i \in \mfa\).
+\end{proof}
+
+
+\subsection{Nakayama's Lemma}
+
+\begin{theorem}{Nakayama's Lemma}{}
+	Let \(M\) be a finitely generated \(A\)-module and let \(\mfa\) be
+	an ideal of \(A\) contained in the jacobson radical \(\mfR\) of \(A\).
+	Then,
+	\[
+		\mfa M = M \implies M = 0
+	\]
+\end{theorem}
+
+
+\begin{proof}
+	We have \(xM = 0\) for some \(x \equiv 1 \pmod{\mfa}\) using the
+	corollary above.
+	Now, since \(\mfa\) is contained in the jacobson radical, we have
+	\(\mfa\) is a unit since \(x \equiv 1 \pmod{\mfa}\) and hence
+	\[
+		M = x^{-1} x M = 0 \qedhere
+	\]
+\end{proof}
+
+\begin{proof}[Alternate proof]
+	Suppose \(M \neq 0\) and let \(u_1, \ldots, u_n\) be a minimal set of
+	generators of \(M\).
+
+	Then, we have \(u_n \in \mfa M\) and hence, we have the equation
+	\begin{align*}
+		u_n &= a_1 u_1 + \cdots + a_n u_n \quad\quad a_i \in \mfa \\
+		\implies \brak{1 - a_n} u_n &= a_1 u_1 + \cdots + a_{n-1} u_{n-1}
+	\end{align*}
+
+	Since \(a_n \in \mfR\), we get \(1-a_n\) to be a unit and can show that
+	\(a_n\) belongs to the submodule generated by \(u_1, \ldots, u_{n-1}\)
+	which is a contradiction.
+\end{proof}
+
+\begin{corollary}{}{}
+	Let \(M\) be a finitely generated \(A\)-module, \(N \normsg M\),
+	and let \(\mfa \subseteq \mfR\) be an ideal of \(A\).
+	Then,
+	\[
+		M = \mfa M + N \implies M = N
+	\]
+\end{corollary}
+
+\begin{proof}
+	Taking modulo \(N\) on both sides, we get
+	\[
+		\bigslant{M}{N} = \bigslant{(\mfa M + N)}{N} = \bigslant{\mfa M}{N}
+		= \mfa \bigslant{M}{N}
+	\]
+	Now, applying Nakayama's lemma, to \(\bigslant{M}{N}\), we get
+	\[
+		\bigslant{M}{N} = 0 \implies M = N \qedhere
+	\]
+\end{proof}
+
+
+
+\begin{proposition}{}{}
+	Let \(A\) be a local ring, \(\mfm\) be its maximal ideal and
+	\(k = \bigslant{A}{\mfm}\) be the residue field.
+
+	Let \(M\) be a finitely generated \(A\)-module.
+	Since \(\bigslant{M}{\mfm M}\) is annihilated by \(\mfm\), it is
+	naturally a \(\bigslant{A}{\mfm}\)-module, that is, a \(k\)-vector space
+	and is hence, finite-dimensional. \\
+
+	Let \(x_i(1 \leq i \leq n)\) be elements of \(M\) whose images in
+	\(\bigslant{M}{\mfm M}\) form a basis in this vector space.
+
+	Then, the \(x_i\) generate \(M\).
+\end{proposition}
+
+\begin{proof}
+	Let \(N\) be a submodule of \(M\) generated by \(x_i\).
+
+	Then, the composition map
+	\[
+		N \to M \to \bigslant{M}{\mfm M}
+	\]
+	maps \(N\) onto \(\bigslant{M}{\mfm M}\).
+
+	This implies
+	\[
+		N + \mfm M = M \implies N = M
+	\]
+	using the corollary above.
+\end{proof}
+

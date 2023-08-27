@@ -1,0 +1,3 @@
+\contentsline {chapter}{\numberline {1}Rings and Ideals}{2}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Modules}{8}{chapter.2}%
+\contentsfinish 

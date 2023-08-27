@@ -1,0 +1,24 @@
+\documentclass{report}
+
+\input{tex_template/preamble}
+\input{tex_template/macros}
+\input{tex_template/letterfonts}
+\input{tex_template/commands}
+
+\title{\Huge{Title Here}}
+\author{\huge{Sumanth N R}}
+\date{}
+
+\begin{document}
+
+\maketitle
+\newpage
+\pdfbookmark[section]{\contentsname}{toc}
+\tableofcontents
+\pagebreak
+
+\part{Part_Name} \label{part:part_name}
+
+\input{chapters/notes}
+
+\end{document}
