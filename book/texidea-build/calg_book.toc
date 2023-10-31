@@ -60,12 +60,18 @@
 \contentsline {chapter}{\numberline {5}Integral Dependence and Valuations}{56}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Integral Dependence}{56}{section.5.1}%
 \contentsline {section}{\numberline {5.2}The going up theorem}{59}{section.5.2}%
-\contentsline {chapter}{\numberline {6}Chain Conditions}{61}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Definitions}{61}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Implications}{62}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Chain}{64}{section.6.3}%
-\contentsline {chapter}{\numberline {7}Noetherian rings}{67}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Introduction}{67}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Basic properties of Noetherian Rings}{67}{section.7.2}%
-\contentsline {section}{\numberline {7.3}The Hilbert Basis Theorem}{68}{section.7.3}%
+\contentsline {section}{\numberline {5.3}Integrally Closed Integral Domains and The Going Down Theorem}{61}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Valuation Rings}{64}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Construction of a valuation ring from a field}{65}{subsection.5.4.1}%
+\contentsline {chapter}{\numberline {6}Chain Conditions}{66}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Definitions}{66}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Implications}{67}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Chain}{69}{section.6.3}%
+\contentsline {chapter}{\numberline {7}Noetherian rings}{72}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Introduction}{72}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Basic properties of Noetherian Rings}{72}{section.7.2}%
+\contentsline {section}{\numberline {7.3}The Hilbert Basis Theorem}{73}{section.7.3}%
+\contentsline {chapter}{\numberline {8}Artinian Rings}{74}{chapter.8}%
+\contentsline {chapter}{\numberline {9}Discrete Valuation Rings and Dededekind Domains}{75}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Discrete Valuation Rings}{76}{section.9.1}%
 \contentsfinish 

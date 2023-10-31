@@ -1,0 +1,150 @@
+\chapter{Discrete Valuation Rings and Dededekind Domains}
+\label{ch:dvr_dd}
+
+As it has been indicated before, algebraic number theory is one of the
+historical sources of commutative algebra. \\
+
+In this chapter, we specialize down to the case of Dedekind domains.
+We deduce the unique factorization of ideals in Dedekind domains from
+the general primary decomposition theorems.
+Although a direct approach is of course possible one obtains more insight
+this way into the precise context of number theory in commutative algebra. \\
+
+Another important class of Dedekind domains occurs in connection with
+non-singular algebraic curves.
+In fact, the geometrical picture of the Dedekind condition is
+non-singular of dimension one.
+
+% TODO Understand
+(Editors notes: Unclear paragraph) \\
+
+The last chapter dealt with noetherian rings of dimension zero.
+
+Here, we start by considering the next simplest case, namely Noetherian
+\textit{integral domains} of dimension one.
+
+That is, we consider Noetherian domains in which every non-zero prime
+ideal is maximal.
+
+\begin{proposition}{}{}
+\label{prop:9.1}
+	Let \(A\) be a Noetherian domain of dimension 1.
+	Then, every non-zero ideal \(\mfa\) in \(A\) can be uniquely
+	expressed as a product of primary ideals whose radicals are
+	all distinct.
+\end{proposition}
+\begin{proof}
+	Since \(A\) is Noetherian, \(\mfa\) has a minimal primary
+	decomposition by 7.13,
+	\[
+		\mfa = \bigcap_{i=1}^n \mfq_i \quad
+		\text{ where } \mfq_i \text{ are } \mfp_i\text{-primary and }
+		\quad \mfp_i \neq \mfp_j \text{ for } i \neq j
+	\]
+	We have \(\dim A = 1\) and \(A\) is an integral domain.
+	Then, each \(\mfp_i\) is maximal and hence, \(\mfp_i\) are distinct
+	maximal ideals and are hence, pairwise coprime and therefore using
+	1.10, we get
+	\[
+		\prod_{i=1}^n{\mfq_i} = \bigcap_{i=1}^n \mfq_i = \mfa
+	\]
+	For the uniqueness part, we use corollary~\ref{corollary:4_11} to
+	conclude that \(\mfq_i\), being the isolated primary components
+	of \(\mfa\), are unique.
+\end{proof}
+
+
+Let \(A\) be a Noetherian domain of dimension one in which every primary
+ideal is a prime power.
+Then, in such a ring, we will have unique factorization of ideals into
+products of prime ideals.
+
+Now, if we localize \(A\) with respect to a non-zero prime ideal \(\mfp\),
+we get a local ring \(A_{\mfp}\) satisfying the same conditions as \(A\),
+and therefore in \(A_{\mfp}\), every non-zero ideal is a power of a
+maximal ideal.
+Such rings can be characterized in other ways.
+
+
+\section{Discrete Valuation Rings}
+
+\begin{definition}{Discrete Valuation}{}{}
+	Let \(K\) be a field.
+	A \textbf{discrete valuation} on \(K\) is a mapping
+	\[
+		v \colon K^{\times} \to \ZZ  \quad\quad v \text{ is onto}
+	\]
+	where \(K^{\times} = K \setminus \{0\}\), the multiplicative group
+	of \(K\), such that
+	\begin{enumerate}
+		\item \(v\) is a homomorphism.
+		That is, \(v(xy) = v(x) + v(y)\) for all \(x, y \in K^{\times}\).
+		\item \(v(x + y) \geq \min(v(x), v(y))\)
+
+	\end{enumerate}
+\end{definition}
+
+We define discrete valuation rings as follows.
+\begin{definition}{Discrete Valuation Ring}{}{}
+	Let \(K\) be a field and \(v\) be a discrete valuation on \(K\).
+	The set consisting of \(0\) together with all elements \(x \in K\)
+	such that \(v(x) \geq 0\) is a subring of \(K\) called the
+	\textbf{discrete valuation ring} of \(v\).
+
+	It is sometimes convenient to extend \(v\) to all of \(K\) by
+	defining \(v(0) = \infty\).
+\end{definition}
+
+The two standard examples are
+\begin{example}{}{}
+	\(K = \QQ\).
+	Take a fixed prime \(p\) then any non-zero \(x \in \QQ\) can be
+	written uniquely in the form \(p^a y\) where \(a \in \ZZ\) and
+	both numerator and denominator of \(y\) are not divisible by \(p\).
+
+	Define \(v_p(x) = a\).
+	Then, \(v_p\) is a discrete valuation on \(\QQ\) and the discrete
+	valuation ring of \(v_p\) is the local ring \(\ZZ_{(p)}\).
+	\[
+		\ZZ_{(p)} = \left\{ \frac{a}{b} \in \QQ \mid p \nmid b \right\}
+	\]
+\end{example}
+\begin{proof}
+	The above holds clearly since,
+	\[
+		v(xy) = v(p^a y p^b z) = v(p^{a+b} yz) = a + b = v(x) + v(y)
+	\]
+	and
+	\[
+		v(x) \geq 0 \implies x = p^a \frac{c}{d} \quad\quad
+		\text{s.t. } c, d \nmid p \AND a \geq 0
+		\implies x = \frac{c'}{d} \in \ZZ_{(p)}
+	\]
+	Clearly,
+	\[
+		x \in \ZZ_{(p)} \implies v(x) \geq 0
+	\]
+	since any factor of \(p\) can only occur in the numerator.
+\end{proof}
+
+\begin{example}{}{}
+	\(K = k(x)\), where \(k\) is a field and \(x\) an indeterminate.
+
+	Take a fixed irreducible polynomial \(f(x) \in k[x]\).
+	Consider some \(g(x) \in k[x]\) and write
+	\[
+		g(x) = f(x)^a h(x) \quad\quad \text{where } h(x) \text{ is not
+		divisible by } f(x)
+	\]
+	and define \(v_f\) on \(k(x)\) by
+	\[
+		v_f \colon k(x)^{\times} \to \ZZ
+	\]
+	defined by
+	\[
+		v_f (g(x)) = a
+	\]
+	where \(g(x) = f(x)^a h(x)\) as above.
+	Then, \(v_f\) is a discrete valuation on \(k(x)\) and the discrete
+	valuation ring of \(v_f\) is the local ring \(k[x]_{(f(x))}\).
+\end{example}

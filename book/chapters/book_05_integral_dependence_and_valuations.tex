@@ -23,7 +23,7 @@ Multiplying by \(s^m\), we get
 \[
 	r^m + a_1 r^{m-1} s + \cdots + a_m s^m = 0
 \]
-We get that \(s \mid r^m\) and hence, \(s = \pm 1\).
+We get that \(s \mid r^m\) and hence, \(s = \pm 1\)
 Thus, \(\frac{r}{s} \in \ZZ\).
 
 \begin{proposition}{}{}
@@ -399,4 +399,460 @@ Thus, \(\frac{r}{s} \in \ZZ\).
 
 	Lifting back \(\bar{\mfp_2}\) to \(B\) and we have a prime ideal
 	\(\mfq_2\) in \(B\) such that \(\mfq_2 \cap A = \mfp_2\).
+\end{proof}
+
+
+\pagebreak
+
+
+\section{Integrally Closed Integral Domains and The Going Down Theorem}
+
+The proposition~\ref{prop:5.6.2} can be sharpened to the following.
+
+\begin{proposition}{}{}
+\label{prop:5.12}
+	Let \(A \subseteq B\) be rings and
+	\(C = \bar{A}\) be the integral closure of \(A\) in \(B\).
+
+	Let \(S\) be a multiplicatively closed subset of \(A\).
+
+	Then, \(S^{-1} C = S^{-1} \bar{A}\) is the integral closure of
+	\(S^{-1} A\) in \(S^{-1} B\).
+\end{proposition}
+\begin{proof}
+	Using proposition~\ref{prop:5.6.2}, we know that \(S^{-1} C\) is
+	integral over \(S^{-1} A\).
+
+	Conversely, consider some integral element \(\frac{b}{s} \in S^{-1} B\).
+	Then, \(\frac{b}{s}\) satisfies
+	\[
+		\brak{\frac{b}{s}}^n + \frac{a_1}{s_1} \brak{\frac{b}{s}}^{n-1}
+		+ \cdots + \frac{a_n}{s_n} = 0 \quad\quad a_i \in A, s_i \in S
+	\]
+	Let \(t = s_1 s_2 \cdots s_n\).
+	Multiplying the above equation by \((st)^n\), we get
+	\[
+		\brak{bt}^n + \frac{a_1 st}{s_1} \brak{bt}^{n-1}
+		+ \frac{a_2 s^2 t^2}{s_2} \brak{bt}^{n-2}
+		+ \cdots + \frac{a_n s^n t^n}{s_n} = 0
+	\]
+	Notice that after cancelling,
+	\[
+		\frac{a_i s^i t^i}{s_i} = \frac{a_1 s^i t^{i-1} \cdot
+		s_1 \ldots s_{i-1} \cancel{s_i} s_{i+1} \ldots s_n}{\cancel{s_i}}
+		= a_i' \in A
+	\]
+	Therefore, we have
+	\[
+		\brak{bt}^n + a_1' \brak{bt}^{n-1} + \cdots + a_n' = 0
+	\]
+	which shows that \(bt\) is integral over \(A\) and hence, \(bt \in C\)
+	and hence,
+	\[
+		\frac{b}{s} = \frac{bt}{st} \in S^{-1} C \qedhere
+	\]
+\end{proof}
+
+\begin{defn}{Integrally Closed Domain}{}
+	An integral domain \(A\) is said to be \textbf{integrally closed} if
+	it is integrally closed in its field of fractions.
+\end{defn}
+
+For example, the ring of integers \(\ZZ\) is integrally closed since it is
+integrally closed in \(\QQ\).
+
+Also, notice that the ring \(\ZZ\sbrak{\sqrt{-5}}\) is not integrally closed
+since \(\frac{1 + \sqrt{-5}}{2}\) is integral over \(\ZZ\sbrak{\sqrt{-5}}\).
+
+\(\frac{1 + \sqrt{-5}}{2}\) is a root of \(x^2 - x + 2 = 0\).
+
+The same argument holds for anu UFD.\
+In particular, a polynomial ring \(k\sbrak{x_1, \ldots, x_n}\) is integrally
+closed where \(k\) is a field.
+
+\begin{proposition}{Integral Closure is a local property}{}
+\label{prop:5.13}
+	Let \(A\) be an integral domain.
+	Then, the following are equivalent.
+	\begin{enumerate}
+		\item \(A\) is integrally closed.
+		\item \(A_{\mfp}\) is integrally closed for every prime ideal
+			\(\mfp\) in \(A\).
+		\item \(A_{\mfm}\) is integrally closed for every maximal ideal
+			\(\mfm\) in \(A\).
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	Let \(K\) be the field of fractions of \(A\) and \(C\) be the integral
+	closure of \(A\) in \(K\).
+
+	Let \(f \colon A \to C\) be the identity mapping of \(A\) into \(C\).
+
+	Clearly,
+	\[
+		f \text{ is surjective} \iff C = A \iff A \text{ is integrally closed}
+	\]
+
+	We now argue
+	\[
+		f \text{ is surjective} \iff \text{all }f_{\mfp} \text{ is surjective}
+		\iff \text{all } f_{\mfm} \text{ is surjective}
+	\]
+	using proposition 3.9.
+\end{proof}
+
+\begin{defn}{Integral over an ideal and Integral Closure}{}
+	Let \(A \subseteq B\) be rings and let \(\mfa\) be an ideal in \(A\).
+
+	An element \(x \in B\) is said to be \textbf{integral over} \(\mfa\)
+	if it satisfies a monic polynomial with coefficients in \(\mfa\).
+
+	The \textbf{integral closure} of an ideal \(\mfa\) in \(B\) is
+	\[
+		\bar{\mfa} = \fbrak{x \in B \mid x \text{ is integral over } \mfa}
+	\]
+\end{defn}
+
+
+\begin{lemma}{}{}
+\label{lemma:5.14}
+	Let \(A \subseteq B\) be rings and let \(C\) be the integral closure
+	of \(A\) in \(B\).
+
+	Let \(\mfa\) be an ideal in \(A\) and let \(\mfa^e\) be the extension
+	of \(\mfa\) in \(C\).
+
+	Then, the integral closure of \(\mfa\) in \(B\) is the radical of
+	\(\mfa^e\).
+	\[
+		\rad(\mfa^e) = \fbrak{x \in B \mid x \text{ is integral over } \mfa}
+	\]
+
+	(Hence, integral closure of extensions is closed under addition and
+	multiplication.)
+\end{lemma}
+\begin{proof}
+	If \(x \in B\) is integral over \(\mfa\), we have an equation of the form
+	\[
+		x^n + a_1 x^{n-1} + \cdots + a_n = 0 \quad a_i \in \mfa
+	\]
+	We have
+	\[
+		x \in C \AND x^n \in \mfa^e \implies x \in \rad(\mfa^e)
+	\]
+	Conversely, consider some \(x \in \rad(\mfa^e)\).
+	Then,
+	\[
+		x^n = \sum_{i = 1}^m a_i x_i \quad a_i \in \mfa, x_i \in C
+	\]
+	Since every \(x_i\) is integral over \(A\), the module
+	\(M = A\sbrak{x_1, \cdots, x_n}\) is finitely generated over \(A\)
+	and we have
+	\[
+		x^n M \subseteq \mfa M
+	\]
+	Using proposition 2.4 with \(\phi\) being multiplication by \(x^n\),
+	we get that \(x^n\) is integral over \(A\).
+
+	Therefore, \(x\) is integral over \(A\).
+\end{proof}
+
+
+\begin{proposition}{}{}
+\label{prop:5.15}
+	Let \(A \subseteq B\) be integral domains such that \(A\) is integrally
+	closed.
+	Let \(x \in B\) be integral over an ideal \(\mfa \normsg A\).
+
+	Then, \(x\) is algebraic over the field of fractions, \(K\) of \(A\),
+	and if its minimal polynomial over \(K\) is
+	\[
+		t^n + a_1 t^{n-1} + \cdots + a_n = 0 \quad a_i \in K
+	\]
+	then, \(a_i \in \rad(\mfa)\) for all \(i \in \fbrak{1, \ldots, n}\).
+\end{proposition}
+\begin{proof}
+	Clearly, \(x\) is algebraic over \(K\) since it is integral over \(A\).
+
+	Let \(L\) be an extension field of \(K\) which contains all the
+	conjugates \(x_1, \ldots, x_n\) of \(x\).
+
+	Each \(x_i\) satisfies the same equation of integral dependence
+	as \(x\) and hence, each \(x_i\) is integral over \(\mfa\).
+
+	The coefficients of the minimal polynomial of \(x\) over \(K\)
+	are polynomials in \(x_i\) and hence, using lemma~\ref{lemma:5.14},
+	are integral over \(\mfa\).
+
+	Since \(A\) is integrally closed, they must lie in \(\rad(\mfa)\).
+\end{proof}
+
+
+\begin{theorem}{Going down theorem}{}
+\label{thm:5.16}
+	Let \(A \subseteq B\) be integral domains with \(A\) integrally closed
+	and \(B\) integral over \(A\).
+
+	Let
+	\[
+		\mfp_1 \supseteq \mfp_2 \supseteq \cdots \supseteq \mfp_n
+	\]
+	be a chain of prime ideals in \(A\) and let
+	\[
+		\mfq_1 \supseteq \mfq_2 \supseteq \cdots \supseteq \mfq_m
+		\quad \brak{m < n}
+	\]
+	be a chain of prime ideals in \(B\) such that \(\mfq_i \cap A = \mfp_i\)
+	for all \(i \in \fbrak{1, \ldots, m}\).
+
+	Then, the chain of prime ideals in \(B\) can be extended to a chain
+	\[
+		\mfq_1 \supseteq \mfq_2 \supseteq \cdots \supseteq \mfq_n
+	\]
+	such that \(\mfq_i \cap A = \mfp_i\)
+	for all \(i \in \fbrak{1, \ldots, n}\).
+\end{theorem}
+\begin{proof}
+	As in theorem~\ref{thm:5.11}, we reduce immediately to the case
+	when \(n = 2\) and \(m = 1\).
+
+	From the note~\ref{note:3_localization_of_prime_ideals}, recall that
+	after localization of \(B\) at \(\mfq_1\), only the prime ideals
+	contained in \(\mfq_1\) survive.
+
+	Now, the problem is reduced to showing that \(\mfp_2\) is the
+	contraction of a prime ideal in \(B_{\mfq_1}\) or equivalently,
+	using proposition~\ref{prop:3_16},
+	\[
+		\mfp_2^{ec} = \mfp_2 \quad \text{where }
+		\mfp_2^e = B_{\mfq_1} \mfp_2 \quad \text{and }
+		\mfp_2^{ec} = \mfp_2^e \cap A
+		\quad\quad
+		\iff B_{\mfq_1} \mfp_2 \cap A = \mfp_2
+	\]
+	We just want to show that \(B_{\mfq_1} \mfp_2 \cap A = \mfp_2\).
+
+	Every \(x \in B_{\mfq_1} \mfp_2\) is of the form \(\frac{y}{s}\)
+	where \(y \in B\mfp_2\) and \(s \in B \setminus \mfq_1\).
+	\[
+		y \in B\mfp_2 \implies y \in \mfp_2^e \implies y \in \rad(\mfp_2^e)
+		\implies y \text{ is integral over } \mfp_2^{ec} = \mfp_2
+	\]
+	The last implication follows from lemma~\ref{lemma:5.14}.
+
+	Using proposition~\ref{prop:5.15}, we get that the minimal equation
+	satisfied by \(y\) over \(K\) has coefficients in \(\rad\brak{\mfp_2}\).
+	\[
+		y^n + u_1 y^{n-1} + \cdots + u_r = 0 \quad u_i \in \rad\brak{\mfp_2}
+	\]
+	TODO % TODO Finish this proof
+\end{proof}
+
+The proof of the next theorem assumes some standard facts from
+field theory.
+\begin{proposition}{}{}
+\label{prop:5.17}
+	Let \(A\) be an integrally closed domain, \(K\) its field of fractions
+	and \(L\) a finite separable (algebraic) extension of \(K\), \(B\)
+	the integral closure of \(A\) in \(L\).
+
+	Then, there exists a basis \(v_1, \cdots, v_n\) of \(L\) over \(K\)
+	such that \(B\) is contained in the \(A\)-submodule of \(L\) generated
+	by \(v_1, \cdots, v_n\).
+\end{proposition}
+
+
+
+
+\pagebreak
+
+\section{Valuation Rings}
+\begin{definition}{Valuation Ring}{}
+	Let \(B\) be an integral domain, \(K\) its field of fractions.
+
+	\(B\) is a \emph{valuation ring} if,
+	\[
+		x \in K \setminus \fbrak{0}
+		\implies x \in B \OR x^{-1} \in B
+	\]
+\end{definition}
+
+We see a few properties of valuation rings.
+
+\begin{proposition}{}{}
+\label{prop:5.18.1}
+	Let \(B\) be a valuation ring.
+	Then, \(B\) is a local ring.
+\end{proposition}
+\begin{proof}
+	We construct the maximal ideal of \(B\) and show that it is unique.
+
+	Consider the set of non-units in \(B\).
+	\[
+		\mfm \coloneqq \fbrak{x \in B \mid x = 0 \OR x\inv \notin B}
+	\]
+	We show that \(\mfm\) is an ideal in \(B\).
+
+	Consider two non-zero elements \(x, y \in \mfm \setminus \fbrak{0}\).
+
+	Closed under addition.
+	Clearly, we have
+	\[
+		xy^{-1} \in B \qorq yx^{-1} \in B
+	\]
+	In the first case, we have
+	\[
+		xy^{-1} \in B \implies
+		x + y = y + xy^{-1} y = y \brak{1 + xy^{-1}} \in B \mfm
+		\implies x + y \in \mfm
+	\]
+	We get the same result in the other case as well.
+
+	Absorbing property.
+	Consider some \(a \in B\) and \(x \in \mfm\).
+	Then, we have \(ax \in \mfm\).
+	Otherwise,
+	\[
+		ax \notin \mfm \implies \brak{ax}^{-1} \in B
+		\implies x^{-1} a^{-1} \in B \implies x^{-1} a^{-1} a = x^{-1} \in B
+	\]
+	which is a contradiction and hence,
+	\[
+		a \in B, x \in \mfm \implies ax \in \mfm
+	\]
+	This proves that \(\mfm\) is an ideal in \(B\).
+
+	Using the result 1.6, we can conclude that \(\mfm\) is a unique
+	maximal ideal in \(B\) and hence, \(B\) is a local ring.
+\end{proof}
+
+\begin{proposition}{}{}
+\label{prop:5.18.2}
+	Let \(B\) be a valuation ring.
+	Then,
+	\[
+		B \subseteq B' \subseteq K
+		\implies B' \text{ is a valuation ring}
+	\]
+\end{proposition}
+\begin{proof}
+	Consider some \(x \in K \setminus{\fbrak{0}}\).
+
+	Then,
+	\[
+		x \notin B'
+		\implies x \notin B
+		\implies x^{-1} \in B
+		\implies x^{-1} \in B'
+	\]
+	and clearly \(0 \in B'\) and hence,
+	\(B'\) is a valuation ring.
+\end{proof}
+
+\begin{proposition}{}{}
+\label{prop:5.18.3}
+	Let \(B\) be a valuation ring.
+	Then, \(B\) is integrally closed.
+	(in \(K\))
+\end{proposition}
+\begin{proof}
+	Consider some element \(x \in K\) which is integral over \(B\).
+	\[
+		x^n + b_1 x^{n-1} + \cdots + b_n = 0 \quad b_i \in B
+	\]
+	If \(x \in B\), then we're done.
+	Otherwise, \(x^{-1} \in B\) and hence,
+	\[
+		x = -b_1 - b_2 x^{-1} - \cdots - b_n x^{-(n-1)} \in B \qedhere
+	\]
+\end{proof}
+
+
+\subsection{Construction of a valuation ring from a field}
+
+Let \(K\) be a field and \(\Omega\) be an algebraically closed field.
+\[
+	\Sigma = \fbrak{\brak{A, f} \colon A \text{ is a subring of } K,
+		f \colon A \to \Omega \text{ is a ring homomorphism}
+	}
+\]
+We then define a partial order on \(\Sigma\) as follows.
+\[
+	\brak{A, f} \leq \brak{A', f'} \iff A \subseteq A', \ f' \mid_A = f
+\]
+The conditions of Zorn's lemma are satisfied and hence, the set
+\(\Sigma\) has a maximal element \(\brak{B, g}\).
+
+We claim
+\begin{claim}{}{}
+	\(B\) is a valuation ring of \(K\).
+\end{claim}
+
+To prove this, we start with the following lemma.
+\begin{lemma}{}{}
+\label{lemma:5.19}
+	\(B, g\) as defined above.
+	\(B\) is a local ring and \(\mfm = \Ker (g)\) is its maximal ideal.
+\end{lemma}
+\begin{proof}
+	Since \(g(B)\) is a subring of a field, it is an integral domain.
+
+	Hence,
+	\(
+		\mfm = \Ker (g)
+	\)
+	is prime.
+
+	We can now extend \(g\) to a homomorphism
+	\[
+		\bar{g} \colon K_{\mfm} \to \Omega
+	\]
+	defined by
+	\[
+		\bar{g}\brak{\frac{b}{s}} = \frac{g(b)}{g(s)}
+		\quad \forall\ b \in B, \ s \in B \setminus \mfm
+		\quad \text{ since } g(s) \neq 0
+	\]
+	Since \(B\) is the maximal element,
+	we have
+	\[
+		B = B_{\mfm}
+	\]
+	which shows that \(B\) is a local ring with \(\mfm\) as its maximal
+	ideal.
+\end{proof}
+
+\begin{lemma}{}{}
+\label{lemma:5.20}
+	Let \(x\) be a non-zero element of \(K\).
+
+	Let \(B[x]\) be the subring of \(K\)
+	generated by \(x\) over \(B\) and let \(\mfm[x]\) be the
+	extension of \(\mfm\) in \(B[x]\).
+
+	Then,
+	\[
+		\mfm[x] \neq B[x] \qorq
+		\mfm\sbrak{x^{-1}} \neq B\sbrak{x^{-1}}
+	\]
+\end{lemma}
+\begin{proof}
+	Suppose we have
+	\[
+		\mfm[x] = B[x] \qandq \mfm\sbrak{x^{-1}} = B\sbrak{x^{-1}}
+	\]
+	Then, we will have equations
+	\[
+		1 \in \mfm[x] \implies 1 = u_0 + u_1 x + \cdots + u_n x^m
+		\quad u_i \in \mfm
+	\]
+	and similarly,
+	\[
+		1 \in \mfm\sbrak{x^{-1}}
+		\implies 1 = v_0 + v_1 x^{-1} + \cdots + v_n x^{-n}
+		\quad v_j \in \mfm
+	\]
+	where \(m, n\) are as small as possible.
+
+	Assume \(m \geq n\) and multiply the second equation by \(x^n\).
 \end{proof}
